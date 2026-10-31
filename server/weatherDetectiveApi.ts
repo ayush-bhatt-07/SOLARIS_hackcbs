@@ -79,6 +79,20 @@ export async function explain_weather_savings_anomaly(account: Account, property
   }
   return { answer, mode: responseMode, completion: responseMode === 'gemini' ? 'STOP' : 'DETERMINISTIC', evidence, source: report.weatherProvenance, function: 'explain_weather_savings_anomaly' };
 }
+export async function seedWeatherDemo(property: BusinessProperty): Promise<WeatherReport> {
+  if (!weatherDatasetFor(property, 'demo')) {
+    const seed = await detectiveInference('weather-template');
+    if (!weatherDatasetFor(property, 'demo')) {
+      db.weatherDatasets ??= [];
+      db.weatherDatasets.push({ id: randomUUID(), propertyId: property.id, organisationId: property.organisationId, source: 'SYNTHETIC', site: seed.site, solar: seed.solar, weather: seed.weather, createdAt: new Date().toISOString(), version: 1 });
+      persist();
+    }
+  }
+  const report = await runWeatherReport(property, 'demo');
+  if (!report) throw new Error('The synthetic weather experiment could not be created.');
+  return report;
+}
+
 export function registerWeatherDetectiveApi(router: Router) {
   const root = '/business/properties/:id/detective/weather';
   const error = (res: any, e: unknown, status = 400) => res.status(status).json({ error: (e as Error).message });

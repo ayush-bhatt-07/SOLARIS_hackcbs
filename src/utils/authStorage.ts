@@ -12,7 +12,7 @@ export interface AuthSession {
   name: string;
   email: string;
   token?: string;
-  workspace?: 'household' | 'commercial';
+  workspace?: import('../types/commercial').Workspace;
   organisationId?: string;
   demo?: boolean;
   membership?: OrganisationMembership;

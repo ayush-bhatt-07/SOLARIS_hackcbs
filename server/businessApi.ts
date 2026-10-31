@@ -8,6 +8,7 @@ import { GoogleGenAI } from '@google/genai';
 import { registerEconomicsApi } from './economicsApi';
 import { registerDetectiveApi } from './detectiveApi';
 import { registerWeatherDetectiveApi } from './weatherDetectiveApi';
+import { registerSolarDoctorApi } from './solarDoctorApi';
 
 export const businessApi = Router();
 type AuthRequest = Request & { account?: Account };
@@ -18,7 +19,7 @@ const authenticated = (req: AuthRequest, res: Response, next: NextFunction) => {
   if (!membershipFor(req.account)) { res.status(403).json({ error: 'An active organisation membership is required.' }); return; }
   next();
 };
-const workspace = (value: unknown) => value === 'household' || value === 'commercial';
+const workspace = (value: unknown) => value === 'household' || value === 'commercial' || value === 'installer';
 const fail = (res: Response, message: string) => { res.status(400).json({ error: message }); };
 const authAttempts = new Map<string, { count: number; expires: number }>();
 businessApi.use('/auth', (req, res, next) => {
@@ -40,7 +41,7 @@ businessApi.post('/auth/register', (req, res) => {
   const cleanEmail = email.trim().toLowerCase();
   if (db.accounts.some(a => a.email === cleanEmail)) { fail(res, 'An account already exists with this email. Please log in.'); return; }
   const account: Account = { id: randomUUID(), name: name.trim(), email: cleanEmail, password: passwordHash(password), workspace: selected, organisationId: randomUUID(), demo: false,
-    commercialRole: selected === 'commercial' ? 'property_owner' : undefined };
+    commercialRole: selected === 'commercial' ? 'property_owner' : selected === 'installer' ? 'installer_admin' : undefined };
   db.accounts.push(account);
   addMembership(account);
   audit(account, 'account_registered');
@@ -59,8 +60,9 @@ businessApi.post('/auth/login', (req, res) => {
 businessApi.post('/auth/demo', (req, res) => {
   if (!workspace(req.body.workspace)) { fail(res, 'Choose a workspace.'); return; }
   const tenantDemo = req.body.workspace === 'commercial' && req.body.persona === 'tenant';
-  const account: Account = { id: randomUUID(), name: tenantDemo ? 'Demo Shop Tenant' : req.body.workspace === 'commercial' ? 'Demo Mall Owner' : 'Demo Household', email: `demo-${randomUUID()}@solaris.example`, password: passwordHash(randomUUID()), workspace: req.body.workspace, organisationId: randomUUID(), demo: true,
-    commercialRole: req.body.workspace === 'commercial' ? tenantDemo ? 'shop_tenant' : 'property_owner' : undefined,
+  const installerDemo = req.body.workspace === 'installer';
+  const account: Account = { id: randomUUID(), name: tenantDemo ? 'Demo Shop Tenant' : req.body.workspace === 'commercial' ? 'Demo Mall Owner' : installerDemo ? 'SunGrid Demo Installer' : 'Demo Household', email: `demo-${randomUUID()}@solaris.example`, password: passwordHash(randomUUID()), workspace: req.body.workspace, organisationId: installerDemo ? 'org-installer-sungrid' : randomUUID(), demo: true,
+    commercialRole: req.body.workspace === 'commercial' ? tenantDemo ? 'shop_tenant' : 'property_owner' : installerDemo ? 'installer_admin' : undefined,
     shopId: tenantDemo ? 'shop-1' : undefined };
   db.accounts.push(account);
   const property = account.workspace === 'commercial' ? newProperty(account.organisationId) : undefined;
@@ -157,7 +159,7 @@ businessApi.use('/business/properties/:id', (req: AuthRequest, res, next) => {
   if (membership.role === 'shop_tenant') {
     const statementRoute = req.method === 'GET' && /^\/shops\/[^/]+\/statement\/?$/.test(req.path);
     if (!statementRoute) { res.status(403).json({ error: 'Tenant access is limited to the assigned shop statement.' }); return; }
-  } else if (req.method !== 'GET' && membership.role !== 'property_owner' && !(membership.role === 'facility_manager' && req.method === 'POST' && /^(\/economics\/(simulate|chart-explanation)|\/detective\/explain|\/detective\/weather\/(analyse|explain))\/?$/.test(req.path))) {
+  } else if (req.method !== 'GET' && membership.role !== 'property_owner' && !(membership.role === 'facility_manager' && req.method === 'POST' && /^(\/economics\/(simulate|chart-explanation)|\/detective\/explain|\/detective\/weather\/(analyse|explain))\/?$/.test(req.path)) && !(membership.role === 'facility_manager' && /^\/doctor(\/|$)/.test(req.path))) {
     res.status(403).json({ error: 'This change requires a property owner.' }); return;
   }
   res.locals.property = property; next();
@@ -165,6 +167,7 @@ businessApi.use('/business/properties/:id', (req: AuthRequest, res, next) => {
 registerEconomicsApi(businessApi);
 registerDetectiveApi(businessApi);
 registerWeatherDetectiveApi(businessApi);
+registerSolarDoctorApi(businessApi, authenticated);
 businessApi.get('/business/properties/:id', (_req, res) => {
   const property: BusinessProperty = res.locals.property;
   res.json({ property, scenarios: businessScenarios(property), ledger: businessLedger(property) });

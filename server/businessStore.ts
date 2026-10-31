@@ -5,9 +5,10 @@ import type { BusinessProperty, Workspace, OrganisationMembership } from '../src
 
 export interface Account {
   id: string; name: string; email: string; password: string; workspace: Workspace;
-  organisationId: string; demo: boolean; commercialRole?: 'property_owner' | 'facility_manager' | 'shop_tenant'; shopId?: string;
+  organisationId: string; demo: boolean; commercialRole?: 'property_owner' | 'facility_manager' | 'shop_tenant' | 'installer_admin' | 'installer_engineer'; shopId?: string;
 }
 interface Store {
+  solarDoctor?: import('../src/types/solarDoctor').DoctorStore;
   weatherDatasets?: import('../src/types/weatherDetective').WeatherDataset[];
   weatherCache?: import('../src/types/weatherDetective').WeatherCache[];
   detectiveDatasets?: import('../src/types/detective').DetectiveDataset[];
@@ -83,7 +84,7 @@ export const revokeSession = (token: string) => { db.sessions = db.sessions.filt
 export const membershipFor = (account: Account) => db.memberships.find(m => m.accountId === account.id && m.organisationId === account.organisationId && m.workspace === account.workspace && m.status === 'active');
 export const addMembership = (account: Account, propertyId?: string) => {
   const membership: OrganisationMembership = { accountId: account.id, organisationId: account.organisationId, workspace: account.workspace,
-    role: account.workspace === 'household' ? 'household_member' : account.commercialRole ?? 'property_owner', status: 'active', shopId: account.shopId, propertyId };
+    role: account.workspace === 'household' ? 'household_member' : account.workspace === 'installer' ? account.commercialRole ?? 'installer_admin' : account.commercialRole ?? 'property_owner', status: 'active', shopId: account.shopId, propertyId };
   db.memberships.push(membership); return membership;
 };
 export const publicAccount = (account: Account) => ({

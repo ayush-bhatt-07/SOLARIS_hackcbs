@@ -1,7 +1,7 @@
-export type Workspace = 'household' | 'commercial';
+export type Workspace = 'household' | 'commercial' | 'installer';
 export interface OrganisationMembership {
   accountId: string; organisationId: string; workspace: Workspace;
-  role: 'household_member' | 'property_owner' | 'facility_manager' | 'shop_tenant';
+  role: 'household_member' | 'property_owner' | 'facility_manager' | 'shop_tenant' | 'installer_admin' | 'installer_engineer';
   status: 'active' | 'inactive'; propertyId?: string; shopId?: string;
 }
 export interface TenantBenefitPolicy {

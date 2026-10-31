@@ -29,7 +29,8 @@ const RouterView: React.FC = () => {
   const isSignup = currentPath === '/signup' || currentPath.startsWith('/signup/');
   const isPublicPath = currentPath === '/' || isLogin || isSignup;
   const isBusiness = currentWorkspaceAccess.commercial && !currentWorkspaceAccess.household;
-  const home = isBusiness ? '/commercial' : '/dashboard';
+  const isInstaller = currentWorkspaceAccess.installer && !currentWorkspaceAccess.household;
+  const home = isBusiness ? '/commercial' : isInstaller ? '/installer' : '/dashboard';
   const isCommercialPath = currentPath === '/commercial';
   const isInstallerPath = currentPath === '/installer';
   const needsOnboarding = currentUser?.needsOnboarding === true;
@@ -42,6 +43,8 @@ const RouterView: React.FC = () => {
       navigateTo(home);
     } else if (isAuthenticated && isBusiness && !isPublicPath && !isCommercialPath) {
       navigateTo('/commercial');
+    } else if (isAuthenticated && isInstaller && !isPublicPath && !isInstallerPath) {
+      navigateTo('/installer');
     } else if (isAuthenticated && needsOnboarding && currentPath !== '/onboarding') {
       navigateTo('/onboarding');
     } else if (isAuthenticated && hasCompletedOnboarding && currentPath === '/onboarding') {
@@ -54,7 +57,7 @@ const RouterView: React.FC = () => {
         navigateTo('/dashboard');
       }
     }
-  }, [currentPath, isAuthenticated, isPublicPath, isCommercialPath, isInstallerPath, needsOnboarding, hasCompletedOnboarding, currentUser, navigateTo]);
+  }, [currentPath, isAuthenticated, isPublicPath, isCommercialPath, isInstallerPath, isBusiness, isInstaller, needsOnboarding, hasCompletedOnboarding, currentUser, navigateTo, home]);
 
   const getSubtitle = () => {
     switch (currentPath) {
@@ -141,6 +144,7 @@ const RouterView: React.FC = () => {
   const content = !isAuthenticated && !isPublicPath ? <LandingPage /> : renderContent();
 
   if (showAppShell && isBusiness) return <><CommercialPage key={`business-${currentUser.id}`} /><HeliosWidget key={`helios-${currentUser.id}`} /></>;
+  if (showAppShell && isInstaller) return <><InstallerPage key={`installer-${currentUser.id}`} /><HeliosWidget key={`helios-installer-${currentUser.id}`} /></>;
 
   return (
     <div className="min-h-screen bg-[#F8FAF7] text-[#1C2930] flex flex-col antialiased selection:bg-[#9af4d8] selection:text-[#00725d]">

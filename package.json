@@ -15,6 +15,7 @@
     "test:api": "tsx scripts/test-api-baseline.ts",
     "test:business": "tsx scripts/test-business.ts",
     "test:energytwin": "tsx scripts/test-energytwin.ts",
+    "test:doctor": "tsx scripts/test-solar-doctor.ts",
     "check:helios": "tsx scripts/check-helios.ts",
     "check:helios:api": "tsx scripts/check-helios-api.ts",
     "server": "tsx server/index.ts",

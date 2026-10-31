@@ -108,6 +108,10 @@ The ten Python weather tests cover the rainy/sunny flow, reproducible comparison
 
 The existing 63 core/EnergyTwin/Economics/original-Detective/Python checks also remain relevant. Production build and type checking use `npm run build` and `npm run lint`. No Node or Python package dependencies or environment files were changed for this upgrade; it reuses Scikit-learn, NumPy, pandas, standard-library timezone support and native server fetch.
 
+Completed validation: **83 automated checks passed** (10 weather Python, 10 weather API, 63 existing regression checks), plus type checking, production build and Git whitespace checking. The supplied prototype CSV hash remains unchanged. The live Open-Meteo retrieval check passed. Browser review confirmed the rainy-day non-alert and sunny-day model alert with changing matched weather/solar figures. The separate live weather-Gemini acceptance command did not pass because of provider HTTP 429; deterministic explanation checks passed.
+
+The final browser walkthrough also displayed the selected sunny-day Helios fallback: expected 944.5 kWh, actual 385.0 kWh, irradiation 6.57 kWh/m² and ₹2,730.42 signed avoided-charge difference. It explicitly described investigation evidence rather than a confirmed fault and labelled both synthetic data and Gemini unavailability.
+
 ## Files changed for this upgrade
 
 - `server/historicalWeather.ts`: Open-Meteo adapter, units/timezone checks and scoped cache.
