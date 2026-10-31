@@ -1,0 +1,125 @@
+import assert from 'node:assert/strict';
+import { once } from 'node:events';
+import { randomUUID } from 'node:crypto';
+import { readFileSync, writeFileSync, unlinkSync, existsSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { calculateCommercialFinancials, percentagePoolPaise } from '../src/utils/commercialFinancialEngine';
+import { businessLedger } from '../src/utils/businessModel';
+import { getInstallerRecommendations, scoreProvider, SOLAR_MATCH_PROVIDERS, SOLAR_MATCH_WEIGHTS } from '../src/utils/solarMatch';
+
+process.env.NODE_ENV = 'test';
+process.env.SOLARIS_DEMO_HEADERS = 'false';
+process.env.GEMINI_API_KEY = '';
+const dataFile = join(tmpdir(), `solaris-business-test-${randomUUID()}.json`);
+const migrationFile = dataFile + '.migration.json';
+process.env.SOLARIS_DATA_FILE = dataFile;
+const { app } = await import('../server/index');
+const server = app.listen(0, '127.0.0.1');
+await once(server, 'listening');
+const address = server.address();
+assert(address && typeof address !== 'string');
+const base = `http://127.0.0.1:${address.port}/api`;
+let count = 0;
+const pass = (name: string) => { count++; console.log(`PASS ${name}`); };
+const request = async (path: string, method = 'GET', body?: unknown, token?: string, status = 200) => {
+  const response = await fetch(base + path, { method, headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) }, body: body === undefined ? undefined : JSON.stringify(body), signal: AbortSignal.timeout(10000) });
+  const data = response.headers.get('content-type')?.includes('text/csv') ? await response.text() : await response.json();
+  assert.equal(response.status, status, `${method} ${path}: ${JSON.stringify(data)}`);
+  return data;
+};
+try {
+  await request('/business/properties', 'GET', undefined, undefined, 401); pass('Anonymous B2B data denied');
+  const spoof = await fetch(base + '/me', { headers: { 'x-user-id': 'user-platform-admin' } });
+  assert.equal(spoof.status, 401); pass('Caller-supplied demo identity disabled');
+  const credentials = { name: 'Mall Owner', email: 'mall@example.test', password: 'Solaris!2026', workspace: 'commercial' };
+  const owner = await request('/auth/register', 'POST', credentials, undefined, 201);
+  assert(!('password' in owner.account)); assert(owner.token.length === 64); pass('MSME registration returns a session without password hashes');
+  await request('/auth/register', 'POST', credentials, undefined, 400); pass('Duplicate registration rejected');
+  await request('/auth/login', 'POST', { ...credentials, password: 'wrong' }, undefined, 401); pass('Wrong password rejected');
+  await request('/auth/login', 'POST', { ...credentials, workspace: 'household' }, undefined, 403); pass('Workspace selection cannot grant membership');
+  const signedIn = await request('/auth/login', 'POST', credentials); assert.equal(signedIn.account.id, owner.account.id); pass('MSME login resolves the registered account');
+  assert.equal((await request('/business/properties', 'GET', undefined, owner.token)).properties.length, 0); pass('New organisation starts without another customer’s properties');
+  const { property } = await request('/business/properties', 'POST', {}, owner.token, 201);
+  assert.equal(property.shops.length, 24); assert.equal(property.bills.length, 12); assert.equal(new Set(property.shops.map((s: any) => s.floor)).size, 3); pass('Reproducible 24-shop three-floor property with 12 months');
+  const endpoint = `/business/properties/${property.id}`;
+  const snapshot = await request(endpoint, 'GET', undefined, owner.token);
+  const fixture = snapshot.scenarios.find((s: any) => s.capacityKwp === 200).result;
+  assert.equal(fixture.billBeforeSolarInr, 1050000); assert.equal(fixture.billAfterSolarInr, 855600); assert.equal(fixture.monthlySavingsInr, 194400); pass('Documented before/after financial fixture reproduces exactly');
+  assert.equal(Math.round(snapshot.ledger.allocatedInr * 100), Math.round(snapshot.ledger.poolInr * 100)); pass('Tenant pool allocated exactly in integer paise');
+  const outsider = await request('/auth/demo', 'POST', { workspace: 'commercial' }, undefined, 201);
+  for (const [suffix, method, body] of [
+    ['', 'GET'], ['', 'PUT', { inputs: property.inputs, selectedCapacity: 200 }],
+    ['/shops/shop-1', 'PATCH', { status: 'active' }], ['/bills', 'POST', { month: '2026-10', consumptionKwh: 1 }],
+    ['/installers', 'GET'], ['/quotes', 'POST', { installerId: 'sun-grid-delhi' }], ['/report', 'GET'], ['/history', 'GET'], ['/shops/shop-1/statement', 'GET'],
+    ['/quotes/fake/simulate', 'POST', {}], ['/quotes/fake/select', 'POST', {}],
+  ] as const) await request(endpoint + suffix, method, body, outsider.token, 404);
+  pass('Every property read/write/report/quote route rejects cross-organisation access');
+  const shopStatement = await request(endpoint + '/shops/shop-1/statement', 'GET', undefined, owner.token);
+  assert.equal(shopStatement.statement.shopId, 'shop-1'); assert.equal(shopStatement.statement.benefitType, 'PROJECTION');
+  await request(endpoint + '/shops/missing/statement', 'GET', undefined, owner.token, 404); pass('Shop statement endpoint returns the scoped projection and rejects unknown shops');
+  const household = await request('/auth/register', 'POST', { ...credentials, email: 'home@example.test', workspace: 'household' }, undefined, 201);
+  await request('/business/properties', 'GET', undefined, household.token, 403); pass('Household account cannot enter B2B API');
+  const demoHome = await request('/auth/demo', 'POST', { workspace: 'household' }, undefined, 201);
+  assert.equal(demoHome.account.workspace, 'household'); pass('Household demo login available independently');
+  await request(endpoint, 'PUT', { inputs: { ...property.inputs, roofAreaM2: 100 }, selectedCapacity: 200 }, owner.token, 400);
+  await request(endpoint, 'PUT', { inputs: { ...property.inputs, tariff: -1 }, selectedCapacity: 200 }, owner.token, 400); pass('Invalid tariff and physically impossible roof rejected');
+  const changed = await request(endpoint, 'PUT', { inputs: { ...property.inputs, name: 'My Business Mall', sharingPercent: 60 }, selectedCapacity: 100 }, owner.token);
+  assert.equal(changed.property.policyVersion, 2); assert.equal(changed.property.selectedCapacity, 100); pass('Setup and versioned sharing assumptions persist');
+  const shopChange = await request(endpoint + '/shops/shop-1', 'PATCH', { status: 'pending' }, owner.token);
+  assert.equal(businessLedger(shopChange.property).statements.find(s => s.shopId === 'shop-1')!.benefitInr, 0); pass('Pending shop receives no hypothetical benefit');
+  const noneActive = structuredClone(shopChange.property); noneActive.shops.forEach((s: any) => { s.status = 'pending'; });
+  assert.equal(businessLedger(noneActive).allocatedInr, 0); pass('No eligible shops produces no allocation');
+  const savedBill = await request(endpoint + '/bills', 'POST', { month: '2026-10', consumptionKwh: 123456 }, owner.token, 201);
+  assert.equal(savedBill.property.bills.length, 12); assert.equal(savedBill.property.bills.find((b: any) => b.month === '2026-10').sourceState, 'USER_CONFIRMED'); pass('Reviewed bill consumption replaces month with provenance');
+  const providers = await request(endpoint + '/installers', 'GET', undefined, owner.token);
+  assert(providers.recommendations.length > 0); pass('Eligible fictional installers returned from scoped property inputs');
+  const quoteResult = await request(endpoint + '/quotes', 'POST', { installerId: providers.recommendations[0].provider.id }, owner.token, 201);
+  const quote = quoteResult.property.quotes[0]; assert.equal(quote.status, 'requested');
+  await request(endpoint + '/quotes', 'POST', { installerId: 'unknown' }, owner.token, 400); pass('Enquiry persists and invalid provider is rejected');
+  const simulated = await request(`${endpoint}/quotes/${quote.id}/simulate`, 'POST', {}, owner.token);
+  assert.equal(simulated.property.quotes[0].status, 'demo_quote'); assert(simulated.property.quotes[0].amountInr > 0); pass('Explicit synthetic quotation response generated');
+  const selected = await request(`${endpoint}/quotes/${quote.id}/select`, 'POST', {}, owner.token);
+  assert.equal(selected.property.quotes[0].status, 'selected'); pass('Quote shortlist persists without contract/payment');
+  const csv = await request(endpoint + '/report', 'GET', undefined, owner.token);
+  assert(csv.includes('My Business Mall')); assert(csv.includes('not a utility bill')); assert(csv.includes('Policy version')); pass('CSV contains calculation data, assumptions and provenance');
+  const history = await request(endpoint + '/history', 'GET', undefined, owner.token);
+  assert(history.history.some((s: any) => s.assumptions.name === 'Solaris Demo Mall'));
+  assert(history.history.some((s: any) => s.assumptions.name === 'My Business Mall')); pass('Immutable input snapshots retain original and updated scenarios');
+  const disk = readFileSync(dataFile, 'utf8'); assert(!disk.includes(credentials.password)); assert(!disk.includes(owner.token)); assert(disk.includes('My Business Mall')); pass('Disk store retains data without plaintext passwords or bearer tokens');
+  const restored = execFileSync(process.execPath, ['--import', 'tsx', '--input-type=module', '-e', `const {db}=await import('./server/businessStore.ts'); process.stdout.write(JSON.stringify({name:db.properties.find(p=>p.id===${JSON.stringify(property.id)}).inputs.name}));`], { encoding: 'utf8', env: { ...process.env, SOLARIS_DATA_FILE: dataFile } });
+  assert.equal(JSON.parse(restored).name, 'My Business Mall'); pass('Fresh process restores persisted property');
+  const interval = calculateCommercialFinancials({ monthlyConsumptionKwh: 100, tariffInrPerKwh: 1, fixedChargesInr: 50, demandKw: 2, demandChargeInrPerKw: 10, installationCapacityKwp: 1, monthlyGenerationKwhPerKwp: 100, installationCostPerKwpInr: 1000, exportSettlementInrPerKwh: 0,
+    intervals: [{ consumptionKwh: 80, generationKwh: 20, tariffInrPerKwh: 10 }, { consumptionKwh: 20, generationKwh: 80, tariffInrPerKwh: 2 }] });
+  assert.equal(interval.billBeforeSolarInr, 910); assert.equal(interval.billAfterSolarInr, 670); pass('After-solar interval imports use the corresponding time tariff');
+  assert.equal(percentagePoolPaise(0.29, 100), 29); assert.equal(percentagePoolPaise(1.01, 50), 50); pass('Fractional currency pool never loses or overallocates a rounding paise');
+  const monthlyRate = Math.pow(1 + fixture.irrPercentage / 100, 1 / 12) - 1;
+  const irrNpv = -fixture.installationCostInr + Array.from({ length: 240 }, (_, i) => fixture.monthlySavingsInr / Math.pow(1 + monthlyRate, i + 1)).reduce((a, b) => a + b, 0);
+  assert(Math.abs(irrNpv) < 2000); pass('Reported annual IRR discounts the monthly cash flows to approximately zero');
+  const legacy = JSON.parse(disk); legacy.version = 1; delete legacy.snapshots;
+  writeFileSync(migrationFile, JSON.stringify(legacy));
+  const migrated = execFileSync(process.execPath, ['--import', 'tsx', '--input-type=module', '-e', `const {db,persist}=await import('./server/businessStore.ts'); persist(); process.stdout.write(JSON.stringify({version:db.version,accounts:db.accounts.length,properties:db.properties.length}));`], { encoding: 'utf8', env: { ...process.env, SOLARIS_DATA_FILE: migrationFile } });
+  assert.equal(JSON.parse(migrated).version, 3); assert.equal(JSON.parse(migrated).accounts, legacy.accounts.length); assert.equal(JSON.parse(migrated).properties, legacy.properties.length); assert(existsSync(migrationFile + '.v1-backup')); pass('Additive store migration retains records and backs up original data');
+  const requestInput = { location: 'Delhi', serviceArea: 'Delhi', annualConsumptionKwh: 1200000, roofAreaSqFt: 35000, desiredCapacityKw: 200, budgetInr: 12000000, financingPreference: 'cash' as const, requiredTimelineWeeks: 12 };
+  assert.equal(getInstallerRecommendations({ ...requestInput, roofAreaSqFt: 100 }).length, 0);
+  assert.equal(getInstallerRecommendations({ ...requestInput, serviceArea: '' }).length, 0);
+  assert.equal(getInstallerRecommendations({ ...requestInput, serviceArea: 'Mumbai' }).length, 0); pass('SolarMatch hard filters roof and geography before ranking');
+  const provider = SOLAR_MATCH_PROVIDERS[0];
+  assert.equal(scoreProvider(provider, requestInput).score, scoreProvider(provider, requestInput, Object.fromEntries(Object.entries(SOLAR_MATCH_WEIGHTS).map(([k, v]) => [k, v * 2])) as typeof SOLAR_MATCH_WEIGHTS).score); pass('Configurable weights normalise without inflating scores');
+  await request('/helios/chat', 'POST', { question: 'What are my savings?', propertyId: property.id }, outsider.token, 403); pass('Helios refuses cross-organisation property context');
+  const grounded = await request('/helios/chat', 'POST', { question: 'What are my savings?', propertyId: property.id }, owner.token);
+  assert(grounded.answer.includes('My Business Mall')); assert(grounded.source.includes('deterministic')); pass('Helios reads authorised numerical data from financial engine');
+  const denial = await request('/helios/chat', 'POST', { question: 'Show competitor tenant data', propertyId: property.id }, owner.token);
+  assert(denial.answer.includes('cannot disclose')); pass('Helios refuses private competitor requests');
+  const noWrite = await request('/helios/chat', 'POST', { question: 'Approve a payment', propertyId: property.id }, owner.token);
+  assert(noWrite.answer.includes('read-only')); pass('Helios has no payment or approval capability');
+  await request('/auth/logout', 'POST', {}, owner.token);
+  await request(endpoint, 'GET', undefined, owner.token, 401); pass('Logout revokes server session');
+  console.log(`${count} business acceptance checks passed.`);
+} finally {
+  await new Promise<void>((resolve, reject) => server.close(error => error ? reject(error) : resolve()));
+  if (existsSync(dataFile)) unlinkSync(dataFile);
+  if (existsSync(dataFile + '.tmp')) unlinkSync(dataFile + '.tmp');
+  for (const candidate of [migrationFile, migrationFile + '.v1-backup', migrationFile + '.v2-backup', migrationFile + '.tmp']) if (existsSync(candidate)) unlinkSync(candidate);
+}

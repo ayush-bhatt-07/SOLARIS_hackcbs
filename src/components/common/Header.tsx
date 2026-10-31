@@ -6,7 +6,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ subtitle = 'Main Dashboard' }) => {
-  const { currentUser, navigateTo, isAuthenticated, logOut, setIsSidebarOpen } = useApp();
+  const { currentUser, navigateTo, isAuthenticated, logOut, setIsSidebarOpen, currentWorkspaceAccess } = useApp();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
@@ -107,7 +107,7 @@ export const Header: React.FC<HeaderProps> = ({ subtitle = 'Main Dashboard' }) =
                 </div>
 
                 <div className="px-2 pt-2">
-                  <button
+                  {currentWorkspaceAccess.household && <button
                     type="button"
                     role="menuitem"
                     onClick={() => {
@@ -118,7 +118,31 @@ export const Header: React.FC<HeaderProps> = ({ subtitle = 'Main Dashboard' }) =
                   >
                     <span className="material-symbols-outlined text-[18px] text-[#006b57]">groups</span>
                     <span>Community workspace</span>
-                  </button>
+                  </button>}
+                  {currentWorkspaceAccess.commercial && <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      navigateTo('/commercial');
+                    }}
+                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-[#404846] transition-colors hover:bg-[#e2f0f9] hover:text-[#002620]"
+                  >
+                    <span className="material-symbols-outlined text-[18px] text-[#006b57]">store</span>
+                    <span>Commercial workspace</span>
+                  </button>}
+                  {currentWorkspaceAccess.installer && <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      navigateTo('/installer');
+                    }}
+                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-[#404846] transition-colors hover:bg-[#e2f0f9] hover:text-[#002620]"
+                  >
+                    <span className="material-symbols-outlined text-[18px] text-[#006b57]">engineering</span>
+                    <span>Installer portal</span>
+                  </button>}
                   <button
                     type="button"
                     role="menuitem"

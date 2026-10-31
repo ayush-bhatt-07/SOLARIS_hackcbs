@@ -1,0 +1,75 @@
+SOLARIS 2.0 — PRODUCT REQUIREMENTS DOCUMENT (PRD)
+Version 3.0 | 31 October 2026 | Status: proposed hackathon implementation
+Audience: founders, designers, mentors, product owners, OpenCode
+Traceability: PRD-Fxx -> SRS-FR-xxx -> TRD module/API -> tests in Implementation Plan
+
+1. EXECUTIVE SUMMARY
+Solaris is an organisation-based solar decision and management platform with three authorised workspaces: (1) Households & Societies (retain the existing app), (2) Malls & Large Businesses (new B2B), and (3) Solar Installers (new supplier portal). The website includes Helios, a fun, accurate, permission-aware Gemini assistant. SolarMatch recommends suitable providers for BOTH households and commercial properties based on consumption, usable area, geography, financing constraints, policy eligibility and installer capabilities.
+
+2. THE PROBLEMS
+P1 Residential: neighbours have different budgets/usage; financing and participation require coordination; proposed credit allocations, actual bills and ownership must be distinguished; member exits raise transfer and approval questions.
+P2 Commercial: facility teams struggle to compare quotes and system sizes; monthly bill totals hide demand charges and daytime load; tenants lack understandable energy-benefit statements; procurement, monitoring and data are fragmented.
+P3 Installers: incoming leads often lack roof, demand, location and budget data; quotes and project milestones lack a standard exchange format.
+P4 Across all three: people cannot easily understand bill calculations, VNM limits, assumptions and product decisions.
+
+3. PRODUCT VISION AND VALUE
+Tagline: 'Solaris — Plan it. Power it. Understand it.'
+Residential: feasible community participation + transparent settlement + SmartExit.
+Commercial: model before/after electricity costs + choose systems/installers + visually manage permitted tenant financial benefits.
+Installer: receive matched enquiries, prepare structured quotations, track assigned projects.
+Helios: answer general and context-specific questions without fabricating monetary values or bypassing RBAC.
+Business hypothesis: property/society SaaS subscriptions and installer SaaS/project opportunities. Prices and demand unvalidated.
+
+4. PERSONAS / RBAC
+- Residential resident: own profile, own bills/budget, own proposed plans, approved credits, SmartExit requests.
+- Society coordinator: own community/project membership, readiness, plans, approvals and aggregate outcomes; private files only when authorised.
+- Mall/property operator: own commercial property, project-level bills, selected tenant benefit policy, procurement, high-level analytics.
+- Facility/energy manager: designated property meter and operational data, uploads and technical reporting.
+- Shop tenant: own shop consumption and statements; cannot see competing tenants' private information.
+- Installer company admin: own company profile, leads explicitly shared with company, assigned quotes/projects.
+- Installer engineer: technical project tasks assigned; cannot see resident financial ceilings or unrelated mall bills.
+- Platform admin: system configuration/access audit, no routine private bill inspection.
+One user may belong to multiple organisations with DIFFERENT roles. Only authorised workspaces appear in selector.
+
+5. HACKATHON REFERENCE MODEL AND CRITICAL BOUNDARIES
+The flagship commercial demo uses a SYNTHETIC 20–30-shop mall, one main DISCOM meter, shop sub-meters and a mall-owned rooftop plant. Actual energy enters the property's electrical network; sub-meters record shop consumption. Solaris calculates a simulated, contractually defined INTERNAL tenant benefit, NOT official shop-level VNM credits or a right to resell electricity. Official VNM is an optional mode ONLY for specifically eligible, approved connections with verifiable utility settlement. A contractual clause does not override law or existing leases. All numbers, approvals, tariff assumptions and providers in demo must be labelled synthetic.
+
+6. MVP PRIORITIES
+P0 mandatory: PRD-F01 workspace selection and multi-organisation RBAC; F02 preserve residential app; F03 commercial property/meter setup; F04 before/after commercial bill simulator with tariff assumptions; F05 SolarMatch for commercial and residential; F06 installer registration + quote handoff; F07 3D/2D mall map backed by shop records; F08 tenant statement with unambiguous benefit type; F09 Helios with safe role-scoped read tools; F10 demo seed and tests.
+P1: reviewed bill OCR, actual-vs-projected savings, CSV generation/meter imports, residential SmartExit improvements, exportable reports.
+P2/post-hack: live meter/DISCOM APIs, commercial VNM settlement, precise real-site 3D digital twins, learning-to-rank trained on verified outcomes, automated legal contracting/payment collection.
+
+7. FUNCTIONAL FEATURES
+PRD-F01 — Workspace selector. Three visual entry cards: Households & Societies, Malls & Businesses, Solar Installers. After login show membership-scoped workspaces. Never equate toggle selection with permission elevation.
+PRD-F02 — Residential continuity. Keep current registration, VNM readiness, bill intake, feasibility, affordability/benefit-aware plan comparisons, consent and approval records, provider records, household financial view, credit reconciliation, actual-vs-projected tracking and SmartExit. Existing project data and routes must survive migrations.
+PRD-F03 — Commercial onboarding. Property operator creates property, selects jurisdiction/DISCOM and connection arrangement (single-point, separate tenant connections, common-area), maps main/sub-meters, adds synthetic shops and roof area. Show meter diagram and eligibility warning.
+PRD-F04 — Commercial Bill Intelligence. User imports bills and confirms tariff/charge lines; compares candidate PV capacities; receives before/after bills by charge component, annual savings, assumptions, uncertainty and approximate payback/NPV. Do not imply fixed or maximum demand charges vanish automatically.
+PRD-F05 — SolarMatch. For homes, housing societies and malls, recommend feasible installation capacity range and filter installers by location/service, system size, declared experience, available budget, permissions/policy prerequisites. Rank suitable installers with transparent configurable weighted scoring. Compare quotes and show reason for no match. No fabricated verified badges.
+PRD-F06 — Installer Portal. Installer organisation onboarding, company service area, certifications with evidence status, capacity range, structured quote and project milestones; leads appear only after customer shares them.
+PRD-F07 — Visual Mall. Accessible interactive generic 3D mall, floor selector, shop cards; green=active arrangement, amber=pending, blue=proposed eligible, grey=none/unknown, red=exception; labels must distinguish 'Internal benefit' from 'Official VNM'. 2D fallback.
+PRD-F08 — Tenant Benefit Ledger. Versioned policy defines permitted eligible savings, tenant participants, allocation formula, caps, rounding, and effective period. Statement shows measured usage, internal estimated solar attribution if applicable, economic adjustment, policy version, assumptions, and uncertainty. NEVER silently issue an official DISCOM bill.
+PRD-F09 — Helios. Friendly, lightly humorous assistant ('Let me shed some light ☀️') available on each workspace; handles product FAQ, general solar education, tariff terms, user-specific own statements, project status, policy explanation, quote comparisons and SolarMatch via authorised read-only tools. It refuses to invent data or disclose other users' records.
+PRD-F10 — Evidence and provenance. Identify demo, uploaded actual, manually corrected, estimated, officially approved, and unavailable data. Never show '100% reconciled' merely because shares add to 100%.
+PRD-F11 — Residential SmartExit. Diagnose whether exit requires ownership transfer, outstanding finance treatment or approved credit-allocation update; compare willing replacement buyers / transfer splits with OR-Tools if constraints warrant; retain agreement and DISCOM approval gating. An exit alone does not imply money shortage.
+
+8. VISUAL DESIGN / MINIMAL TEXT
+- Dashboard information hierarchy: 3–4 KPI cards -> mall 3D model -> before/after bar chart -> energy split -> quick actions.
+- On click shop: concise consumption/benefit/status/statement card, 'How calculated?' explanation.
+- Helios floating sun bubble; suggestion chips such as 'Why is my bill still high?', 'Which installer suits my roof?', 'How is my benefit calculated?'.
+- Text must be concise, with tooltips/expanders for detailed rules; colour never sole status indicator.
+- Responsive, accessible low-motion fallback; no heavy 3D blocking first paint.
+
+9. FIVE-STEP FLAGSHIP USER JOURNEY
+Mall owner signs in -> creates synthetic mall + meters -> reviews uploaded/mock bills -> compares 100/200/300 kWp and before/after costs -> runs SolarMatch and sends quote request -> installer responds from its own workspace -> owner sees 3D shop benefits -> tenant opens own statement -> Helios explains inputs and differences. Briefly switch to existing residential workspace and show SmartExit and household SolarMatch.
+
+10. ACCEPTANCE / SUCCESS
+- Residential flows regressions: none; independent workspaces route correctly.
+- Every shop panel maps to a scoped tenant and a recorded meter/benefit status.
+- Recalculate same bill from stored input + versioned tariff yields same numeric result.
+- SolarMatch hard filters always pass and scores expose factors.
+- Installer sees only explicitly shared leads; tenant A cannot fetch tenant B's statement, including through Helios.
+- Simulated generation/export is never described as official DISCOM credit.
+- Demo end-to-end completes without relying on live external utility feeds.
+
+11. EXCLUSIONS AND OPEN QUESTIONS
+Out of scope: official utility billing, authorising VNM changes, electricity resale, automatic meter-to-shop power routing, contract enforcement, verified subsidy claims without sourced policy, production integrations. Validate local tariff/connection structure and whether tenant benefit sharing is allowed before a real pilot. Seek actual anonymised mall main bill, sub-meter statement, tenant agreement and site rooftop data.

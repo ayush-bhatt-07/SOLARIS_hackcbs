@@ -19,26 +19,42 @@ import { ReportsPage } from './pages/ReportsPage';
 import { AdminPage } from './pages/AdminPage';
 import { LoginPage } from './pages/LoginPage';
 import { SignupPage } from './pages/SignupPage';
+import { CommercialPage } from './pages/CommercialPage';
+import { InstallerPage } from './pages/InstallerPage';
+import { HeliosWidget } from './components/common/HeliosWidget';
 
 const RouterView: React.FC = () => {
-  const { currentPath, isAuthenticated, navigateTo, currentUser } = useApp();
-  const isPublicPath = currentPath === '/' || currentPath === '/login' || currentPath === '/signup';
+  const { currentPath, isAuthenticated, navigateTo, currentUser, currentWorkspaceAccess } = useApp();
+  const isLogin = currentPath === '/login' || currentPath.startsWith('/login/');
+  const isSignup = currentPath === '/signup' || currentPath.startsWith('/signup/');
+  const isPublicPath = currentPath === '/' || isLogin || isSignup;
+  const isBusiness = currentWorkspaceAccess.commercial && !currentWorkspaceAccess.household;
+  const home = isBusiness ? '/commercial' : '/dashboard';
+  const isCommercialPath = currentPath === '/commercial';
+  const isInstallerPath = currentPath === '/installer';
   const needsOnboarding = currentUser?.needsOnboarding === true;
   const hasCompletedOnboarding = currentUser?.onboardingCompleted === true;
 
   useEffect(() => {
     if (!isAuthenticated && !isPublicPath) {
       navigateTo('/');
-    } else if (isAuthenticated && (currentPath === '/login' || currentPath === '/signup')) {
-      navigateTo('/dashboard');
+    } else if (isAuthenticated && (isLogin || isSignup)) {
+      navigateTo(home);
+    } else if (isAuthenticated && isBusiness && !isPublicPath && !isCommercialPath) {
+      navigateTo('/commercial');
     } else if (isAuthenticated && needsOnboarding && currentPath !== '/onboarding') {
-      // Redirect to onboarding only for new signups
       navigateTo('/onboarding');
     } else if (isAuthenticated && hasCompletedOnboarding && currentPath === '/onboarding') {
-      // Redirect away from onboarding if already completed
       navigateTo('/dashboard');
+    } else if (isAuthenticated && (isCommercialPath || isInstallerPath)) {
+      const isAllowed = isCommercialPath
+        ? currentUser?.role === 'msme' || currentUser?.role === 'commercial_property_owner' || currentUser?.role === 'facility_manager' || currentUser?.role === 'shop_tenant' || currentUser?.role === 'platform_admin'
+        : currentUser?.role === 'installer_partner' || currentUser?.role === 'installer_admin' || currentUser?.role === 'installer_engineer' || currentUser?.role === 'platform_admin';
+      if (!isAllowed) {
+        navigateTo('/dashboard');
+      }
     }
-  }, [currentPath, isAuthenticated, isPublicPath, needsOnboarding, hasCompletedOnboarding, navigateTo]);
+  }, [currentPath, isAuthenticated, isPublicPath, isCommercialPath, isInstallerPath, needsOnboarding, hasCompletedOnboarding, currentUser, navigateTo]);
 
   const getSubtitle = () => {
     switch (currentPath) {
@@ -64,6 +80,10 @@ const RouterView: React.FC = () => {
         return 'Statements & plan-vs-actual · F08/F10';
       case '/admin':
         return 'Rules, approvals & audit ledger';
+      case '/commercial':
+        return 'Commercial property solar workspace';
+      case '/installer':
+        return 'Installer portal · project pipeline';
       default:
         if (currentPath.startsWith('/community')) {
           return 'Community workspace · F01';
@@ -73,6 +93,11 @@ const RouterView: React.FC = () => {
   };
 
   const renderContent = () => {
+    if (isLogin) return <LoginPage key={currentPath} />;
+    if (isSignup) return <SignupPage key={currentPath} />;
+    if (isAuthenticated && !isPublicPath && isBusiness) return <CommercialPage key={currentUser.id} />;
+    if (isCommercialPath && !currentWorkspaceAccess.commercial) return <DashboardPage />;
+    if (isInstallerPath && !currentWorkspaceAccess.installer) return <DashboardPage />;
     switch (currentPath) {
       case '/':
         return <LandingPage />;
@@ -100,6 +125,10 @@ const RouterView: React.FC = () => {
         return <ReportsPage />;
       case '/admin':
         return <AdminPage />;
+      case '/commercial':
+        return <CommercialPage />;
+      case '/installer':
+        return <InstallerPage />;
       default:
         if (currentPath.startsWith('/community')) {
           return <CommunityPage />;
@@ -110,6 +139,8 @@ const RouterView: React.FC = () => {
 
   const showAppShell = isAuthenticated && !isPublicPath;
   const content = !isAuthenticated && !isPublicPath ? <LandingPage /> : renderContent();
+
+  if (showAppShell && isBusiness) return <><CommercialPage key={`business-${currentUser.id}`} /><HeliosWidget key={`helios-${currentUser.id}`} /></>;
 
   return (
     <div className="min-h-screen bg-[#F8FAF7] text-[#1C2930] flex flex-col antialiased selection:bg-[#9af4d8] selection:text-[#00725d]">
@@ -122,9 +153,13 @@ const RouterView: React.FC = () => {
           <Sidebar />
           <BottomNav />
           <ConsentModal />
+          <HeliosWidget />
         </>
       ) : (
-        <main className="flex-1 w-full">{content}</main>
+        <>
+          <main className="flex-1 w-full">{content}</main>
+          <HeliosWidget />
+        </>
       )}
     </div>
   );

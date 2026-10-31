@@ -131,6 +131,23 @@ export function runAffordabilityOptimiser(
     selectedMembers[0].sharePercentage = Math.round((selectedMembers[0].sharePercentage + diff) * 10) / 10;
   }
 
+  // Reconcile displayed kW shares after percentage rounding. Rounding every
+  // participant independently can otherwise create a misleading total above
+  // the physical system capacity (for example 13.3 kW for a 12 kW system).
+  let allocatedKwBeforeLast = 0;
+  selectedMembers.forEach((member, index) => {
+    if (index === selectedMembers.length - 1) {
+      member.shareKw = Math.max(
+        0,
+        Math.round((targetCapacityKw - allocatedKwBeforeLast) * 10) / 10
+      );
+      return;
+    }
+
+    member.shareKw = Math.round(((targetCapacityKw * member.sharePercentage) / 100) * 10) / 10;
+    allocatedKwBeforeLast += member.shareKw;
+  });
+
   // Calculate aggregates
   const totalNetGain = selectedMembers.reduce((acc, m) => acc + m.netBenefitInr, 0);
   const avgNetMonthlySavingsInr = selectedMembers.length > 0 

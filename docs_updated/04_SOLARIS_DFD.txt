@@ -1,0 +1,128 @@
+SOLARIS 2.0 — DATA FLOW DIAGRAMS (DFD) + DATA DICTIONARY
+Version 1.0 | 31 October 2026 | Notation: [external entity], (process), ||data store||, --> named data flow
+These are textual/logical DFDs; use these source diagrams to redraw in Draw.io/Mermaid if desired.
+
+1. DFD LEVEL 0 — CONTEXT DIAGRAM
+
+  [Resident / Society Admin] ---- bills, budgets, consents, exit request --->
+                                     |
+  [Mall Operator / Facility Manager] -- property, tariffs, meters, bills --->
+                                     |
+  [Shop Tenant] -------------- statements request / questions ---------->
+                                     |
+  [Installer Company] -------- profile, quote, project updates --------->
+                                     v
+                      (0. SOLARIS PLATFORM)
+                                     |
+  <--- plans, approved-status records, benefit statements, matches, answers
+                                     |
+             --> [Gemini API] : minimal prompts and authorised tool context
+             <-- [Gemini API] : natural-language explanation/tool requests
+
+  [DISCOM/Utility] : NOT LIVE CONNECTED in hackathon; uploaded bills, approvals and
+                     settlement evidence enter through authorised users.
+  [Inverter / Solar Meter] : CSV/imported evidence only in hackathon.
+
+Boundary: Solaris NEVER issues an official DISCOM credit, approves VNM allocation or physically switches electricity among shops.
+
+2. DFD LEVEL 1 — PRIMARY PROCESSES
+
+[User] -- credentials --> (1.0 Identity & Workspace Access) <--> ||D1 Users/Memberships||
+(1.0) -- scoped session + permissions --> (2.0 Property & Meter Registry)
+[Operator] -- site, shops, meters --> (2.0) <--> ||D2 Orgs/Properties/Shops/Meters||
+[User] -- bills/readings/files --> (3.0 Bill & Data Intake) <--> ||D3 Bills/Readings/Provenance||
+(2.0) -- meter + tariff refs --> (4.0 Solar & Tariff Simulation)
+(3.0) -- confirmed bill + usage --> (4.0) <--> ||D4 Tariff Versions/Simulations||
+(4.0) -- savings / eligible benefit pool --> (5.0 Benefit Ledger)
+(2.0) -- shop/tenant/agreements --> (5.0) <--> ||D5 Policies/Statements||
+(2.0) -- roof, location, project scope --> (6.0 SolarMatch & Procurement)
+(3.0) -- consumption profile --> (6.0) <--> ||D6 Installers/RFQs/Quotes||
+[Installer] -- profiles / quotes --> (6.0)
+[User] -- chat query --> (7.0 Helios Orchestration)
+(7.0) -- permission-check --> (1.0)
+(7.0) -- read-only requests --> (4.0)/(5.0)/(6.0) and ||D7 Curated Help||
+(7.0) <--> [Gemini API] -- explanation --> [User]
+[Resident/Admin] -- exit request --> (8.0 Residential SmartExit) <--> ||D8 Ownership/Allocations/Exit Records||
+(8.0) -- proposed transfer, reasons --> [Resident/Admin]
+All sensitive mutations --> ||D9 Audit Logs||.
+
+3. DFD LEVEL 2A — COMMERCIAL BILL ANALYSIS
+
+[Operator] -- imported official bill or mock CSV --> (3.1 Upload & Validate)
+(3.1) -- raw private file --> ||D3a Private Files||
+(3.1) -- OCR/proposed fields --> (3.2 User Review/Correction)
+(3.2) -- validated amounts, period, source --> ||D3b Confirmed Bill Lines||
+[Operator] -- roof, PV kWp candidates, yield/load assumptions --> (4.1 Build Scenario)
+||D3b|| + ||D4a Effective Dated Tariff Rules|| --> (4.2 Calculate Baseline Bill)
+(4.1) -- PV/load time series or documented estimates --> (4.3 Calculate Imports/Exports)
+(4.3) + ||D4a|| --> (4.4 Calculate After-Solar Bill)
+(4.2) + (4.4) --> (4.5 Compute Savings, Payback & Assumptions)
+(4.5) --> ||D4b Versioned Scenario Results|| --> [Operator dashboard]
+NOTE: Demand charges, taxes, time-of-use tariffs and export treatment require explicit configured rules.
+
+4. DFD LEVEL 2B — TENANT BENEFIT LEDGER
+
+||D2 Shops/Meters/Tenancies|| -- periods and consumption --> (5.1 Determine Eligible Tenants)
+||D4b Scenario/Realised Savings|| -- verified/synthetic source --> (5.2 Set Eligible Pool)
+||D5a Benefit Policy vN + Agreement|| -- allocation method and caps --> (5.2)
+(5.1) + (5.2) --> (5.3 Allocate Internal Benefits)
+(5.3) --> (5.4 Enforce Cap/Rounding/No Double Count)
+(5.4) --> ||D5b Period Statements||
+[Shop Tenant] -- own statement request --> (1.0 Auth Check) --> (5.5 View Own Statement)
+||D5b|| --> (5.5) --> [Shop Tenant]
+NOTE: (5.3) emits internal adjustment, not a VNM utility credit in default commercial mode.
+
+5. DFD LEVEL 2C — SOLARMATCH (HOUSEHOLD + MALL)
+
+[Residential/Commercial Buyer] -- kWh, roof, location, budget, policy --> (6.1 Intake Requirements)
+(6.1) --> (6.2 Capacity & Eligibility Precheck)
+||D6a Installer Profiles/Regions/Service Capacity|| --> (6.3 HARD FILTER)
+(6.2) --> (6.3) -- eligible providers --> (6.4 Weighted Explainable Ranking)
+(6.4) --> [Buyer] : top matches, match reasons, unknown credential status
+[Buyer] -- request quote --> (6.5 Issue Scoped RFQ) --> ||D6b RFQ||
+||D6b|| --> [Assigned Installer]
+[Assigned Installer] -- quote --> (6.6 Validate & Version Quote) --> ||D6c Quotes||
+||D6c|| --> [Buyer] : side-by-side comparison
+NOTE: a ranking score never overrides a failed hard eligibility filter.
+
+6. DFD LEVEL 2D — HELIOS
+
+[User] -- message + active workspace --> (7.1 Chat Session Auth)
+(7.1) -- user/org/role + safe prompt --> (7.2 Gemini Router)
+(7.2) -- curated general context --> ||D7 Product/Policy Knowledge||
+(7.2) -- allowlisted tool request --> (7.3 Scope + Resource Authorisation)
+(7.3) -- authorised lookup --> ||D2/D3b/D4b/D5b/D6c||
+(7.3) -- minimum data + provenance --> (7.4 Explain and Cite)
+(7.4) <--> [Gemini API]
+(7.4) --> [User] : brief answer + source + assumptions / uncertainty
+DENY PATH: unauthorised tool request --> user-safe denial, no raw data to Gemini.
+
+7. DFD LEVEL 2E — SMARTEXIT (RESIDENTIAL)
+
+[Resident] -- exit reason/request --> (8.1 Identify Contract & Ownership Status)
+||D8 Approved Shares/Finance/Agreements|| --> (8.1)
+(8.1) -- genuine shortfall? transfer need? --> (8.2 Build Feasible Scenarios)
+||D2 Membership/Consents|| --> (8.2)
+(8.2) --> (8.3 CP-SAT Optimisation if needed)
+(8.3) --> (8.4 Explain Proposed Transfer and Remaining Requirements)
+(8.4) --> [Admin/Resident] : DRAFT only
+[Admin/Resident] -- consent --> (8.5 Record Consent/Approval Tracking) --> ||D8||
+[DISCOM] not controlled by Solaris; external approval evidence must be recorded before marking approved.
+
+8. DATA DICTIONARY (SELECTED)
+organisation_id: security scoping UUID.
+active_organisation: UI context, never alone an access grant.
+connection_model: SINGLE_POINT_SUBMETER | SEPARATE_DISCOM | COMMON_AREA | RESIDENTIAL_VNM.
+benefit_type: INTERNAL_ADJUSTMENT | APPROVED_VNM_CREDIT | PROJECTION | NONE.
+source_state: SYNTHETIC | ESTIMATED | USER_CONFIRMED | PROVIDER_UPLOADED | OFFICIAL_APPROVED | UNVERIFIED.
+meter_kind: MAIN_DISCOM | SUBMETER | GENERATION | EXPORT | SEPARATE_DISCOM.
+period: start/end date/time with timezone and source granularity.
+kwh: energy (NOT kW power; NOT currency credit).
+capacity_kwp: PV nameplate power; not equivalent to monthly kWh generated.
+benefit_policy_version: immutable formula/effective date/consent provenance.
+allocation_approval_state: DRAFT | CONSENTED | SUBMITTED | OFFICIALLY_APPROVED | REJECTED.
+installer_verification_status: VERIFIED_WITH_EVIDENCE | UNVERIFIED | EXPIRED.
+financial_amount: integer paise or exact decimal rupees, never binary floating point.
+
+9. TRUST BOUNDARIES / RED FLAGS
+Boundary A: anonymous/authenticated; Boundary B: tenant organisation/project; Boundary C: protected file/contract; Boundary D: internal API to Gemini; Boundary E: uploaded external bill/CSV; Boundary F: proposed vs official allocation. Never trust frontend role flags, external OCR text or LLM instructions as authority. Every flow involving money or access has a log/audit entry.

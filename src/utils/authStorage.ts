@@ -1,3 +1,4 @@
+import type { OrganisationMembership } from '../types/commercial';
 export interface AuthAccount {
   id: string;
   name: string;
@@ -10,6 +11,11 @@ export interface AuthSession {
   accountId: string;
   name: string;
   email: string;
+  token?: string;
+  workspace?: 'household' | 'commercial';
+  organisationId?: string;
+  demo?: boolean;
+  membership?: OrganisationMembership;
 }
 
 export interface AuthResult {
@@ -70,11 +76,16 @@ export const getAuthSession = (): AuthSession | null => {
   }
 };
 
-export const saveAuthSession = (account: Pick<AuthAccount, 'id' | 'name' | 'email'>) => {
+export const saveAuthSession = (account: Pick<AuthAccount, 'id' | 'name' | 'email'> & Partial<Pick<AuthSession, 'token' | 'workspace' | 'organisationId' | 'demo' | 'membership'>>) => {
   const session: AuthSession = {
     accountId: account.id,
     name: account.name,
-    email: account.email
+    email: account.email,
+    token: account.token,
+    workspace: account.workspace,
+    organisationId: account.organisationId,
+    demo: account.demo,
+    membership: account.membership
   };
   localStorage.setItem(SESSION_KEY, JSON.stringify(session));
   return session;

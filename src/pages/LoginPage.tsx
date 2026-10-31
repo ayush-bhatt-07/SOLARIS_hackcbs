@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { AuthShell } from '../components/common/AuthShell';
 import { useApp } from '../context/AppContext';
+import { WorkspaceChoice } from '../components/common/WorkspaceChoice';
+import type { Workspace } from '../types/commercial';
 
 export const LoginPage: React.FC = () => {
-  const { logIn, navigateTo } = useApp();
+  const { logIn, demoLogin, navigateTo, currentPath } = useApp();
+  const [workspace, setWorkspace] = useState<Workspace>(currentPath.endsWith('/msme') ? 'commercial' : 'household');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -14,25 +17,25 @@ export const LoginPage: React.FC = () => {
     event.preventDefault();
     setError('');
     setIsSubmitting(true);
-    const result = await logIn(email, password);
+    const result = await logIn(email, password, workspace);
     setIsSubmitting(false);
     if (!result.success) {
       setError(result.error || 'Unable to log in.');
       return;
     }
-    navigateTo('/dashboard');
+    navigateTo(workspace === 'commercial' ? '/commercial' : '/dashboard');
   };
 
   return (
     <AuthShell
       eyebrow="Welcome back"
-      title="Log in to Solaris"
-      subtitle="Access your community plan, feasibility estimates, and allocation ledger."
+      title={workspace === 'commercial' ? 'Your business. Powered by solar.' : 'Welcome home to Solaris.'}
+      subtitle={workspace === 'commercial' ? 'Manage your mall, compare solar investments, and plan tenant benefits.' : 'Your home, community solar plan, and savings in one place.'}
       footer={
         <span>
           New to Solaris?{' '}
           <button
-            onClick={() => navigateTo('/signup')}
+            onClick={() => navigateTo(workspace === 'commercial' ? '/signup/msme' : '/signup/household')}
             className="font-bold text-[#006b57] hover:underline"
           >
             Create an account
@@ -41,6 +44,7 @@ export const LoginPage: React.FC = () => {
       }
     >
       <form onSubmit={handleSubmit} className="space-y-3.5">
+        <WorkspaceChoice value={workspace} onChange={value => navigateTo(value === 'commercial' ? '/login/msme' : '/login/household')} />
         {error && (
           <div className="p-3 rounded-lg bg-[#ffdad6] text-[#93000a] text-xs font-medium flex items-start gap-2">
             <span className="material-symbols-outlined text-[16px] mt-0.5">error</span>
@@ -97,8 +101,22 @@ export const LoginPage: React.FC = () => {
           disabled={isSubmitting}
           className="w-full h-11 rounded-lg bg-[#006b57] text-white text-sm font-bold hover:bg-[#002620] transition-colors disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-[#9af4d8]/60 focus:ring-offset-2"
         >
-          {isSubmitting ? 'Logging in...' : 'Log in'}
+          {isSubmitting ? 'Logging in...' : workspace === 'commercial' ? 'Log in to MSME & Malls' : 'Log in to Households'}
         </button>
+        <div className="flex items-center gap-3 text-[10px] uppercase tracking-widest text-[#738078]"><span className="h-px flex-1 bg-[#dce5df]" />Explore first<span className="h-px flex-1 bg-[#dce5df]" /></div>
+        <button type="button" disabled={isSubmitting} className="w-full rounded-lg border border-[#006b57] px-3 py-3 text-sm font-bold text-[#006b57] disabled:opacity-50"
+          onClick={async () => {
+            setError(''); setIsSubmitting(true);
+            const result = await demoLogin(workspace); setIsSubmitting(false);
+            if (!result.success) setError(result.error!);
+            else navigateTo(workspace === 'commercial' ? '/commercial' : '/dashboard');
+          }}>Explore {workspace === 'commercial' ? 'mall' : 'household'} demo →</button>
+        <p className="text-[11px] leading-relaxed text-[#738078]">Demo opens a separate workspace with synthetic data. No real provider enquiries are sent.</p>
+        {workspace === 'commercial' && <button type="button" disabled={isSubmitting} className="w-full text-xs font-semibold text-[#006b57] py-2" onClick={async () => {
+          setIsSubmitting(true); setError('');
+          const result = await demoLogin('commercial', 'tenant'); setIsSubmitting(false);
+          if (result.success) navigateTo('/commercial'); else setError(result.error!);
+        }}>Explore restricted tenant demo →</button>}
       </form>
     </AuthShell>
   );

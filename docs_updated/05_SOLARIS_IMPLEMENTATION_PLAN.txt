@@ -1,0 +1,97 @@
+SOLARIS 2.0 — HACKATHON IMPLEMENTATION PLAN / OPENCODE RUNBOOK
+Version 1.0 | 31 October 2026 | Goal: a coherent, demonstrable MVP while preserving existing residential app
+Use this alongside PRD, SRS, TRD and DFD. Do not mark tasks complete unless tested.
+
+A. EXECUTION STRATEGY
+Keep the already-built Households & Societies workspace working. Add commercial and installer modules to shared APIs with organisation-scoped RBAC. Build exact calculation engine before the visually exciting mall. Seed deterministic demo data and verify with tests. Integrate Helios after tool APIs are stable. Work in vertical slices with a runnable build after every phase.
+
+B. SPRINT 0 — REPO AUDIT & BACKUP (FIRST)
+Tasks: inspect repository tree, frontend/backend stack, existing routes, auth model, tables, deployed APIs and household functionality; enumerate implemented vs mock vs missing; create branch and baseline tests; identify migration and integration risks. DO NOT start by replacing residential auth or hardcoding a new platform from scratch.
+Artifacts: repo inventory.md, migration approach, preexisting feature checklist, failing/passing tests.
+Exit criteria: existing household login, billing and dashboard paths verified on development environment.
+
+C. SPRINT 1 — ORGANISATION RBAC + WORKSPACE SWITCHER [P0]
+Tasks: organisations table, memberships, roles, tenant/project scoping; authenticated GET /me/workspaces; three visual cards; onboarding for commercial property and installer company; route guards + backend permissions. Include user with roles in two distinct organisations.
+Tests: tenant A / tenant B isolation, cross-project file forbidden, installer cannot read household budgets, switching URL alone grants nothing, platform admin not universal private bill reader.
+Exit criteria: permissions tested at API layer; residential data preserved.
+
+D. SPRINT 2 — COMMERCIAL DATA + BILL INTELLIGENCE [P0]
+Tasks: synthetic mall, shops, main meter + sub-meter tree; 12 synthetic monthly bills; manual bill entry/import; tariff/period config; candidate 100/200/300 kWp scenarios; robust before/after engine; breakdown charts; stored assumptions and results. If real OCR not yet working, use clearly labelled mock extraction with manual confirmation.
+Tests: energy import/export consistency, demand/fixed charges retained unless justified, no double credit, zero savings unavailable payback, Decimal currency and tariff effective dates.
+Exit criteria: exact example fixture reproduces before and after bill; financial results labelled estimated/demo.
+
+E. SPRINT 3 — SOLARMATCH + INSTALLER WORKFLOW [P0]
+Tasks: single SolarMatch workflow for household, society and mall inputs; residential consumption+roof+location+budget+policy readiness; commercial load+roof+project size+tariff/region; capacity precheck; installer hard filters, transparent weighted rank, 3 demo fictional companies; quote request, assigned company dashboard, quote form, quote comparison.
+Tests: incorrect service region excluded; capacity mismatch excluded; missing credential shown unknown; ranked reasons reproducible; unassigned installer cannot view quote.
+Exit criteria: can request and receive one quote end-to-end using separate buyer/installer accounts.
+
+F. SPRINT 4 — VISUAL MALL + TENANT LEDGER [P0]
+Tasks: responsive React Three Fiber generic 3D mall or performant existing 3D solution, floor selector, click-to-inspect shop, green/amber/blue/grey/red labelled states, tenant shop panel, optional 2D floor grid; seeded internal tenant benefit policy and per-shop statements. Show external DISCOM vs internal benefit type prominently. Use no 'all shops VNM-approved' shortcut.
+Tests: shop geometry key matches backend; tenant can view only own statement; sum of allowed benefit allocations <= available eligible pool; all mock credentials/data labelled demo; 2D accessibility fallback.
+Exit criteria: judge clicks a shop and understands kWh, agreement, benefit type and savings in under 10 seconds.
+
+G. SPRINT 5 — HELIOS (GEMINI) [P0]
+Tasks: floating 'Ask Helios ☀️' panel in every workspace, compact quick questions, Gemini backend integration, curated FAQ/docs, read-only allowlisted tool calls. Tools: get_my_statement, explain_benefit, get_property_summary, compare_system_sizes, find_installers, compare_quotes, get_project_status. Backend checks permission independently per tool call. Provide sources/assumptions; fail gracefully offline.
+Tests: tenant requests competitor shop bill -> denied; unauthorised installer requests property financials -> denied; missing bill => admit unknown; false request to 'change allocation' => no write tool; model output includes correct figures from deterministic engine.
+Exit criteria: Helios solves 5 standard role-specific questions and 2 negative security tests; fun but accurate tone.
+
+H. SPRINT 6 — RESIDENTIAL CONTINUITY + SMARTEXIT [P1]
+Tasks: inspect residential status; preserve original VNM reconciliation, affordability-aware optimisation and ownership records; link household SolarMatch; ensure Helios handles household FAQs; where time remains, improve SmartExit ownership-transfer/funding-gap differentiation with CP-SAT and versioned approval states.
+Tests: flat leaves fully paid system -> no assumed funding gap; share transfers remain proposed until consent and external approval; no automatic DISCOM changes.
+Exit criteria: residential MVP runs side by side with commercial/installer modules.
+
+I. SPRINT 7 — HARDEN / PRESENT [P0]
+Tasks: responsive polish, load state, 2D fallback, clear simulation labels, error messages, environment example, project README, run/test scripts, synthetic CSV/bills, database migrations and seed command, final slide/data narrative. Record a backup demo video or screenshots only if allowed and technically achievable.
+Tests: fresh clone + setup; test suite; login each role; demo with network disruptions (except Gemini); cross-org API tests; financial fixtures; production build.
+Exit criteria: complete reproducible demo with handoff notes and known limitations.
+
+J. PRIORITY AND DE-SCOPING
+If time is short: must ship (1) RBAC + workspaces, (2) before/after financial mathematics, (3) SolarMatch for both segments + one quote, (4) shop dashboard with 2D fallback, (5) Helios FAQ + at least two authorised tool calls. A plain 2D mall with correct data is better than a polished 3D model with false billing. Nice-to-have: fancy building animation, vector RAG, full OCR, installer ML ranker, automatic IoT integrations.
+
+K. TEAM PARALLEL WORK PACKAGES
+Track A — Core platform: auth, memberships, permissions, migrations, backend standards.
+Track B — Energy economics: meter data, tariffs, generation assumptions, simulations, benefit ledger, tests.
+Track C — Marketplace: household/commercial SolarMatch, installer profiles, RFQs/quotes.
+Track D — Visual UX: workspace cards, 3D/2D mall, shop pane, responsive styling.
+Track E — Helios AI: Gemini server integration, curated help, tool schemas, permission tests.
+Integrate behind stable API contracts, with a shared synthetic fixture set; avoid divergent model/field naming.
+
+L. DEMO SEED DATA CONTRACT
+Organisations: Sample Gulmohar Society (RESIDENTIAL), Solaris Demo Mall (COMMERCIAL), Demo EPC Alpha/Beta/Gamma (INSTALLER). DO NOT use real installer verification marks or imply a real mall partnership.
+Property: synthetic Delhi-NCR mall, 24 shops, 3 floors, 1 main DISCOM meter, 24 tenant sub-meters, 200 kWp candidate PV, 12 months of demo bills. Other capacities 100 and 300 kWp. A few shops green active internal benefit, amber pending, blue eligible proposed, grey not participating, red exception; all states sourced from DB.
+Financial fixture: monthly mall consumption 100,000 kWh, gross PV generation 24,000 kWh, PV self-use 21,600 kWh, export 2,400 kWh, illustrative energy cost ₹9/kWh and fixed/other ₹1.50 lakh. Before ₹10.50 lakh, after ₹8.556 lakh excluding export settlement, saving ₹1.944 lakh. All assumptions synthetic, not actual tariffs.
+Household fixture: 11 participating out of 20 flats, unequal budgets, example exit/ownership-share transfer. SolarMatch requirement includes home usage, roof area, budget, city and policy uncertainty.
+
+M. END-TO-END DEMO SCRIPT (3–5 MIN)
+1 Open Solaris: three clear workspace cards. Mall operator login.
+2 Commercial dashboard: interactive mall, colour labels and savings KPI.
+3 Upload/review bill; click 'Compare solar options'; show before/after for 100/200/300 kWp.
+4 SolarMatch recommends 3 suitable demo installers with reasons; send RFQ.
+5 Switch to installer login: view assigned RFQ, submit a quote, update milestone.
+6 Switch back: inspect a green shop, view 'Internal benefit adjustment' statement; explain distinction from official VNM.
+7 Ask Helios: 'Why did this shop save less?' Helios fetches authorised data and explains fixed/demand charge and policy inputs.
+8 Switch to Household: show preserved residential dashboard, household SolarMatch and SmartExit overview.
+Close: Solaris makes solar decisions data-driven, procurement easier and benefits transparent.
+
+N. ACCEPTANCE TEST CHECKLIST
+[ ] Existing household user and admin paths still pass
+[ ] Role-based workspace selector matches memberships
+[ ] Tenant A cannot read Tenant B via API OR Helios
+[ ] Installer cannot see unassigned RFQ / private bills
+[ ] Bill totals reproducible from dated tariff and inputs
+[ ] Savings calculation respects imports, exports, demand/fixed charges
+[ ] Policy allocation never exceeds eligible tenant pool
+[ ] Internal adjustments never labelled official VNM credits
+[ ] SolarMatch applies hard filters before score
+[ ] Household SolarMatch accepts usage, roof, location, budget, policy fields
+[ ] Quote request and response work with two roles
+[ ] 3D model or 2D fallback reveals correct selected-shop record
+[ ] Helios uses Gemini only server-side and has no write/approval tool
+[ ] All seeded records clearly labelled synthetic
+[ ] Fresh installation/deployment instructions and env.example exist
+
+O. OPENCODE MASTER INSTRUCTION (PASTE INTO OPENCODE)
+'You are extending an EXISTING Solaris repository. Read these five documents first. Audit the current source, preserve functioning residential flows, and report what is already implemented versus mocked. Implement in tested milestones: org-based RBAC and a workspace selector; a commercial mall demo using one main DISCOM meter, tenant sub-meters and internal benefit statements (NOT official shop-level VNM credits); a deterministic before/after commercial bill engine with versioned tariff assumptions; explainable SolarMatch recommendations for BOTH households and commercial properties based on consumption, roof area, region, budget, project capacity and policy eligibility; a role-scoped installer profile/RFQ/quote workflow; a visually attractive but database-driven 3D mall with 2D fallback; and Helios, a fun Gemini-backed role-aware assistant with allowlisted read-only tools and no invented financial figures. Preserve residential SmartExit and VNM reconciliation. Use synthetic datasets clearly marked demo. Write automated unit, integration, access-control and smoke tests. After each milestone show changed files, working routes, tests, and gaps. Do not overwrite existing working modules or claim legal/VNM approval.'
+
+P. POST-HACK ROADMAP / VALIDATION
+Pilot interviews: mall facility manager (meter structure, bill payer, tenant contracts), licensed solar installer (roof/system sizing, legal connection), retail tenant (billing clarity), society admin (ownership exit), electricity-law expert (tenant charging and VNM eligibility). Validate state-specific tariffs and DISCOM rules, data rights, subscription willingness, installer rankings and expected onboarding costs. Do not turn synthetic fixture metrics into commercial claims.

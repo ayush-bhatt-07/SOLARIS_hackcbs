@@ -1,5 +1,44 @@
 # SOLARIS — Together We Shine Brighter
 
+## Solaris 2.0: Household + MSME / Mall workspaces
+
+**Current focus: EnergyTwin.** The commercial workspace now has a genuine Three.js / React Three Fiber mall, persisted meter readings and benefit-policy versions, and tenant-safe backend statements. See [the complete EnergyTwin walkthrough, reproducible inputs, tests and limits](docs/ENERGYTWIN_DEMO.md). `npm run test:energytwin` runs the focused 20-check acceptance suite. At MSME login, **Explore restricted tenant demo** demonstrates an actual single-shop membership.
+
+The website now has two visible login/signup paths. Household users keep the existing residential dashboard, onboarding, feasibility, community and optimisation flows. MSME accounts open a separate business dashboard with persisted organisation-scoped property records.
+
+```sh
+npm install
+npm run dev
+```
+
+`npm run dev` starts **both** the API (8787) and Vite (normally 3000). Open the exact Local URL printed by Vite; it chooses another port if 3000 is occupied. Use the same origin for the frontend and `/api` proxy.
+
+- **Household:** `/#/login/household` → create an account or **Explore household demo**.
+- **MSME / Mall:** `/#/login/msme` → create an account or **Explore mall demo**.
+- Each demo entry creates its own isolated server account. Demo values are synthetic. Regular MSME accounts start with an empty property list and can create/customise a starter property.
+- Primary MSME sections: EnergyTwin, Property & setup, Bills & solar sizing, Shops & benefits, Financial reports. Earlier marketplace code is retained but hidden from the focused navigation.
+- Property assumptions, selected capacity, reviewed consumption, hypothetical arrangement statuses, demo enquiries/quotes, audit events and input snapshots persist across reloads and server restarts.
+
+The mall demo includes 24 shops over three floors, one main connection, 24 persisted sub-meters/readings and twelve monthly consumption records. Financial comparisons calculate 100/200/300 kWp scenarios. The documented 200 kWp fixture yields ₹10,50,000 before, ₹8,55,600 after and ₹1,94,400 monthly savings. The real WebGL mall and accessible floor grid share the same API records.
+
+Real provider messaging and live utility integration are not connected. Quotation responses are generated only by **Simulate demo response** and are labelled synthetic. Shop statements are **hypothetical internal projections**, never official DISCOM VNM credits. The household's preexisting browser-local data remains in place.
+
+Tests:
+
+```sh
+npm test
+npm run test:api
+npm run test:business
+npm run lint
+npm run build
+```
+
+For a single-process production-style run, first build, then run `npm start`. Express serves the built frontend and API together on `PORT` (default 8787). Use a persistent writable volume for `server/data/` and TLS at your hosting proxy. A static-only Vercel deployment does **not** run this API or persist its records. Do not deploy the JSON store on ephemeral/serverless filesystems or run multiple writer instances.
+
+Optional Gemini: copy `.env.example` to `.env` and set server-only `GEMINI_API_KEY` and, if needed, `GEMINI_MODEL`. Financial questions use deterministic authorised server records; general educational answers can use Gemini. Without a key, curated help and financial explanations work offline. Live Gemini 3.5 Flash generation and the authenticated Helios endpoint were verified on 1 November 2026. Use `npm run check:helios` for a direct check and `npm run check:helios:api` with the API running for an authenticated endpoint check.
+
+See [B2B API and deployment guide](docs/B2B_API.md) and [current implementation status](docs/IMPLEMENTATION_STATUS.md) for boundaries and known limitations.
+
 An intelligent, regulation-aware solar adoption, community solar planning, affordability optimisation, and transparent credit allocation platform designed for India, starting with Delhi (BSES Rajdhani Power Limited, BSES Yamuna Power Limited, Tata Power DDL).
 
 **Primary SDG Alignment:**

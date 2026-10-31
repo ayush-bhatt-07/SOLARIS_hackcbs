@@ -1,0 +1,76 @@
+SOLARIS 2.0 — SOFTWARE REQUIREMENTS SPECIFICATION (SRS)
+Version 1.0 | 31 October 2026 | Status: design baseline, subject to repository audit
+Requirement vocabulary: MUST = required hackathon behavior; SHOULD = desirable; MAY = future.
+
+1. SCOPE, ACTORS, SYSTEM CONTEXT
+Solaris is a browser-based multi-tenant platform for residential societies, commercial properties and installers. External services: identity provider, Gemini API (Helios), private file storage, optional solar/resource lookup. DISCOM and inverter are OFFLINE/mock/CSV in hackathon; never simulate a real approval silently.
+Actors: anonymous visitor, authenticated resident, society admin, mall operator, facility manager, tenant, installer admin, installer engineer, platform admin. One user can have multiple membership/roles. All data reads and mutations are project/organisation scoped.
+
+2. FUNCTIONAL REQUIREMENTS — ID, PRIORITY, TEST
+SRS-FR-001 [P0] Sign-in MUST resolve user identity and permitted organisation memberships. Test: unknown membership absent from selector.
+SRS-FR-002 [P0] Workspace selector MUST show three workspace types only when user has an authorised membership or is eligible to onboard a new org. Switching MUST NOT change access grants. Test: manual URL to unauthorised org returns 403/404.
+SRS-FR-003 [P0] AuthZ MUST occur server-side on every API route and object lookup. Tests: cross-org user/property/statement/document access denied; Helios tools denied.
+SRS-FR-004 [P0] Preserve residential routes/data/primary features; do not delete existing schema without migration. Test: smoke suite from existing app.
+SRS-FR-005 [P0] Operator can create property with organisation, city/state, DISCOM, connection_model, tariff_category, roof_area, project. Meter type MUST be one of MAIN_DISCOM/SUBMETER/GENERATION/EXPORT/SEPARATE_DISCOM. Test invalid parent association rejected.
+SRS-FR-006 [P0] Shop tenant is linked to property, shop and active lease/membership period; historical statements remain assigned to correct tenant. Test: tenant turnover doesn't expose prior tenant private records.
+SRS-FR-007 [P0] Bill import accepts CSV and manual entry; PDF/image OCR is SHOULD with explicit confirmation. Require billing period, measured consumption, itemised charge fields, tariff version, source label. Test: missing core fields fail validation.
+SRS-FR-008 [P0] Financial simulation accepts load/solar profiles OR transparent monthly approximations; MUST distinguish expected on-site usage and exports from gross generation and label estimated assumptions. Test: generated + imported/exported balance consistent where data permits.
+SRS-FR-009 [P0] Billing engine MUST apply versioned tariff components and show before/after energy, fixed, demand, taxes, export adjustments separately; prevent double credit subtraction. Test: deterministic fixtures produce exact totals.
+SRS-FR-010 [P0] System size comparison supports at least 3 capacities and yields investment cost, savings and payback (or 'unavailable' for nonpositive savings). Test: zero savings no finite payback claim.
+SRS-FR-011 [P0] SolarMatch collects consumption, location, roof size, budget, financing preference, eligible policy constraints; MUST hard-filter incompatible installer geography/capacity/requirements. Test: incompatible provider never ranked.
+SRS-FR-012 [P0] SolarMatch MUST return ranked installer list with configurable feature weights, score breakdown, evidence status and reasons. Test: rankings reproducible and explainable.
+SRS-FR-013 [P0] Installer admin can publish owned profile with permitted regions, project size, proof documents, warranty/O&M. Unverified credentials MUST remain unverified. Test: approval flag cannot be client-supplied.
+SRS-FR-014 [P0] Buyer can send RFQ to selected installer; installer sees only sent/assigned RFQs. Test: unassigned company cannot read RFQ.
+SRS-FR-015 [P0] Installer can submit versioned quote for its RFQ, with capacity, price, components, O&M, warranty, scope, validity, terms; buyer can compare. Test: other installer cannot amend quote.
+SRS-FR-016 [P0] 3D/2D mall shows shops by floor and status, with selected-shop metrics coming from scoped API. Test: clicking shop fetches correct shop and records.
+SRS-FR-017 [P0] Frontend MUST display benefit type: INTERNAL_ADJUSTMENT, APPROVED_VNM_CREDIT, PROJECTION, or NONE. Test: no ambiguous 'credited electricity' label in internal mode.
+SRS-FR-018 [P0] Benefit policy MUST be versioned, record allowed pool, eligibility, cap, rounding, effective period and approval evidence/state; manual adjustment only in approved scoped workflow. Test: sum of allocated pool <= eligible pool within rounding controls.
+SRS-FR-019 [P0] Tenant statement MUST display own meter usage, period, allocation method, amounts, sources, status, policy version, and synthetic label when relevant. Test: tenant sees own only.
+SRS-FR-020 [P0] Helios available from all workspaces via chat panel with suggested questions; answers general FAQs and role-specific questions. Test: common questions return grounded concise answers.
+SRS-FR-021 [P0] Helios API MUST use server-side Gemini credentials, role-scoped allowlisted tools only, provenance/assumptions, appropriate failure responses. Test: prompt requesting another shop's financial data denied.
+SRS-FR-022 [P0] Helios MUST NOT fabricate bill figures, policy eligibility, provider certifications, quote data, approvals or financial guarantees. Test: missing data returns 'not available'.
+SRS-FR-023 [P1] Bill OCR proposes extracted fields and requires human review before posting financial records. Test: corrected inputs override OCR and provenance retained.
+SRS-FR-024 [P1] Provider can upload authorised inverter generation/settlement CSV tagged as GENERATION, EXPORT or UTILITY_SETTLEMENT. Test: generation record never auto-treated as VNM credit.
+SRS-FR-025 [P1] Residential credit reconciliation uses approved allocation version, settlement evidence and official bill credit matched to billing period, and flags insufficient evidence. Test: missing export/settlement -> unverifiable status.
+SRS-FR-026 [P1] SmartExit simulates exit reasons, current ownership, debt and available replacements. CP-SAT solves only when applicable; no automatic transfers. Test: fully paid departure need not produce funding shortfall.
+SRS-FR-027 [P0] Data source status MUST be one of SYNTHETIC, ESTIMATED, USER_CONFIRMED, PROVIDER_UPLOADED, OFFICIAL_APPROVED, UNVERIFIED. Show badge on sensitive dashboard outputs. Test: seed data is labelled demo.
+SRS-FR-028 [P0] Audit log records changes to tariffs, policies, quotes, roles, readings and statements with actor, timestamp and old/new versions. Test: modification creates entry.
+SRS-FR-029 [P1] Export project and individual statements as CSV/PDF with assumptions and provenance.
+
+3. NON-FUNCTIONAL REQUIREMENTS
+SRS-NFR-001 Security: TLS in deployment; passwords/tokens via established auth; API keys only backend; per-resource authorization mandatory; files private and signed short-lived links.
+SRS-NFR-002 Privacy: minimum data exposed; no cross-tenant leakage; do not send whole bill archives to Gemini unnecessarily; configurable data retention/deletion policy.
+SRS-NFR-003 Reliability: no silent errors; async OCR/AI may fail while deterministic financial tool remains operational; store calculation versions.
+SRS-NFR-004 Performance goals for seeded hackathon load, not verified SLAs: page shell <3 seconds on typical laptop; shop details <1 second from local API; bill comparison <5 seconds for monthly profiles; 3D fallback under degraded hardware. Measure and report actual performance.
+SRS-NFR-005 Accuracy: currency in integer paise or decimal fixed precision, not floating-point money; monetary results traceable to inputs and formulas; unit tests for rounding.
+SRS-NFR-006 Accessibility: keyboard access to all important actions; color plus text label; semantic controls; reduced-motion option and 2D mall mode.
+SRS-NFR-007 Scalability: one schema per platform with organisation_id partitioning/logical tenant isolation; indexed queries; paginated lists; optional caching; async workloads.
+SRS-NFR-008 Observability: structured request logs with IDs and redaction; audit logs; monitor API errors and Gemini token/service failures without logging user secrets.
+SRS-NFR-009 Maintainability: backend contract-first design, typed frontend clients, migration versioning, CI unit and integration suites.
+SRS-NFR-010 Regulatory clarity: show state-specific effective tariff date and unknown approvals; no universal legality claims.
+
+4. BUSINESS RULES / INVARIANTS
+BR-01 Official VNM credit != internal tenant financial adjustment != projection.
+BR-02 PV generation != on-site consumption != export != credited energy.
+BR-03 Ownership contribution != proposed credit share != DISCOM-approved allocation.
+BR-04 Only explicit consent/contract/policy permits internal financial adjustment; platform is not a utility.
+BR-05 Main-meter and shop sub-meter readings cannot be naively summed as independent purchases from DISCOM.
+BR-06 Fixed and demand charges do not disappear automatically on solar commissioning.
+BR-07 In single-point mall mode, shops physically use the connected electrical network; per-shop 'solar kWh' is an accounting estimate unless interval/submeter evidence justifies a stronger claim.
+BR-08 Installer match ranking must respect hard filters regardless of weighted score.
+BR-09 Helios can explain but cannot change approved allocations, sign contracts, collect payment or approve credit.
+BR-10 No exit automatically imposes cost on the remaining members; inspect legal obligations first.
+
+5. DATA VALIDATION AND ERRORS
+Reject negative kWh, invalid tariff dates, impossible share sum, missing meter associations, disallowed role combinations, duplicate invoice imports, mismatched periods and malformed quotes. Handle unknown billing rules with 'simulation unavailable until configuration is reviewed'. Show actionable validation UI. Prevent duplicate processing through idempotency keys.
+
+6. TRACEABILITY EXAMPLES
+PRD-F01 -> FR-001/002/003 -> TRD Identity and Organisation module -> RBAC tests.
+PRD-F04 -> FR-007..010 -> TRD Billing/Simulation -> tariff fixture tests.
+PRD-F05 -> FR-011/012 -> TRD SolarMatch -> filter/score tests.
+PRD-F08 -> FR-017..019 -> TRD Benefit Ledger -> pool preservation tests.
+PRD-F09 -> FR-020..022 -> TRD Helios -> malicious cross-role prompt tests.
+PRD-F11 -> FR-026 -> TRD SmartExit -> infeasible/ownership tests.
+
+7. DEFINITION OF DONE
+A requirement is 'done' only when UI + backend + authorised data scope + reproducible calculation (if relevant) + tests + clear SYNTHETIC state are working. A mocked visual is 'demo only' and must not be called an implemented financial integration.

@@ -16,6 +16,8 @@ const NAV_ROUTES: NavRoute[] = [
   { label: 'Plan Optimiser', path: '/optimiser', icon: 'bolt', category: 'Planning', badge: 'F05' },
   { label: 'Community', path: '/community', icon: 'groups', category: 'Collaboration' },
   { label: 'Credit Reconciliation', path: '/credit-allocation', icon: 'pie_chart', category: 'Collaboration', badge: 'F09' },
+  { label: 'Commercial Mall', path: '/commercial', icon: 'store', category: 'Commercial' },
+  { label: 'Installer Portal', path: '/installer', icon: 'engineering', category: 'Commercial' },
   { label: 'Provider & O&M', path: '/monitoring', icon: 'query_stats', category: 'Operations' },
   { label: 'Reports & Statements', path: '/reports', icon: 'description', category: 'Operations' },
   { label: 'Governance & Audit', path: '/admin', icon: 'admin_panel_settings', category: 'Governance', badge: 'Gov' }
@@ -25,12 +27,13 @@ const CATEGORY_META: Record<string, { icon: string; hint: string }> = {
   Core: { icon: 'space_dashboard', hint: 'Overview' },
   Planning: { icon: 'architecture', hint: 'Model & size' },
   Collaboration: { icon: 'handshake', hint: 'Agree & reconcile' },
+  Commercial: { icon: 'business', hint: 'B2B workspace' },
   Operations: { icon: 'monitoring', hint: 'Track & report' },
   Governance: { icon: 'verified_user', hint: 'Audit trail' }
 };
 
 export const Sidebar: React.FC = () => {
-  const { currentPath, navigateTo, isSidebarOpen, setIsSidebarOpen, currentUser, community, logOut } = useApp();
+  const { currentPath, navigateTo, isSidebarOpen, setIsSidebarOpen, currentUser, community, logOut, currentWorkspaceAccess } = useApp();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(Array.from(new Set(NAV_ROUTES.map((route) => route.category))).map((category) => [category, true]))
@@ -202,6 +205,18 @@ export const Sidebar: React.FC = () => {
                   <div className="min-h-0 overflow-hidden">
                     <div className="space-y-1 pb-1 pt-1">
                       {routes.map((route) => {
+                        const isCommercialRoute = route.path === '/commercial';
+                        const isInstallerRoute = route.path === '/installer';
+                        const isVisible =
+                          !isCommercialRoute && !isInstallerRoute
+                          ? true
+                          : (isCommercialRoute && currentWorkspaceAccess.commercial)
+                            || (isInstallerRoute && currentWorkspaceAccess.installer);
+
+                        if (!isVisible) {
+                          return null;
+                        }
+
                         const isActive =
                           currentPath === route.path ||
                           (route.path !== '/' && currentPath.startsWith(route.path));

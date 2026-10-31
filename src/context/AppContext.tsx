@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useState, useEffect } from 'react';
+import React, { useCallback, useContext, useState, useEffect } from 'react';
+import { AppContext } from './AppContextState';
 import { 
   UserProfile, 
   CommunityProject, 
@@ -14,6 +15,8 @@ import {
   INITIAL_AUDIT_LOGS 
 } from '../data/mockData';
 import { runAffordabilityOptimiser } from '../utils/optimiserEngine';
+import { api, post } from '../utils/api';
+import type { Workspace, OrganisationMembership } from '../types/commercial';
 import {
   authenticateAccount,
   clearAuthSession,
@@ -28,7 +31,7 @@ export interface AuthResult {
   error?: string;
 }
 
-interface AppContextType {
+export interface AppContextType {
   currentRole: UserRole;
   currentUser: UserProfile;
   switchRole: (role: UserRole) => void;
@@ -38,8 +41,9 @@ interface AppContextType {
   navigateTo: (path: string) => void;
 
   isAuthenticated: boolean;
-  signUp: (name: string, email: string, password: string) => Promise<AuthResult>;
-  logIn: (email: string, password: string) => Promise<AuthResult>;
+  signUp: (name: string, email: string, password: string, workspace?: Workspace) => Promise<AuthResult>;
+  logIn: (email: string, password: string, workspace?: Workspace) => Promise<AuthResult>;
+  demoLogin: (workspace: Workspace, persona?: 'owner' | 'tenant') => Promise<AuthResult>;
   logOut: () => void;
 
   community: CommunityProject;
@@ -61,9 +65,9 @@ interface AppContextType {
 
   isSidebarOpen: boolean;
   setIsSidebarOpen: (open: boolean) => void;
+  currentWorkspaceAccess: Record<'household' | 'commercial' | 'installer', boolean>;
+  getWorkspaceAccess: (workspace: 'household' | 'commercial' | 'installer') => boolean;
 }
-
-const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const STORAGE_KEYS = {
   ROLE: 'solaris_role',
@@ -72,16 +76,29 @@ const STORAGE_KEYS = {
   LOGS: 'solaris_logs'
 };
 
-const buildAuthProfile = (account: { id: string; name: string; email: string }, needsOnboarding: boolean = false): UserProfile => ({
-  ...DEMO_USERS['household'],
+const scopedStorageKey = (key: string, accountId?: string | null): string =>
+  accountId ? `${key}:${accountId}` : key;
+
+const readScopedJson = <T,>(key: string, accountId?: string | null): T | null => {
+  try {
+    const raw = localStorage.getItem(scopedStorageKey(key, accountId));
+    return raw ? JSON.parse(raw) as T : null;
+  } catch {
+    return null;
+  }
+};
+
+const buildAuthProfile = (account: { id: string; name: string; email: string; workspace?: Workspace; membership?: OrganisationMembership }, needsOnboarding: boolean = false): UserProfile => ({
+  ...DEMO_USERS[account.workspace === 'commercial' ? 'msme' : 'household'],
   id: account.id,
   name: account.name,
   email: account.email,
-  roleTitle: 'Resident · Solaris Member',
+  role: account.workspace === 'commercial' ? account.membership?.role === 'shop_tenant' ? 'shop_tenant' : account.membership?.role === 'facility_manager' ? 'facility_manager' : 'commercial_property_owner' : 'household',
+  roleTitle: account.workspace === 'commercial' ? 'MSME · Mall Owner' : 'Resident · Solaris Member',
   consentSigned: false,
   consentDate: undefined,
-  onboardingCompleted: false,
-  needsOnboarding
+  onboardingCompleted: account.workspace === 'commercial',
+  needsOnboarding: account.workspace !== 'commercial' && needsOnboarding
 });
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -90,25 +107,40 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // 1. Role & User State
   const [currentRole, setCurrentRole] = useState<UserRole>(() => {
-    const saved = localStorage.getItem(STORAGE_KEYS.ROLE);
+    const activeSession = getAuthSession();
+    const saved = localStorage.getItem(scopedStorageKey(STORAGE_KEYS.ROLE, activeSession?.accountId));
     return (saved as UserRole) || 'household';
   });
 
+  const organisationRoleMap: Partial<Record<UserRole, UserRole>> = {
+    platform_admin: 'platform_admin',
+    society_admin: 'society_admin',
+    household_member: 'household_member',
+    commercial_property_owner: 'commercial_property_owner',
+    facility_manager: 'facility_manager',
+    shop_tenant: 'shop_tenant',
+    installer_admin: 'installer_admin',
+    installer_engineer: 'installer_engineer'
+  };
+
   const [currentUser, setCurrentUser] = useState<UserProfile>(() => {
-    const saved = localStorage.getItem(STORAGE_KEYS.USER);
+    const activeSession = getAuthSession();
+    const saved = localStorage.getItem(scopedStorageKey(STORAGE_KEYS.USER, activeSession?.accountId));
     if (saved) {
       try {
-        return JSON.parse(saved);
+        const profile = JSON.parse(saved);
+        if (activeSession && profile.id === activeSession.accountId) return profile;
       } catch (e) {
         console.error(e);
       }
     }
-    const activeSession = getAuthSession();
     if (activeSession) {
       return buildAuthProfile({
         id: activeSession.accountId,
         name: activeSession.name,
-        email: activeSession.email
+        email: activeSession.email,
+        workspace: activeSession.workspace,
+        membership: activeSession.membership
       });
     }
     return DEMO_USERS['household'];
@@ -137,15 +169,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // 3. Community State
   const [community, setCommunity] = useState<CommunityProject>(() => {
-    const saved = localStorage.getItem(STORAGE_KEYS.COMMUNITY);
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-    return INITIAL_COMMUNITY;
+    return readScopedJson<CommunityProject>(STORAGE_KEYS.COMMUNITY, getAuthSession()?.accountId) ?? INITIAL_COMMUNITY;
   });
 
   // 4. Modal & UI State
@@ -154,16 +178,33 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // 5. Audit Logs
   const [auditLogs, setAuditLogs] = useState<AuditLogItem[]>(() => {
-    const saved = localStorage.getItem(STORAGE_KEYS.LOGS);
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-    return INITIAL_AUDIT_LOGS;
+    return readScopedJson<AuditLogItem[]>(STORAGE_KEYS.LOGS, getAuthSession()?.accountId) ?? INITIAL_AUDIT_LOGS;
   });
+  const [privateStateReady, setPrivateStateReady] = useState(false);
+  const [stateError, setStateError] = useState('');
+
+  // A browser can switch between authenticated accounts without a full reload.
+  // Reload private residential state when that identity changes; never retain
+  // the previous account's community roster, bills, or audit history in memory.
+  useEffect(() => {
+    const accountId = session?.accountId;
+    setCommunity(readScopedJson<CommunityProject>(STORAGE_KEYS.COMMUNITY, accountId) ?? INITIAL_COMMUNITY);
+    setAuditLogs(readScopedJson<AuditLogItem[]>(STORAGE_KEYS.LOGS, accountId) ?? INITIAL_AUDIT_LOGS);
+    setPrivateStateReady(false); setStateError('');
+    if (!session?.token || session.workspace !== 'household') { setPrivateStateReady(true); return; }
+    let cancelled = false;
+    api('/residential/state').then(result => {
+      if (cancelled) return;
+      if (result.data?.community) setCommunity(result.data.community);
+      if (result.data?.logs) setAuditLogs(result.data.logs);
+      if (result.data?.optimisationParams) setOptimisationParams(result.data.optimisationParams);
+      const storedProfile = result.data?.profile ?? readScopedJson<UserProfile>(STORAGE_KEYS.USER, accountId);
+      const authority = buildAuthProfile({ id: accountId!, name: session.name, email: session.email, workspace: session.workspace, membership: session.membership });
+      if (storedProfile) setCurrentUser({ ...authority, ...storedProfile, id: accountId, name: session.name, email: session.email, role: 'household' });
+      setPrivateStateReady(true);
+    }).catch(e => { if (!cancelled) setStateError(e.message); });
+    return () => { cancelled = true; };
+  }, [session?.accountId]);
 
   // 6. Optimiser State
   const [optimisationParams, setOptimisationParams] = useState<OptimisationParams>({
@@ -207,62 +248,101 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   useEffect(() => {
-    rerunOptimiser();
-  }, [optimisationParams, community.members.length]);
+    setOptimisationResult(runAffordabilityOptimiser(community.members, optimisationParams));
+  }, [optimisationParams, community.members]);
+
+  useEffect(() => {
+    if (!privateStateReady || !session?.token || session.workspace !== 'household' || currentUser.id !== session.accountId) return;
+    const handle = setTimeout(() => {
+      api('/residential/state', { method: 'PUT', body: JSON.stringify({ data: { profile: currentUser, community, logs: auditLogs, optimisationParams } }) }).catch(e => setStateError(e.message));
+    }, 250);
+    return () => clearTimeout(handle);
+  }, [privateStateReady, currentUser, community, auditLogs, optimisationParams, session?.accountId]);
 
   // Actions
   const switchRole = (role: UserRole) => {
+    if (session?.token) return; // Authenticated membership cannot be elevated by a demo role switch.
     setCurrentRole(role);
     const newUser = DEMO_USERS[role] || DEMO_USERS['household'];
     setCurrentUser(newUser);
-    localStorage.setItem(STORAGE_KEYS.ROLE, role);
-    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(newUser));
+    localStorage.setItem(scopedStorageKey(STORAGE_KEYS.ROLE, session?.accountId), role);
+    localStorage.setItem(scopedStorageKey(STORAGE_KEYS.USER, session?.accountId), JSON.stringify(newUser));
     addAuditLog('Role Switch', `Switched active demo context to ${newUser.name} (${newUser.roleTitle})`, 'system');
   };
+
+  const workspaceAccessByRole = useCallback((role: UserRole) => ({
+    household: ['household', 'msme', 'rwa_coordinator', 'admin_auditor', 'platform_admin', 'society_admin', 'household_member'].includes(role),
+    commercial: ['msme', 'commercial_property_owner', 'facility_manager', 'shop_tenant', 'platform_admin'].includes(role),
+    installer: ['installer_partner', 'installer_admin', 'installer_engineer', 'platform_admin'].includes(role)
+  }), []);
+
+  const currentWorkspaceAccess = session?.token ? { household: session.workspace === 'household', commercial: session.workspace === 'commercial', installer: false } : workspaceAccessByRole(currentUser.role);
 
   const updateCurrentUser = (updates: Partial<UserProfile>) => {
     setCurrentUser(prev => {
       const updated = { ...prev, ...updates };
-      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(updated));
+      localStorage.setItem(scopedStorageKey(STORAGE_KEYS.USER, session?.accountId), JSON.stringify(updated));
       return updated;
     });
   };
 
-  const applyAuthSession = (account: { id: string; name: string; email: string }, needsOnboarding: boolean = false) => {
+  const getWorkspaceAccess = (workspace: 'household' | 'commercial' | 'installer') => currentWorkspaceAccess[workspace];
+
+  const applyAuthSession = (account: { id: string; name: string; email: string; token?: string; workspace?: Workspace; organisationId?: string; demo?: boolean; membership?: OrganisationMembership }, needsOnboarding: boolean = false) => {
     const authSession = saveAuthSession(account);
-    const profile = buildAuthProfile(account, needsOnboarding);
+    const authority = buildAuthProfile(account, needsOnboarding);
+    const saved = readScopedJson<UserProfile>(STORAGE_KEYS.USER, account.id);
+    const profile = { ...authority, ...(saved ?? {}), id: account.id, name: account.name, email: account.email, role: authority.role };
+    setCommunity(readScopedJson<CommunityProject>(STORAGE_KEYS.COMMUNITY, account.id) ?? structuredClone(INITIAL_COMMUNITY));
+    setAuditLogs(readScopedJson<AuditLogItem[]>(STORAGE_KEYS.LOGS, account.id) ?? structuredClone(INITIAL_AUDIT_LOGS));
+    setOptimisationParams({ roofAreaSqFt: 1400, targetCapacityKw: 12, budgetCeilingInr: 580000, financingRatePercentage: 8.5, participantCapInr: 4500, stressFactors: { monsoonDrop: false, rateSpike: false, unitDropOut: false, subsidyDelay: false } });
     setSession(authSession);
-    setCurrentRole('household');
+    setCurrentRole(profile.role);
     setCurrentUser(profile);
-    localStorage.setItem(STORAGE_KEYS.ROLE, 'household');
-    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(profile));
+    localStorage.setItem(scopedStorageKey(STORAGE_KEYS.ROLE, account.id), profile.role);
+    localStorage.setItem(scopedStorageKey(STORAGE_KEYS.USER, account.id), JSON.stringify(profile));
   };
 
-  const signUp = async (name: string, email: string, password: string): Promise<AuthResult> => {
-    const result = await registerAccount(name, email, password);
-    if (!result.success || !result.account) {
-      return { success: false, error: result.error || 'Unable to create your account.' };
-    }
-    applyAuthSession(result.account, true);
-    return { success: true };
+  const signUp = async (name: string, email: string, password: string, workspace: Workspace = 'household'): Promise<AuthResult> => {
+    try {
+      const result = await post('/auth/register', { name, email, password, workspace });
+      applyAuthSession({ ...result.account, token: result.token }, true);
+      return { success: true };
+    } catch (error) { return { success: false, error: (error as Error).message }; }
   };
 
-  const logIn = async (email: string, password: string): Promise<AuthResult> => {
-    const result = await authenticateAccount(email, password);
-    if (!result.success || !result.account) {
-      return { success: false, error: result.error || 'Unable to log in.' };
+  const logIn = async (email: string, password: string, workspace: Workspace = 'household'): Promise<AuthResult> => {
+    try {
+      const result = await post('/auth/login', { email, password, workspace });
+      applyAuthSession({ ...result.account, token: result.token });
+      return { success: true };
+    } catch (error) {
+      // Preserve preexisting browser-local household accounts without granting API access.
+      if (workspace === 'household') {
+        const legacy = await authenticateAccount(email, password);
+        if (legacy.success && legacy.account) { applyAuthSession(legacy.account); return { success: true }; }
+      }
+      return { success: false, error: (error as Error).message };
     }
-    applyAuthSession(result.account, false);
-    return { success: true };
+  };
+
+  const demoLogin = async (workspace: Workspace, persona: 'owner' | 'tenant' = 'owner'): Promise<AuthResult> => {
+    try {
+      const result = await post('/auth/demo', { workspace, persona });
+      applyAuthSession({ ...result.account, token: result.token });
+      return { success: true };
+    } catch (error) { return { success: false, error: (error as Error).message }; }
   };
 
   const logOut = () => {
+    if (session?.token) post('/auth/logout', {}).catch(() => {});
     clearAuthSession();
+    localStorage.removeItem('solaris_active_property');
     setSession(null);
     setCurrentRole('household');
     setCurrentUser(DEMO_USERS['household']);
-    localStorage.removeItem(STORAGE_KEYS.ROLE);
-    localStorage.removeItem(STORAGE_KEYS.USER);
+    setCommunity(structuredClone(INITIAL_COMMUNITY)); setAuditLogs(structuredClone(INITIAL_AUDIT_LOGS));
+    setIsConsentModalOpen(false);
     setIsSidebarOpen(false);
     navigateTo('/');
   };
@@ -270,7 +350,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const updateCommunity = (updates: Partial<CommunityProject>) => {
     setCommunity(prev => {
       const updated = { ...prev, ...updates };
-      localStorage.setItem(STORAGE_KEYS.COMMUNITY, JSON.stringify(updated));
+      localStorage.setItem(scopedStorageKey(STORAGE_KEYS.COMMUNITY, session?.accountId), JSON.stringify(updated));
       return updated;
     });
   };
@@ -353,7 +433,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       details,
       category
     };
-    setAuditLogs(prev => [newLog, ...prev]);
+    setAuditLogs(prev => {
+      const updated = [newLog, ...prev];
+      localStorage.setItem(scopedStorageKey(STORAGE_KEYS.LOGS, session?.accountId), JSON.stringify(updated));
+      return updated;
+    });
   };
 
   return (
@@ -368,6 +452,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         isAuthenticated,
         signUp,
         logIn,
+        demoLogin,
         logOut,
         community,
         updateCommunity,
@@ -383,9 +468,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         auditLogs,
         addAuditLog,
         isSidebarOpen,
-        setIsSidebarOpen
+        setIsSidebarOpen,
+        currentWorkspaceAccess,
+        getWorkspaceAccess
       }}
     >
+      {stateError && <div role="alert" className="fixed bottom-4 left-4 z-[100] max-w-sm rounded-xl bg-amber-50 border border-amber-200 p-3 text-xs text-amber-900">Residential sync unavailable: {stateError}. Your local account data remains saved.</div>}
       {children}
     </AppContext.Provider>
   );

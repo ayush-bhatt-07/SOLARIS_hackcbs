@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { AuthShell } from '../components/common/AuthShell';
 import { useApp } from '../context/AppContext';
+import { WorkspaceChoice } from '../components/common/WorkspaceChoice';
+import type { Workspace } from '../types/commercial';
 
 export const SignupPage: React.FC = () => {
-  const { signUp, navigateTo } = useApp();
+  const { signUp, navigateTo, currentPath } = useApp();
+  const [workspace, setWorkspace] = useState<Workspace>(currentPath.endsWith('/msme') ? 'commercial' : 'household');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,26 +25,26 @@ export const SignupPage: React.FC = () => {
     }
 
     setIsSubmitting(true);
-    const result = await signUp(name, email, password);
+    const result = await signUp(name, email, password, workspace);
     setIsSubmitting(false);
     if (!result.success) {
       setError(result.error || 'Unable to create your account.');
       return;
     }
     // Redirect to onboarding after successful signup
-    navigateTo('/onboarding');
+    navigateTo(workspace === 'commercial' ? '/commercial' : '/onboarding');
   };
 
   return (
     <AuthShell
       eyebrow="Get started"
-      title="Create your Solaris account"
-      subtitle="Save your solar plan, join a community cohort, and track your clean-energy credits."
+      title={workspace === 'commercial' ? 'Bring solar to your business.' : 'Create your Solaris account'}
+      subtitle={workspace === 'commercial' ? 'Create your organisation, set up a property, and compare solar options.' : 'Save your solar plan and join a community cohort.'}
       footer={
         <span>
           Already have an account?{' '}
           <button
-            onClick={() => navigateTo('/login')}
+            onClick={() => navigateTo(workspace === 'commercial' ? '/login/msme' : '/login/household')}
             className="font-bold text-[#006b57] hover:underline"
           >
             Log in
@@ -50,6 +53,7 @@ export const SignupPage: React.FC = () => {
       }
     >
       <form onSubmit={handleSubmit} className="space-y-3.5">
+        <WorkspaceChoice value={workspace} onChange={value => navigateTo(value === 'commercial' ? '/signup/msme' : '/signup/household')} />
         {error && (
           <div className="p-3 rounded-lg bg-[#ffdad6] text-[#93000a] text-xs font-medium flex items-start gap-2">
             <span className="material-symbols-outlined text-[16px] mt-0.5">error</span>
@@ -101,7 +105,8 @@ export const SignupPage: React.FC = () => {
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              placeholder="At least 6 characters"
+              minLength={8}
+              placeholder="At least 8 characters"
               className="w-full h-11 pl-3 pr-10 rounded-lg border border-[#c0c8c5] bg-white text-sm text-[#101d24] placeholder:text-[#9aa5a1] focus:outline-none focus:border-[#006b57] focus:ring-2 focus:ring-[#9af4d8]/40"
             />
             <button

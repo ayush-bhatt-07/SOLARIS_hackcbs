@@ -1,0 +1,519 @@
+{
+  "synthetic": true,
+  "generatedFor": "Solaris 2.0 Hackathon MVP",
+  "property": {
+    "id": "property-sunrise-mall",
+    "name": "Sunrise Mall",
+    "location": "Delhi"
+  },
+  "meters": [
+    {
+      "id": "meter-main-sunrise-mall",
+      "type": "MAIN_DISCOM",
+      "accountRef": "SYN-MAIN-001"
+    },
+    {
+      "id": "meter-shop-1",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-1",
+      "accountRef": "SYN-SHOP-1"
+    },
+    {
+      "id": "meter-shop-2",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-2",
+      "accountRef": "SYN-SHOP-2"
+    },
+    {
+      "id": "meter-shop-3",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-3",
+      "accountRef": "SYN-SHOP-3"
+    },
+    {
+      "id": "meter-shop-4",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-4",
+      "accountRef": "SYN-SHOP-4"
+    },
+    {
+      "id": "meter-shop-5",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-5",
+      "accountRef": "SYN-SHOP-5"
+    },
+    {
+      "id": "meter-shop-6",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-6",
+      "accountRef": "SYN-SHOP-6"
+    },
+    {
+      "id": "meter-shop-7",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-7",
+      "accountRef": "SYN-SHOP-7"
+    },
+    {
+      "id": "meter-shop-8",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-8",
+      "accountRef": "SYN-SHOP-8"
+    },
+    {
+      "id": "meter-shop-9",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-9",
+      "accountRef": "SYN-SHOP-9"
+    },
+    {
+      "id": "meter-shop-10",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-10",
+      "accountRef": "SYN-SHOP-10"
+    },
+    {
+      "id": "meter-shop-11",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-11",
+      "accountRef": "SYN-SHOP-11"
+    },
+    {
+      "id": "meter-shop-12",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-12",
+      "accountRef": "SYN-SHOP-12"
+    },
+    {
+      "id": "meter-shop-13",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-13",
+      "accountRef": "SYN-SHOP-13"
+    },
+    {
+      "id": "meter-shop-14",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-14",
+      "accountRef": "SYN-SHOP-14"
+    },
+    {
+      "id": "meter-shop-15",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-15",
+      "accountRef": "SYN-SHOP-15"
+    },
+    {
+      "id": "meter-shop-16",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-16",
+      "accountRef": "SYN-SHOP-16"
+    },
+    {
+      "id": "meter-shop-17",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-17",
+      "accountRef": "SYN-SHOP-17"
+    },
+    {
+      "id": "meter-shop-18",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-18",
+      "accountRef": "SYN-SHOP-18"
+    },
+    {
+      "id": "meter-shop-19",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-19",
+      "accountRef": "SYN-SHOP-19"
+    },
+    {
+      "id": "meter-shop-20",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-20",
+      "accountRef": "SYN-SHOP-20"
+    },
+    {
+      "id": "meter-shop-21",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-21",
+      "accountRef": "SYN-SHOP-21"
+    },
+    {
+      "id": "meter-shop-22",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-22",
+      "accountRef": "SYN-SHOP-22"
+    },
+    {
+      "id": "meter-shop-23",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-23",
+      "accountRef": "SYN-SHOP-23"
+    },
+    {
+      "id": "meter-shop-24",
+      "type": "SHOP_SUBMETER",
+      "shopId": "shop-24",
+      "accountRef": "SYN-SHOP-24"
+    }
+  ],
+  "shops": [
+    {
+      "id": "shop-1",
+      "name": "Shop 01",
+      "floor": 1,
+      "meterId": "meter-shop-1",
+      "tenantUserId": "user-shop-tenant-1",
+      "monthlyConsumptionKwh": 4200,
+      "benefitStatus": "active"
+    },
+    {
+      "id": "shop-2",
+      "name": "Shop 02",
+      "floor": 1,
+      "meterId": "meter-shop-2",
+      "tenantUserId": "user-shop-tenant-2",
+      "monthlyConsumptionKwh": 4580,
+      "benefitStatus": "pending"
+    },
+    {
+      "id": "shop-3",
+      "name": "Shop 03",
+      "floor": 1,
+      "meterId": "meter-shop-3",
+      "tenantUserId": "user-shop-tenant-3",
+      "monthlyConsumptionKwh": 4960,
+      "benefitStatus": "eligible"
+    },
+    {
+      "id": "shop-4",
+      "name": "Shop 04",
+      "floor": 1,
+      "meterId": "meter-shop-4",
+      "tenantUserId": "user-shop-tenant-4",
+      "monthlyConsumptionKwh": 5340,
+      "benefitStatus": "unconfigured"
+    },
+    {
+      "id": "shop-5",
+      "name": "Shop 05",
+      "floor": 1,
+      "meterId": "meter-shop-5",
+      "tenantUserId": "user-shop-tenant-1",
+      "monthlyConsumptionKwh": 5720,
+      "benefitStatus": "issue"
+    },
+    {
+      "id": "shop-6",
+      "name": "Shop 06",
+      "floor": 1,
+      "meterId": "meter-shop-6",
+      "tenantUserId": "user-shop-tenant-2",
+      "monthlyConsumptionKwh": 6100,
+      "benefitStatus": "active"
+    },
+    {
+      "id": "shop-7",
+      "name": "Shop 07",
+      "floor": 1,
+      "meterId": "meter-shop-7",
+      "tenantUserId": "user-shop-tenant-3",
+      "monthlyConsumptionKwh": 4200,
+      "benefitStatus": "pending"
+    },
+    {
+      "id": "shop-8",
+      "name": "Shop 08",
+      "floor": 1,
+      "meterId": "meter-shop-8",
+      "tenantUserId": "user-shop-tenant-4",
+      "monthlyConsumptionKwh": 4580,
+      "benefitStatus": "eligible"
+    },
+    {
+      "id": "shop-9",
+      "name": "Shop 09",
+      "floor": 2,
+      "meterId": "meter-shop-9",
+      "tenantUserId": "user-shop-tenant-1",
+      "monthlyConsumptionKwh": 4960,
+      "benefitStatus": "unconfigured"
+    },
+    {
+      "id": "shop-10",
+      "name": "Shop 10",
+      "floor": 2,
+      "meterId": "meter-shop-10",
+      "tenantUserId": "user-shop-tenant-2",
+      "monthlyConsumptionKwh": 5340,
+      "benefitStatus": "issue"
+    },
+    {
+      "id": "shop-11",
+      "name": "Shop 11",
+      "floor": 2,
+      "meterId": "meter-shop-11",
+      "tenantUserId": "user-shop-tenant-3",
+      "monthlyConsumptionKwh": 5720,
+      "benefitStatus": "active"
+    },
+    {
+      "id": "shop-12",
+      "name": "Shop 12",
+      "floor": 2,
+      "meterId": "meter-shop-12",
+      "tenantUserId": "user-shop-tenant-4",
+      "monthlyConsumptionKwh": 6100,
+      "benefitStatus": "pending"
+    },
+    {
+      "id": "shop-13",
+      "name": "Shop 13",
+      "floor": 2,
+      "meterId": "meter-shop-13",
+      "tenantUserId": "user-shop-tenant-1",
+      "monthlyConsumptionKwh": 4200,
+      "benefitStatus": "eligible"
+    },
+    {
+      "id": "shop-14",
+      "name": "Shop 14",
+      "floor": 2,
+      "meterId": "meter-shop-14",
+      "tenantUserId": "user-shop-tenant-2",
+      "monthlyConsumptionKwh": 4580,
+      "benefitStatus": "unconfigured"
+    },
+    {
+      "id": "shop-15",
+      "name": "Shop 15",
+      "floor": 2,
+      "meterId": "meter-shop-15",
+      "tenantUserId": "user-shop-tenant-3",
+      "monthlyConsumptionKwh": 4960,
+      "benefitStatus": "issue"
+    },
+    {
+      "id": "shop-16",
+      "name": "Shop 16",
+      "floor": 2,
+      "meterId": "meter-shop-16",
+      "tenantUserId": "user-shop-tenant-4",
+      "monthlyConsumptionKwh": 5340,
+      "benefitStatus": "active"
+    },
+    {
+      "id": "shop-17",
+      "name": "Shop 17",
+      "floor": 3,
+      "meterId": "meter-shop-17",
+      "tenantUserId": "user-shop-tenant-1",
+      "monthlyConsumptionKwh": 5720,
+      "benefitStatus": "pending"
+    },
+    {
+      "id": "shop-18",
+      "name": "Shop 18",
+      "floor": 3,
+      "meterId": "meter-shop-18",
+      "tenantUserId": "user-shop-tenant-2",
+      "monthlyConsumptionKwh": 6100,
+      "benefitStatus": "eligible"
+    },
+    {
+      "id": "shop-19",
+      "name": "Shop 19",
+      "floor": 3,
+      "meterId": "meter-shop-19",
+      "tenantUserId": "user-shop-tenant-3",
+      "monthlyConsumptionKwh": 4200,
+      "benefitStatus": "unconfigured"
+    },
+    {
+      "id": "shop-20",
+      "name": "Shop 20",
+      "floor": 3,
+      "meterId": "meter-shop-20",
+      "tenantUserId": "user-shop-tenant-4",
+      "monthlyConsumptionKwh": 4580,
+      "benefitStatus": "issue"
+    },
+    {
+      "id": "shop-21",
+      "name": "Shop 21",
+      "floor": 3,
+      "meterId": "meter-shop-21",
+      "tenantUserId": "user-shop-tenant-1",
+      "monthlyConsumptionKwh": 4960,
+      "benefitStatus": "active"
+    },
+    {
+      "id": "shop-22",
+      "name": "Shop 22",
+      "floor": 3,
+      "meterId": "meter-shop-22",
+      "tenantUserId": "user-shop-tenant-2",
+      "monthlyConsumptionKwh": 5340,
+      "benefitStatus": "pending"
+    },
+    {
+      "id": "shop-23",
+      "name": "Shop 23",
+      "floor": 3,
+      "meterId": "meter-shop-23",
+      "tenantUserId": "user-shop-tenant-3",
+      "monthlyConsumptionKwh": 5720,
+      "benefitStatus": "eligible"
+    },
+    {
+      "id": "shop-24",
+      "name": "Shop 24",
+      "floor": 3,
+      "meterId": "meter-shop-24",
+      "tenantUserId": "user-shop-tenant-4",
+      "monthlyConsumptionKwh": 6100,
+      "benefitStatus": "unconfigured"
+    }
+  ],
+  "bills": [
+    {
+      "billingMonth": "2026-01",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 132000,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-02",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 134100,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-03",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 136200,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-04",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 138300,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-05",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 140400,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-06",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 142500,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-07",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 144600,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-08",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 146700,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-09",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 148800,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-10",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 150900,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-11",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 153000,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    },
+    {
+      "billingMonth": "2026-12",
+      "meterId": "meter-main-sunrise-mall",
+      "consumptionKwh": 155100,
+      "tariffInrPerKwh": 9.2,
+      "fixedChargesInr": 18000,
+      "demandChargesInr": 42000,
+      "sourceState": "SYNTHETIC"
+    }
+  ],
+  "candidateCapacitiesKwp": [
+    100,
+    200,
+    300
+  ],
+  "installers": [
+    {
+      "id": "installer-sun-grid",
+      "name": "SunGrid Delhi (Demo)",
+      "serviceAreas": [
+        "Delhi"
+      ],
+      "maxCapacityKwp": 350
+    },
+    {
+      "id": "installer-horizon",
+      "name": "Solar Horizon Works (Demo)",
+      "serviceAreas": [
+        "South Delhi"
+      ],
+      "maxCapacityKwp": 220
+    },
+    {
+      "id": "installer-green-crest",
+      "name": "Green Crest EPC (Demo)",
+      "serviceAreas": [
+        "NCR"
+      ],
+      "maxCapacityKwp": 500
+    }
+  ]
+}
