@@ -56,7 +56,7 @@ const decimalFraction = (value: number): [bigint, bigint] => {
   const numerator = BigInt(whole + fraction);
   return exponent >= 0 ? [numerator * 10n ** BigInt(exponent), 1n] : [numerator, 10n ** BigInt(-exponent)];
 };
-const chargePaise = (units: number, rate = 1): number => {
+export const chargePaise = (units: number, rate = 1): number => {
   const [u, ud] = decimalFraction(units);
   const [r, rd] = decimalFraction(rate);
   const divisor = ud * rd;

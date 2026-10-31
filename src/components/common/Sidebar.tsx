@@ -85,7 +85,7 @@ export const Sidebar: React.FC = () => {
 
       {/* Drawer: stays mounted so open/close animates without a flash */}
       <aside
-        className={`fixed bottom-0 left-0 top-0 z-[60] flex w-[300px] max-w-[88vw] flex-col overflow-hidden rounded-r-2xl border-r border-[#e2f0f9] bg-[#f4faff] shadow-[0_24px_70px_-24px_rgba(0,38,32,0.55)] transition-[translate,visibility] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`solaris-sidebar fixed bottom-0 left-0 top-0 z-[60] flex w-[300px] max-w-[88vw] flex-col overflow-hidden rounded-r-2xl border-r border-[#e2f0f9] bg-[#f4faff] shadow-[0_24px_70px_-24px_rgba(0,38,32,0.55)] transition-[translate,visibility] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           isSidebarOpen ? 'visible translate-x-0' : 'invisible -translate-x-full'
         }`}
         role="navigation"

@@ -43,7 +43,7 @@ export const BottomNav: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#f4faff]/95 backdrop-blur-xl border-t border-[#e2f0f9] shadow-[0_-4px_20px_rgba(16,61,53,0.06)] md:hidden">
+    <nav className="solaris-bottomnav fixed bottom-0 left-0 right-0 z-40 bg-[#f4faff]/95 backdrop-blur-xl border-t border-[#e2f0f9] shadow-[0_-4px_20px_rgba(16,61,53,0.06)] md:hidden">
       <div className="h-16 px-2 flex items-center justify-around max-w-md mx-auto">
         {navItems.map((item) => {
           const isActive = item.matchPrefix.some(p => currentPath === p || (p !== '/' && currentPath.startsWith(p)));

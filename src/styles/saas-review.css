@@ -1,0 +1,544 @@
+/*
+ * Visual-review pass: shared application chrome + the existing EnergyTwin
+ * overview only. Inspired by shadcn/ui's neutral cards, controls and tokens.
+ * No global reset or redesign of other page bodies is applied in this stage.
+ */
+:where(.solaris-header, .solaris-sidebar, .solaris-bottomnav, .b-app) {
+  --saas-background: #fafafa;
+  --saas-card: #ffffff;
+  --saas-foreground: #18181b;
+  --saas-muted: #71717a;
+  --saas-muted-background: #f4f4f5;
+  --saas-border: #e4e4e7;
+  --saas-soft-border: #f0f0f2;
+  --saas-accent: #f59e0b;
+  --saas-accent-foreground: #92400e;
+  --saas-accent-background: #fffbeb;
+  --saas-radius: 0.75rem;
+  --saas-shadow: 0 1px 2px rgb(24 24 27 / 0.035);
+  --saas-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Existing household header, dropdown, drawer and mobile navigation. */
+.solaris-header {
+  background: rgb(255 255 255 / 0.96);
+  border-color: var(--saas-border);
+  box-shadow: none;
+  font-family: var(--saas-font);
+}
+.solaris-header .font-headline {
+  color: var(--saas-foreground);
+  font-family: var(--saas-font);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+.solaris-header > div > div:first-child > div > span {
+  background: var(--saas-accent);
+  color: var(--saas-foreground);
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+.solaris-header button[aria-label] {
+  border-radius: 0.5rem;
+  color: var(--saas-muted);
+}
+.solaris-header button[aria-label]:hover {
+  background: var(--saas-muted-background);
+  color: var(--saas-foreground);
+}
+.solaris-header > div > div:last-child > span {
+  border-color: #fde7b0;
+  background: var(--saas-accent-background);
+  color: var(--saas-accent-foreground);
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+.solaris-header [role="menu"] {
+  background: var(--saas-card);
+  border-color: var(--saas-border);
+  border-radius: 0.625rem;
+  padding: 0.375rem;
+  box-shadow: 0 8px 24px -8px rgb(24 24 27 / 0.2);
+}
+.solaris-header [role="menuitem"] {
+  border-radius: 0.375rem;
+  color: var(--saas-foreground);
+  min-height: 2.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.solaris-header [role="menuitem"]:hover {
+  background: var(--saas-muted-background);
+}
+.solaris-header [role="menuitem"] .material-symbols-outlined {
+  color: var(--saas-muted);
+}
+.solaris-sidebar {
+  background: var(--saas-card);
+  border-color: var(--saas-border);
+  border-radius: 0 0.75rem 0.75rem 0;
+  box-shadow: 12px 0 48px -24px rgb(24 24 27 / 0.25);
+  font-family: var(--saas-font);
+}
+.solaris-sidebar > div {
+  border-color: var(--saas-border);
+}
+.solaris-sidebar > div:first-child {
+  min-height: 4rem;
+}
+.solaris-sidebar > div:last-child {
+  background: var(--saas-background);
+}
+.solaris-sidebar .font-headline {
+  font-family: var(--saas-font);
+  color: var(--saas-foreground);
+}
+.solaris-sidebar .sidebar-scroll {
+  scrollbar-color: #d4d4d8 transparent;
+}
+.solaris-sidebar .sidebar-scroll button {
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+.solaris-sidebar .sidebar-scroll button[aria-expanded] {
+  font-size: 0.6875rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+.solaris-sidebar .sidebar-scroll button:not([aria-expanded]) {
+  min-height: 2.5rem;
+  font-size: 0.75rem;
+}
+.solaris-sidebar .sidebar-scroll button[aria-current="page"] {
+  background: var(--saas-muted-background);
+  color: var(--saas-foreground);
+  box-shadow: none;
+}
+.solaris-sidebar .sidebar-scroll button[aria-current="page"] > span:first-child {
+  background: #fef3c7;
+  color: var(--saas-accent-foreground);
+}
+.solaris-sidebar .sidebar-scroll button:not([aria-current]):hover {
+  background: #fafafa;
+}
+.solaris-bottomnav {
+  background: rgb(255 255 255 / 0.97);
+  border-color: var(--saas-border);
+  box-shadow: 0 -1px 4px rgb(24 24 27 / 0.025);
+  font-family: var(--saas-font);
+}
+.solaris-bottomnav button {
+  border-radius: 0.5rem;
+  color: var(--saas-muted);
+}
+.solaris-bottomnav button.font-semibold {
+  background: var(--saas-accent-background);
+  color: var(--saas-accent-foreground);
+}
+
+/* Commercial shared chrome; existing navigation/visibility stays intact. */
+.b-app .b-sidebar {
+  width: 240px;
+  padding: 28px 16px 18px;
+  background: var(--saas-card);
+  border-color: var(--saas-border);
+  font-family: var(--saas-font);
+}
+.b-app .b-main { margin-left: 240px; }
+.b-app .b-brand {
+  color: var(--saas-foreground);
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  gap: 10px;
+  padding: 0 8px;
+}
+.b-app .b-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: #451a03;
+  background: var(--saas-accent);
+}
+.b-app .b-version {
+  align-self: center;
+  background: var(--saas-muted-background);
+  color: var(--saas-muted);
+  font-size: 9px;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 3px 5px;
+}
+.b-app .b-workspace-badge {
+  margin: 24px 4px 0;
+  border-color: var(--saas-border);
+  border-radius: 6px;
+  color: var(--saas-muted);
+  letter-spacing: 0.09em;
+  font-size: 10px;
+  padding: 10px;
+}
+.b-app .b-workspace-badge .b-dot { background: var(--saas-accent); }
+.b-app .b-nav-label {
+  color: #a1a1aa;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  margin: 28px 12px 12px;
+}
+.b-app .b-sidebar nav { gap: 5px; }
+.b-app .b-sidebar nav button {
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: 7px;
+  gap: 11px;
+  font-size: 12px;
+  font-weight: 450;
+  color: #71717a;
+}
+.b-app .b-sidebar nav button .material-symbols-outlined { font-size: 19px; }
+.b-app .b-sidebar nav button:hover { background: #fafafa; color: #27272a; }
+.b-app .b-sidebar nav button.active {
+  background: var(--saas-muted-background);
+  color: var(--saas-foreground);
+  font-weight: 550;
+}
+.b-app .b-sidebar nav button.active .material-symbols-outlined { color: #d97706; }
+.b-app .b-solar-note {
+  background: #fffcf4;
+  border-color: #f5ead2;
+  border-radius: 8px;
+  padding: 16px;
+}
+.b-app .b-solar-note > .material-symbols-outlined {
+  color: #d97706;
+  font-size: 25px;
+}
+.b-app .b-solar-note strong { color: #44403c; font-weight: 550; }
+.b-app .b-solar-note p { color: #a8a29e; font-size: 11px; }
+.b-app .b-account {
+  border-top: 1px solid var(--saas-border);
+  padding-top: 18px;
+  margin-top: 18px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.b-app .b-avatar { color: #52525b; background: #f4f4f5; border: 1px solid #e4e4e7; }
+.b-app .b-account strong { color: #3f3f46; font-size: 11px; font-weight: 550; }
+.b-app .b-account small { color: #a1a1aa; font-size: 10px; }
+.b-app .b-topbar {
+  height: 72px;
+  background: var(--saas-card);
+  border-color: var(--saas-border);
+  padding-left: 32px;
+  padding-right: 32px;
+  font-family: var(--saas-font);
+}
+.b-app .b-breadcrumb { color: #a1a1aa; font-size: 11px; }
+.b-app .b-breadcrumb span { color: #d4d4d8; }
+.b-app .b-topbar > div > strong { color: #27272a; font-size: 13px; font-weight: 550; }
+.b-app .b-topbar .b-pill {
+  border-color: var(--saas-border);
+  background: #fafafa;
+  color: #71717a;
+  font-size: 10px;
+  padding: 5px 8px;
+}
+.b-app .b-topbar .b-button {
+  background: #fff;
+  border: 1px solid #e4e4e7;
+  border-radius: 6px;
+  color: #52525b;
+  box-shadow: var(--saas-shadow);
+}
+.b-app .b-mobile-nav { background: #fff; border-color: #e4e4e7; }
+.b-app .b-mobile-nav button { color: #71717a; font-size: 11px; }
+.b-app .b-mobile-nav button.active { color: #18181b; border-color: #f59e0b; }
+
+/* Representative dashboard only. Other content pages await visual approval. */
+.b-app.solaris-energy-dashboard {
+  --green: #18181b;
+  background: var(--saas-background);
+  color: var(--saas-foreground);
+  font-family: var(--saas-font);
+}
+.solaris-energy-dashboard .b-content {
+  padding: 32px 32px 42px;
+  max-width: 1580px;
+}
+.solaris-energy-dashboard .b-page-heading { gap: 24px; margin-bottom: 26px; }
+.solaris-energy-dashboard .b-eyebrow {
+  color: #a1a1aa;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+}
+.solaris-energy-dashboard .b-page-heading h1 {
+  font-family: var(--saas-font);
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  color: #18181b;
+  margin: 8px 0 10px;
+}
+.solaris-energy-dashboard .b-page-heading p { color: #71717a; font-size: 11px; gap: 5px; }
+.solaris-energy-dashboard .b-divider { color: #d4d4d8; }
+.solaris-energy-dashboard .b-button {
+  min-height: 36px;
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  gap: 7px;
+  transition: background-color 120ms, border-color 120ms, box-shadow 120ms;
+}
+.solaris-energy-dashboard .b-primary {
+  background: #18181b;
+  color: #fafafa;
+  border-color: #18181b;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+}
+.solaris-energy-dashboard .b-primary:hover { background: #3f3f46; border-color: #3f3f46; }
+.solaris-energy-dashboard .b-outline {
+  background: #fff;
+  color: #3f3f46;
+  border-color: #e4e4e7;
+  box-shadow: var(--saas-shadow);
+}
+.solaris-energy-dashboard .b-outline:hover { background: #fafafa; border-color: #d4d4d8; }
+.solaris-energy-dashboard .b-heading-actions { gap: 8px; }
+.solaris-energy-dashboard .b-kpis { gap: 16px; margin-bottom: 24px; }
+.solaris-energy-dashboard .b-metric {
+  border: 1px solid #e4e4e7;
+  background: #fff;
+  border-radius: var(--saas-radius);
+  box-shadow: var(--saas-shadow);
+  padding: 20px;
+  min-width: 0;
+}
+.solaris-energy-dashboard .b-metric-top {
+  color: #71717a;
+  font-size: 11px;
+  font-weight: 450;
+  gap: 8px;
+  align-items: start;
+  min-height: 30px;
+}
+.solaris-energy-dashboard .b-metric-top .material-symbols-outlined {
+  color: #a1a1aa;
+  background: #fafafa;
+  border: 1px solid #f4f4f5;
+  border-radius: 6px;
+  padding: 5px;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.solaris-energy-dashboard .b-metric > strong {
+  color: #18181b;
+  font-size: clamp(26px, 2.5vw, 34px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+  margin: 12px 0 7px;
+}
+.solaris-energy-dashboard .b-metric > small { color: #a1a1aa; font-size: 10px; line-height: 1.6; }
+.solaris-energy-dashboard .b-metric-accent { border-color: #edd9ad; }
+.solaris-energy-dashboard .b-metric-accent .b-metric-top .material-symbols-outlined {
+  background: #fffbeb;
+  border-color: #fef3c7;
+  color: #d97706;
+}
+.solaris-energy-dashboard .b-metric-accent > small { color: #a16207; }
+.solaris-energy-dashboard .b-overview-grid {
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 20px;
+  align-items: stretch;
+}
+.solaris-energy-dashboard .b-card {
+  background: #fff;
+  border-color: #e4e4e7;
+  border-radius: var(--saas-radius);
+  box-shadow: var(--saas-shadow);
+  padding: 22px;
+  margin-bottom: 20px;
+}
+.solaris-energy-dashboard .b-card h2 {
+  font-family: var(--saas-font);
+  color: #27272a;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 550;
+  letter-spacing: -0.025em;
+}
+.solaris-energy-dashboard .b-card-heading { margin-bottom: 20px; gap: 16px; }
+.solaris-energy-dashboard .b-card-heading p { color: #a1a1aa; font-size: 11px; line-height: 1.6; }
+.solaris-energy-dashboard .b-mall-card { padding-bottom: 0; }
+.solaris-energy-dashboard .b-icon-button {
+  background: #fff;
+  border-color: #e4e4e7;
+  color: #71717a;
+  border-radius: 6px;
+  padding: 7px 9px;
+  min-height: 32px;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.solaris-energy-dashboard .b-icon-button:hover { background: #fafafa; color: #27272a; }
+.solaris-energy-dashboard .b-icon-button > span:not(.material-symbols-outlined) { font-size: 10px; }
+.solaris-energy-dashboard .b-icon-button .material-symbols-outlined { font-size: 15px; }
+.solaris-energy-dashboard .b-segmented {
+  background: #f4f4f5;
+  border: 1px solid #f4f4f5;
+  padding: 3px;
+  border-radius: 7px;
+  gap: 2px;
+}
+.solaris-energy-dashboard .b-segmented button {
+  padding: 6px 12px;
+  color: #71717a;
+  font-size: 10px;
+  font-weight: 450;
+}
+.solaris-energy-dashboard .b-segmented button.active {
+  background: #fff;
+  color: #18181b;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+  font-weight: 550;
+}
+.solaris-energy-dashboard .b-pill { border-color: #e4e4e7; background: #fafafa; color: #71717a; font-size: 10px; }
+.solaris-energy-dashboard .b-map-legend { color: #71717a; font-size: 9px; gap: 10px 14px; margin: 16px 0 18px; }
+.solaris-energy-dashboard .b-map-legend i { width: 7px; height: 7px; }
+.solaris-energy-dashboard .b-map-footer {
+  border-color: #f0f0f2;
+  background: #fafafa;
+  color: #a1a1aa;
+  margin: 0 -22px;
+  padding: 12px 18px;
+  font-size: 9px;
+  line-height: 1.7;
+}
+.solaris-energy-dashboard .twin-canvas-shell { margin-left: -22px; margin-right: -22px; height: 420px; }
+.solaris-energy-dashboard .twin-scene-badge { font-family: var(--saas-font); font-size: 9px; letter-spacing: 0.12em; }
+.solaris-energy-dashboard .twin-scene-controls button {
+  background: rgb(255 255 255 / 0.94);
+  border-color: #dfe4db;
+  color: #71717a;
+  border-radius: 5px;
+  font-size: 9px;
+  padding: 7px 10px;
+}
+.solaris-energy-dashboard .twin-scene-hint { font-size: 8px; }
+.solaris-energy-dashboard .b-selected-shop .b-card-heading { margin-bottom: 16px; }
+.solaris-energy-dashboard .b-selected-shop h2 { font-size: 17px; font-weight: 550; margin-top: 8px; }
+.solaris-energy-dashboard .b-shop-icon { background: #fafafa; color: #a1a1aa; border: 1px solid #f0f0f2; border-radius: 8px; padding: 10px; }
+.solaris-energy-dashboard .b-status { font-size: 10px; padding: 5px 8px; border-radius: 5px; }
+.solaris-energy-dashboard .b-shop-reading { padding: 20px 0; border-color: #f0f0f2; }
+.solaris-energy-dashboard .b-shop-reading > span { color: #a1a1aa; font-size: 11px; }
+.solaris-energy-dashboard .b-shop-reading strong { font-size: 28px; font-weight: 550; color: #27272a; letter-spacing: -0.04em; }
+.solaris-energy-dashboard .b-shop-reading small { color: #a1a1aa; font-size: 11px; }
+.solaris-energy-dashboard .b-benefit { background: #fffcf4; border-color: #f5ead2; border-radius: 8px; padding: 16px; margin: 20px 0; }
+.solaris-energy-dashboard .b-benefit > span { color: #a8a29e; font-size: 11px; }
+.solaris-energy-dashboard .b-benefit strong { color: #292524; font-size: 28px; font-weight: 550; letter-spacing: -0.04em; }
+.solaris-energy-dashboard .b-benefit strong small { color: #a8a29e; font-size: 11px; }
+.solaris-energy-dashboard .b-benefit p { color: #b49154; font-size: 10px; }
+.solaris-energy-dashboard .b-details { margin-bottom: 18px; }
+.solaris-energy-dashboard .b-details > div { font-size: 10px; padding: 8px 0; gap: 16px; }
+.solaris-energy-dashboard .b-details dt { color: #a1a1aa; }
+.solaris-energy-dashboard .b-details dd { color: #52525b; }
+.solaris-energy-dashboard .twin-calculation { border-color: #f0f0f2; color: #71717a; font-size: 11px; margin: 16px 0 20px; }
+.solaris-energy-dashboard .twin-calculation summary { color: #52525b; font-weight: 500; }
+.solaris-energy-dashboard .twin-calculation p { color: #a1a1aa; font-size: 10px; }
+.solaris-energy-dashboard .b-bottom-grid { gap: 20px; grid-template-columns: 1.15fr 1fr; }
+.solaris-energy-dashboard .b-bill-bars { margin: 28px 0; gap: 20px; }
+.solaris-energy-dashboard .b-bill-bars > div > span { color: #71717a; font-size: 11px; width: 76px; }
+.solaris-energy-dashboard .b-bill-bars strong { color: #3f3f46; font-size: 12px; font-weight: 550; }
+.solaris-energy-dashboard .b-savings-summary { border-color: #f0f0f2; color: #71717a; font-size: 11px; }
+.solaris-energy-dashboard .b-savings-summary strong { color: #3f3f46; }
+.solaris-energy-dashboard .b-caption { color: #a1a1aa !important; font-size: 10px !important; }
+.solaris-energy-dashboard .twin-energy-card { background: #fff; }
+.solaris-energy-dashboard .twin-energy-card > h2 { font-size: 19px; font-weight: 550; margin-top: 12px; }
+.solaris-energy-dashboard .twin-energy-rows > div { border-color: #f0f0f2; padding: 12px 0; }
+.solaris-energy-dashboard .twin-energy-rows span { color: #71717a; font-size: 11px; }
+.solaris-energy-dashboard .twin-energy-rows strong { color: #3f3f46; font-size: 16px; font-weight: 500; }
+.solaris-energy-dashboard .twin-energy-rows small { color: #a1a1aa; }
+.solaris-energy-dashboard .twin-pool-note > span { color: #71717a; font-size: 11px; }
+.solaris-energy-dashboard .twin-pool-note strong { color: #27272a; font-size: 23px; font-weight: 550; }
+.solaris-energy-dashboard .twin-pool-note small { color: #a1a1aa; }
+.solaris-energy-dashboard .b-text-button { color: #52525b; font-weight: 500 !important; }
+.solaris-energy-dashboard .b-text-button:hover { color: #a16207; }
+.solaris-energy-dashboard .b-map-shop { border-color: #e4e4e7; border-radius: 8px; background: #fff; }
+.solaris-energy-dashboard .b-map-shop.is-selected { box-shadow: 0 0 0 2px #f59e0b; }
+.solaris-energy-dashboard .b-map-shop > strong { color: #3f3f46; font-size: 12px; }
+.solaris-energy-dashboard .b-map-shop > small { color: #a1a1aa; font-size: 10px; }
+.solaris-energy-dashboard .b-map-shop > .material-symbols-outlined { color: #a1a1aa; }
+.solaris-energy-dashboard .b-footer { border-color: #e4e4e7; color: #a1a1aa; font-size: 10px; gap: 12px; line-height: 1.7; }
+.solaris-energy-dashboard :where(button, a, summary, select):focus-visible {
+  outline: 2px solid #d97706;
+  outline-offset: 3px;
+}
+
+@media (max-width: 1200px) {
+  .b-app .b-sidebar { width: 220px; padding-left: 12px; padding-right: 12px; }
+  .b-app .b-main { margin-left: 220px; }
+  .b-app .b-topbar { padding-left: 24px; padding-right: 24px; }
+  .solaris-energy-dashboard .b-content { padding: 28px 24px 40px; }
+  .solaris-energy-dashboard .b-page-heading { display: block; }
+  .solaris-energy-dashboard .b-heading-actions { justify-content: start; margin-top: 18px; }
+  .solaris-energy-dashboard .b-overview-grid { grid-template-columns: minmax(0, 1fr) 285px; gap: 16px; }
+  .solaris-energy-dashboard .b-card { padding: 20px; }
+  .solaris-energy-dashboard .b-mall-card { padding-bottom: 0; }
+  .solaris-energy-dashboard .b-map-footer { margin-left: -20px; margin-right: -20px; }
+  .solaris-energy-dashboard .twin-canvas-shell { margin-left: -20px; margin-right: -20px; }
+}
+@media (max-width: 1100px) {
+  .solaris-energy-dashboard .b-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .solaris-energy-dashboard .b-overview-grid { grid-template-columns: minmax(0, 1fr); }
+  .solaris-energy-dashboard .b-selected-shop .b-details { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+  .solaris-energy-dashboard .b-selected-shop .b-benefit { margin: 18px 0; }
+  .solaris-energy-dashboard .b-bottom-grid { grid-template-columns: minmax(0, 1fr); }
+  .solaris-energy-dashboard .twin-canvas-shell { height: 440px; }
+}
+@media (max-width: 900px) {
+  .b-app .b-sidebar { width: 190px; }
+  .b-app .b-main { margin-left: 190px; }
+  .b-app .b-brand { font-size: 18px; padding: 0 4px; }
+  .b-app .b-sidebar nav button { padding-left: 9px; padding-right: 9px; font-size: 11px; gap: 8px; }
+  .b-app .b-workspace-badge { font-size: 8px; }
+  .solaris-energy-dashboard .b-page-heading h1 { font-size: 26px; }
+  .solaris-energy-dashboard .b-kpis { gap: 12px; }
+  .solaris-energy-dashboard .b-metric { padding: 18px; }
+}
+@media (max-width: 640px) {
+  .b-app .b-main { margin-left: 0; }
+  .b-app .b-topbar { height: 64px; padding: 0 18px; }
+  .b-app .b-mobile-nav button { padding: 14px 12px; font-size: 11px; }
+  .solaris-energy-dashboard .b-content { padding: 24px 16px 88px; }
+  .solaris-energy-dashboard .b-page-heading { margin-bottom: 22px; }
+  .solaris-energy-dashboard .b-page-heading h1 { font-size: 25px; line-height: 1.3; max-width: none; }
+  .solaris-energy-dashboard .b-page-heading p { font-size: 10px; line-height: 1.8; }
+  .solaris-energy-dashboard .b-heading-actions { gap: 8px; margin-top: 18px; }
+  .solaris-energy-dashboard .b-kpis { gap: 10px; margin-bottom: 20px; }
+  .solaris-energy-dashboard .b-metric { padding: 16px 14px; border-radius: 10px; }
+  .solaris-energy-dashboard .b-metric-top { font-size: 10px; min-height: 30px; gap: 4px; }
+  .solaris-energy-dashboard .b-metric-top .material-symbols-outlined { font-size: 14px; padding: 3px; }
+  .solaris-energy-dashboard .b-metric > strong { font-size: 27px; margin: 10px 0 6px; }
+  .solaris-energy-dashboard .b-metric > small { font-size: 9px; }
+  .solaris-energy-dashboard .b-card { padding: 18px; border-radius: 10px; }
+  .solaris-energy-dashboard .b-mall-card { padding-bottom: 0; }
+  .solaris-energy-dashboard .b-card-heading { gap: 12px; }
+  .solaris-energy-dashboard .b-card h2 { font-size: 14px; }
+  .solaris-energy-dashboard .b-card-heading p { font-size: 10px; }
+  .solaris-energy-dashboard .b-segmented button { padding: 6px 9px; font-size: 10px; }
+  .solaris-energy-dashboard .b-map-toolbar > .b-pill { font-size: 8px; padding: 5px 6px; }
+  .solaris-energy-dashboard .twin-canvas-shell { height: 350px; margin-left: -18px; margin-right: -18px; }
+  .solaris-energy-dashboard .twin-scene-controls button { font-size: 8px; padding: 6px 8px; }
+  .solaris-energy-dashboard .b-map-legend { justify-content: start; font-size: 9px; margin: 14px 0; gap: 8px 12px; }
+  .solaris-energy-dashboard .b-map-footer { margin: 0 -18px; font-size: 8px; }
+  .solaris-energy-dashboard .b-selected-shop .b-details { display: block; }
+  .solaris-energy-dashboard .b-details > div { font-size: 11px; }
+  .solaris-energy-dashboard .b-details dd { max-width: 165px; }
+  .solaris-energy-dashboard .b-benefit strong { font-size: 29px; }
+  .solaris-energy-dashboard .b-footer { font-size: 9px; }
+}

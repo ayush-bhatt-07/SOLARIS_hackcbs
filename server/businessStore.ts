@@ -8,6 +8,10 @@ export interface Account {
   organisationId: string; demo: boolean; commercialRole?: 'property_owner' | 'facility_manager' | 'shop_tenant'; shopId?: string;
 }
 interface Store {
+  weatherDatasets?: import('../src/types/weatherDetective').WeatherDataset[];
+  weatherCache?: import('../src/types/weatherDetective').WeatherCache[];
+  detectiveDatasets?: import('../src/types/detective').DetectiveDataset[];
+  economicsScenarios?: import('../src/types/economics').EconomicsScenario[];
   version: 3; accounts: Account[];
   memberships: OrganisationMembership[];
   residentialStates: { accountId: string; organisationId: string; data: Record<string, unknown> }[];

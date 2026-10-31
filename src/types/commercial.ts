@@ -28,6 +28,7 @@ export interface BusinessQuote {
   createdAt: string; warranty?: string; timelineWeeks?: number;
 }
 export interface BusinessProperty {
+  weatherSite?: import('./weatherDetective').WeatherSite;
   id: string; organisationId: string; inputs: BusinessInputs; selectedCapacity: number;
   shops: MallShop[]; quotes: BusinessQuote[]; sourceState: 'SYNTHETIC' | 'USER_CONFIRMED';
   bills: { month: string; consumptionKwh: number; sourceState: 'SYNTHETIC' | 'USER_CONFIRMED' }[];

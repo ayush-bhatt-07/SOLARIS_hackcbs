@@ -5,6 +5,9 @@ import { businessLedger, businessScenarios } from '../src/utils/businessModel';
 import { getInstallerRecommendations, SOLAR_MATCH_PROVIDERS } from '../src/utils/solarMatch';
 import type { BusinessInputs, BusinessProperty } from '../src/types/commercial';
 import { GoogleGenAI } from '@google/genai';
+import { registerEconomicsApi } from './economicsApi';
+import { registerDetectiveApi } from './detectiveApi';
+import { registerWeatherDetectiveApi } from './weatherDetectiveApi';
 
 export const businessApi = Router();
 type AuthRequest = Request & { account?: Account };
@@ -154,11 +157,14 @@ businessApi.use('/business/properties/:id', (req: AuthRequest, res, next) => {
   if (membership.role === 'shop_tenant') {
     const statementRoute = req.method === 'GET' && /^\/shops\/[^/]+\/statement\/?$/.test(req.path);
     if (!statementRoute) { res.status(403).json({ error: 'Tenant access is limited to the assigned shop statement.' }); return; }
-  } else if (req.method !== 'GET' && membership.role !== 'property_owner') {
+  } else if (req.method !== 'GET' && membership.role !== 'property_owner' && !(membership.role === 'facility_manager' && req.method === 'POST' && /^(\/economics\/(simulate|chart-explanation)|\/detective\/explain|\/detective\/weather\/(analyse|explain))\/?$/.test(req.path))) {
     res.status(403).json({ error: 'This change requires a property owner.' }); return;
   }
   res.locals.property = property; next();
 });
+registerEconomicsApi(businessApi);
+registerDetectiveApi(businessApi);
+registerWeatherDetectiveApi(businessApi);
 businessApi.get('/business/properties/:id', (_req, res) => {
   const property: BusinessProperty = res.locals.property;
   res.json({ property, scenarios: businessScenarios(property), ledger: businessLedger(property) });
