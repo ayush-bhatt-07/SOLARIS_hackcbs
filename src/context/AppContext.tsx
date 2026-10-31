@@ -88,18 +88,24 @@ const readScopedJson = <T,>(key: string, accountId?: string | null): T | null =>
   }
 };
 
-const buildAuthProfile = (account: { id: string; name: string; email: string; workspace?: Workspace; membership?: OrganisationMembership }, needsOnboarding: boolean = false): UserProfile => ({
-  ...DEMO_USERS[account.workspace === 'commercial' ? 'msme' : 'household'],
-  id: account.id,
-  name: account.name,
-  email: account.email,
-  role: account.workspace === 'commercial' ? account.membership?.role === 'shop_tenant' ? 'shop_tenant' : account.membership?.role === 'facility_manager' ? 'facility_manager' : 'commercial_property_owner' : 'household',
-  roleTitle: account.workspace === 'commercial' ? 'MSME · Mall Owner' : 'Resident · Solaris Member',
-  consentSigned: false,
-  consentDate: undefined,
-  onboardingCompleted: account.workspace === 'commercial',
-  needsOnboarding: account.workspace !== 'commercial' && needsOnboarding
-});
+const buildAuthProfile = (account: { id: string; name: string; email: string; workspace?: Workspace; membership?: OrganisationMembership }, needsOnboarding: boolean = false): UserProfile => {
+  const base = account.workspace === 'commercial' ? DEMO_USERS['msme'] : account.workspace === 'installer' ? DEMO_USERS['installer_admin'] : DEMO_USERS['household'];
+  const installerRole = account.membership?.role === 'installer_engineer' ? 'installer_engineer' : account.membership?.role === 'installer_admin' ? 'installer_admin' : undefined;
+  return {
+    ...base,
+    id: account.id,
+    name: account.name,
+    email: account.email,
+    role: account.workspace === 'commercial'
+      ? account.membership?.role === 'shop_tenant' ? 'shop_tenant' : account.membership?.role === 'facility_manager' ? 'facility_manager' : 'commercial_property_owner'
+      : account.workspace === 'installer' ? installerRole ?? 'installer_admin' : 'household',
+    roleTitle: account.workspace === 'commercial' ? 'MSME · Mall Owner' : account.workspace === 'installer' ? 'Installer partner · Service delivery' : 'Resident · Solaris Member',
+    consentSigned: false,
+    consentDate: undefined,
+    onboardingCompleted: account.workspace !== 'household',
+    needsOnboarding: account.workspace === 'household' && needsOnboarding
+  };
+};
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [session, setSession] = useState<AuthSession | null>(() => getAuthSession());
@@ -276,7 +282,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     installer: ['installer_partner', 'installer_admin', 'installer_engineer', 'platform_admin'].includes(role)
   }), []);
 
-  const currentWorkspaceAccess = session?.token ? { household: session.workspace === 'household', commercial: session.workspace === 'commercial', installer: false } : workspaceAccessByRole(currentUser.role);
+  const currentWorkspaceAccess = session?.token ? { household: session.workspace === 'household', commercial: session.workspace === 'commercial', installer: session.workspace === 'installer' } : workspaceAccessByRole(currentUser.role);
 
   const updateCurrentUser = (updates: Partial<UserProfile>) => {
     setCurrentUser(prev => {

@@ -15,7 +15,7 @@ export const api = async <T = any>(path: string, options: RequestInit = {}): Pro
     const body = await response.json().catch(() => null);
     throw new Error(body?.error || `Request failed (${response.status}). Check the API is running.`);
   }
-  if (response.headers.get('content-type')?.includes('text/csv')) return await response.text() as T;
+  if (response.headers.get('content-type')?.includes('text/')) return await response.text() as T;
   try { return await response.json(); }
   catch { throw new Error('The API returned an invalid response. Check the backend/proxy configuration.'); }
 };

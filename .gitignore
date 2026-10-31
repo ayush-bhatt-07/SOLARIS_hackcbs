@@ -7,3 +7,5 @@ coverage/
 .env*
 !.env.example
 server/data/
+.venv-detective/
+__pycache__/

@@ -6,7 +6,9 @@ import type { Workspace } from '../types/commercial';
 
 export const SignupPage: React.FC = () => {
   const { signUp, navigateTo, currentPath } = useApp();
-  const [workspace, setWorkspace] = useState<Workspace>(currentPath.endsWith('/msme') ? 'commercial' : 'household');
+  const initialWorkspace: Workspace = currentPath.endsWith('/installer') ? 'installer' : currentPath.endsWith('/msme') ? 'commercial' : 'household';
+  const pathFor = (value: Workspace) => value === 'commercial' ? '/signup/msme' : value === 'installer' ? '/signup/installer' : '/signup/household';
+  const [workspace, setWorkspace] = useState<Workspace>(initialWorkspace);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,6 +16,13 @@ export const SignupPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const destination = workspace === 'commercial' ? '/commercial' : workspace === 'installer' ? '/installer' : '/onboarding';
+  const title = workspace === 'commercial' ? 'Bring solar to your business.' : workspace === 'installer' ? 'Join Solaris as an installer partner.' : 'Create your Solaris account';
+  const subtitle = workspace === 'commercial'
+    ? 'Create your organisation, set up a property, and compare solar options.'
+    : workspace === 'installer'
+      ? 'Create an installer organisation and work from assigned maintenance tickets.'
+      : 'Save your solar plan and join a community cohort.';
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -31,20 +40,19 @@ export const SignupPage: React.FC = () => {
       setError(result.error || 'Unable to create your account.');
       return;
     }
-    // Redirect to onboarding after successful signup
-    navigateTo(workspace === 'commercial' ? '/commercial' : '/onboarding');
+    navigateTo(destination);
   };
 
   return (
     <AuthShell
       eyebrow="Get started"
-      title={workspace === 'commercial' ? 'Bring solar to your business.' : 'Create your Solaris account'}
-      subtitle={workspace === 'commercial' ? 'Create your organisation, set up a property, and compare solar options.' : 'Save your solar plan and join a community cohort.'}
+      title={title}
+      subtitle={subtitle}
       footer={
         <span>
           Already have an account?{' '}
           <button
-            onClick={() => navigateTo(workspace === 'commercial' ? '/login/msme' : '/login/household')}
+            onClick={() => navigateTo(workspace === 'commercial' ? '/login/msme' : workspace === 'installer' ? '/login/installer' : '/login/household')}
             className="font-bold text-[#006b57] hover:underline"
           >
             Log in
@@ -53,7 +61,7 @@ export const SignupPage: React.FC = () => {
       }
     >
       <form onSubmit={handleSubmit} className="space-y-3.5">
-        <WorkspaceChoice value={workspace} onChange={value => navigateTo(value === 'commercial' ? '/signup/msme' : '/signup/household')} />
+        <WorkspaceChoice value={workspace} onChange={value => navigateTo(pathFor(value))} />
         {error && (
           <div className="p-3 rounded-lg bg-[#ffdad6] text-[#93000a] text-xs font-medium flex items-start gap-2">
             <span className="material-symbols-outlined text-[16px] mt-0.5">error</span>

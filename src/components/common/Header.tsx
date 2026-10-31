@@ -31,7 +31,7 @@ export const Header: React.FC<HeaderProps> = ({ subtitle = 'Main Dashboard' }) =
   }, [showUserMenu]);
 
   return (
-    <header className="fixed top-0 z-40 w-full border-b border-[#e2f0f9] bg-[#f4faff]/90 shadow-[0_1px_12px_rgba(16,61,53,0.06)] backdrop-blur-xl">
+    <header className="solaris-header fixed top-0 z-40 w-full border-b border-[#e2f0f9] bg-[#f4faff]/90 shadow-[0_1px_12px_rgba(16,61,53,0.06)] backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         {/* Left: menu + brand */}
         <div className="flex min-w-0 items-center gap-3">
