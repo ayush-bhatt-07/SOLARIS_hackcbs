@@ -19,6 +19,7 @@ import { ReportsPage } from './pages/ReportsPage';
 import { AdminPage } from './pages/AdminPage';
 import { LoginPage } from './pages/LoginPage';
 import { SignupPage } from './pages/SignupPage';
+import { CommercialPage } from './pages/CommercialPage';
 
 const RouterView: React.FC = () => {
   const { currentPath, isAuthenticated, navigateTo, currentUser } = useApp();
@@ -64,6 +65,8 @@ const RouterView: React.FC = () => {
         return 'Reports & Statutory Statements';
       case '/admin':
         return 'Rules & Audit Ledger';
+      case '/commercial':
+        return 'Commercial Solar & Economics Studio';
       default:
         if (currentPath.startsWith('/community')) {
           return 'Community Solar Workspace';
@@ -100,6 +103,8 @@ const RouterView: React.FC = () => {
         return <ReportsPage />;
       case '/admin':
         return <AdminPage />;
+      case '/commercial':
+        return <CommercialPage />;
       default:
         if (currentPath.startsWith('/community')) {
           return <CommunityPage />;

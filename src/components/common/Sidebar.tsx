@@ -6,6 +6,7 @@ export const Sidebar: React.FC = () => {
 
   const primaryRoutes = [
     { label: 'Main Dashboard', path: '/dashboard', icon: 'dashboard', category: 'Core' },
+    { label: 'Economics Studio', path: '/commercial', icon: 'query_stats', category: 'Commercial' },
     { label: 'Solar Assessment', path: '/assessment', icon: 'calculate', category: 'Planning' },
     { label: 'Regulatory Checker', path: '/regulations', icon: 'gavel', category: 'Planning' },
     { label: 'Smart Optimiser', path: '/optimiser', icon: 'bolt', category: 'Planning' },
@@ -100,6 +101,11 @@ export const Sidebar: React.FC = () => {
                   {route.icon}
                 </span>
                 <span className="truncate flex-1">{route.label}</span>
+                {route.path === '/commercial' && (
+                  <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#006b57] text-[#9af4d8] font-bold">
+                    B2B
+                  </span>
+                )}
                 {route.path === '/admin' && (
                   <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#ffdea7] text-[#271900] font-bold">
                     Gov
