@@ -7,3 +7,18 @@ coverage/
 powershell.cmd
 .env*
 !.env.example
+# Python
+__pycache__/
+*.pyc
+.venv/
+.venv-*/
+
+# Dependencies and generated files
+node_modules/
+dist/
+build/
+
+# Secrets
+.env
+.env.*
+!.env.example

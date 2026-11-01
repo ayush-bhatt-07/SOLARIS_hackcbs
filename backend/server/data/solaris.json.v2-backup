@@ -1,0 +1,5601 @@
+{
+  "version": 2,
+  "accounts": [
+    {
+      "id": "798c3411-f6d8-4dbe-b16f-1526f92898e3",
+      "name": "Demo Mall Owner",
+      "email": "demo-df7c73e0-fdc3-404f-af06-ea641b44bec0@solaris.example",
+      "password": "e3e17b7b1e5649c9b5f46480e2f4c6ed:ade97a400d1732abbb7fec5cb467c660e86cf10f78a33da77a9c00c5f3a085996d00193fec4c844ef431a402e4715d15ba1a528984dcf49dab5bb7b4f727fdf4",
+      "workspace": "commercial",
+      "organisationId": "76398f1a-93c2-4331-bbf3-97ea9bc762d0",
+      "demo": true
+    },
+    {
+      "id": "ed297b21-8570-40e4-9295-82f33e296fad",
+      "name": "Demo Household",
+      "email": "demo-de8a1fb6-067b-4196-bbf4-43780707ad31@solaris.example",
+      "password": "89f6b234e907862df24cefdf6305d128:0b8e0099f1216fcea81d027cefa0f1d4ed59b02fe880987d38da7937e6b0d1073e17bc87f5b1af8f09cbb0f967526e92bd0eada274d774c4f8076fbe9c233a19",
+      "workspace": "household",
+      "organisationId": "cefe80a4-caf9-423a-9e8e-1f76c0d45447",
+      "demo": true
+    },
+    {
+      "id": "e4d997c7-10ad-4525-b971-204750682f6f",
+      "name": "Demo Mall Owner",
+      "email": "demo-d97d1bc8-4695-464a-af84-f4b83e7114cc@solaris.example",
+      "password": "24fc06a5931c3394681ee2cc2da16d89:4ab7280f4592303d9e3f1b009120ea7d8f3b9d335cc45ba66b1959c7128ded65d7699fcbaaedbcdaafdf773f06357e9157daf80969005ccf1a1fd156bf5547b4",
+      "workspace": "commercial",
+      "organisationId": "f887c4a3-21e3-47b6-ac5d-e91c800924ea",
+      "demo": true
+    },
+    {
+      "id": "bfa1e0d0-fba4-47b9-9cfc-407258276c03",
+      "name": "Demo Mall Owner",
+      "email": "demo-d053be3f-2a40-4fcb-a926-1a3bf3acd31a@solaris.example",
+      "password": "3fed003f1274b56d5e9da208fbd92a9d:4738ee80304da7099b43cbaede37f384ad3a66ad45c094640d3318316d25f8d561e0595276007c088bd54e7c91e3ae66d48131d48deeb6c89be763aadb95dda4",
+      "workspace": "commercial",
+      "organisationId": "9ecd5f2d-3bc7-462b-8122-bdd22188ebaf",
+      "demo": true,
+      "commercialRole": "property_owner"
+    },
+    {
+      "id": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "name": "Ayush Bhatt",
+      "email": "ayushbhatt0710@gmail.com",
+      "password": "fdbbf8862662688cfb0cb0dbebe432d6:fcb3b87811af6662540671072184acd51591c687800c74cd61020faa4c329fff38d96d399afbca38fcb74fe23abaa3468f3ace16ed3ef56cefe1bf364c81b637",
+      "workspace": "commercial",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "demo": false,
+      "commercialRole": "property_owner"
+    },
+    {
+      "id": "683ec6ec-f964-43a5-a3f1-ced6cb5b46ec",
+      "name": "Demo Mall Owner",
+      "email": "demo-f6e14409-6194-450c-b859-3dd8bc93baf3@solaris.example",
+      "password": "7ead7abffae8312c9da5baf6c3b0d94e:825258c7176355233b10def0cb3399e221dd3bf8f7f31e0f1b6efd0cb197f9102a09a64b33d9a47c06ce3149558055d8c8fe66d67f7cea83160f25ba24391090",
+      "workspace": "commercial",
+      "organisationId": "8f88a9ce-463a-4b54-8769-9fed8952e673",
+      "demo": true,
+      "commercialRole": "property_owner"
+    }
+  ],
+  "sessions": [
+    {
+      "digest": "e7049152d36463ef5d6bb19fb3d6e6194f1fe452a6217a0d42bd87568074dd2d",
+      "accountId": "e4d997c7-10ad-4525-b971-204750682f6f",
+      "expires": 1793552300072
+    },
+    {
+      "digest": "f1cfd968712ea90ecc3503ff218d84e545fa0f4a7d8e56763f903bec0ca0eece",
+      "accountId": "683ec6ec-f964-43a5-a3f1-ced6cb5b46ec",
+      "expires": 1793553065167
+    }
+  ],
+  "properties": [
+    {
+      "id": "33efef25-328f-4b55-abf4-bc6f12ae1a8a",
+      "organisationId": "76398f1a-93c2-4331-bbf3-97ea9bc762d0",
+      "inputs": {
+        "roofAreaM2": 3200,
+        "consumptionKwh": 100000,
+        "tariff": 9,
+        "fixedCharges": 100000,
+        "demandKw": 500,
+        "demandRate": 100,
+        "yieldKwhPerKwp": 120,
+        "selfUseRatio": 0.9,
+        "exportRate": 0,
+        "costPerKwp": 45000,
+        "sharingPercent": 50,
+        "name": "Solaris Demo Mall",
+        "city": "Delhi",
+        "discom": "Illustrative DISCOM"
+      },
+      "selectedCapacity": 100,
+      "policyVersion": 1,
+      "sourceState": "SYNTHETIC",
+      "updatedAt": "2026-10-31T16:39:29.847Z",
+      "shops": [
+        {
+          "id": "shop-1",
+          "name": "Urban Threads 1",
+          "floor": 1,
+          "category": "Fashion",
+          "consumptionKwh": 1800,
+          "status": "active",
+          "meterId": "SUB-001",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-2",
+          "name": "Daily Market 1",
+          "floor": 1,
+          "category": "Grocery",
+          "consumptionKwh": 1900,
+          "status": "active",
+          "meterId": "SUB-002",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-3",
+          "name": "Tech Corner 1",
+          "floor": 1,
+          "category": "Electronics",
+          "consumptionKwh": 2000,
+          "status": "pending",
+          "meterId": "SUB-003",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-4",
+          "name": "Coffee & Co. 1",
+          "floor": 1,
+          "category": "Dining",
+          "consumptionKwh": 2100,
+          "status": "eligible",
+          "meterId": "SUB-004",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-5",
+          "name": "Studio Living 1",
+          "floor": 1,
+          "category": "Home",
+          "consumptionKwh": 2200,
+          "status": "unconfigured",
+          "meterId": "SUB-005",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-6",
+          "name": "Wellness Hub 1",
+          "floor": 1,
+          "category": "Health",
+          "consumptionKwh": 2300,
+          "status": "issue",
+          "meterId": "SUB-006",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-7",
+          "name": "Book Garden 1",
+          "floor": 1,
+          "category": "Books",
+          "consumptionKwh": 2400,
+          "status": "active",
+          "meterId": "SUB-007",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-8",
+          "name": "Little Steps 1",
+          "floor": 1,
+          "category": "Kids",
+          "consumptionKwh": 2500,
+          "status": "active",
+          "meterId": "SUB-008",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-9",
+          "name": "Urban Threads 2",
+          "floor": 2,
+          "category": "Fashion",
+          "consumptionKwh": 2600,
+          "status": "pending",
+          "meterId": "SUB-009",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-10",
+          "name": "Daily Market 2",
+          "floor": 2,
+          "category": "Grocery",
+          "consumptionKwh": 2700,
+          "status": "eligible",
+          "meterId": "SUB-010",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-11",
+          "name": "Tech Corner 2",
+          "floor": 2,
+          "category": "Electronics",
+          "consumptionKwh": 2800,
+          "status": "unconfigured",
+          "meterId": "SUB-011",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-12",
+          "name": "Coffee & Co. 2",
+          "floor": 2,
+          "category": "Dining",
+          "consumptionKwh": 2900,
+          "status": "issue",
+          "meterId": "SUB-012",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-13",
+          "name": "Studio Living 2",
+          "floor": 2,
+          "category": "Home",
+          "consumptionKwh": 3000,
+          "status": "active",
+          "meterId": "SUB-013",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-14",
+          "name": "Wellness Hub 2",
+          "floor": 2,
+          "category": "Health",
+          "consumptionKwh": 3100,
+          "status": "active",
+          "meterId": "SUB-014",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-15",
+          "name": "Book Garden 2",
+          "floor": 2,
+          "category": "Books",
+          "consumptionKwh": 3200,
+          "status": "pending",
+          "meterId": "SUB-015",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-16",
+          "name": "Little Steps 2",
+          "floor": 2,
+          "category": "Kids",
+          "consumptionKwh": 3300,
+          "status": "eligible",
+          "meterId": "SUB-016",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-17",
+          "name": "Urban Threads 3",
+          "floor": 3,
+          "category": "Fashion",
+          "consumptionKwh": 3400,
+          "status": "unconfigured",
+          "meterId": "SUB-017",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-18",
+          "name": "Daily Market 3",
+          "floor": 3,
+          "category": "Grocery",
+          "consumptionKwh": 3500,
+          "status": "issue",
+          "meterId": "SUB-018",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-19",
+          "name": "Tech Corner 3",
+          "floor": 3,
+          "category": "Electronics",
+          "consumptionKwh": 3600,
+          "status": "active",
+          "meterId": "SUB-019",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-20",
+          "name": "Coffee & Co. 3",
+          "floor": 3,
+          "category": "Dining",
+          "consumptionKwh": 3700,
+          "status": "active",
+          "meterId": "SUB-020",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-21",
+          "name": "Studio Living 3",
+          "floor": 3,
+          "category": "Home",
+          "consumptionKwh": 3800,
+          "status": "pending",
+          "meterId": "SUB-021",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-22",
+          "name": "Wellness Hub 3",
+          "floor": 3,
+          "category": "Health",
+          "consumptionKwh": 3900,
+          "status": "eligible",
+          "meterId": "SUB-022",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-23",
+          "name": "Book Garden 3",
+          "floor": 3,
+          "category": "Books",
+          "consumptionKwh": 4000,
+          "status": "unconfigured",
+          "meterId": "SUB-023",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-24",
+          "name": "Little Steps 3",
+          "floor": 3,
+          "category": "Kids",
+          "consumptionKwh": 4100,
+          "status": "issue",
+          "meterId": "SUB-024",
+          "agreement": "Not confirmed"
+        }
+      ],
+      "bills": [
+        {
+          "month": "2026-01",
+          "consumptionKwh": 100000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-02",
+          "consumptionKwh": 97000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-03",
+          "consumptionKwh": 102000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-04",
+          "consumptionKwh": 104000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-05",
+          "consumptionKwh": 108000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-06",
+          "consumptionKwh": 112000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-07",
+          "consumptionKwh": 110000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-08",
+          "consumptionKwh": 107000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-09",
+          "consumptionKwh": 103000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-10",
+          "consumptionKwh": 100000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-11",
+          "consumptionKwh": 98000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-12",
+          "consumptionKwh": 96000,
+          "sourceState": "SYNTHETIC"
+        }
+      ],
+      "quotes": [
+        {
+          "id": "88e51abd-1148-482d-bbf4-803ee451e285",
+          "installerId": "sun-grid-delhi",
+          "installerName": "SunGrid Delhi",
+          "capacityKwp": 100,
+          "status": "demo_quote",
+          "createdAt": "2026-10-31T16:46:07.830Z",
+          "amountInr": 4600000,
+          "warranty": "Illustrative: 10-year workmanship / 25-year panel performance",
+          "timelineWeeks": 4
+        }
+      ]
+    },
+    {
+      "id": "9420b3d7-00c3-451c-b473-5798c90a8c98",
+      "organisationId": "f887c4a3-21e3-47b6-ac5d-e91c800924ea",
+      "inputs": {
+        "name": "Solaris Demo Mall",
+        "city": "Delhi",
+        "discom": "Illustrative DISCOM",
+        "roofAreaM2": 3200,
+        "consumptionKwh": 100000,
+        "tariff": 9,
+        "fixedCharges": 100000,
+        "demandKw": 500,
+        "demandRate": 100,
+        "yieldKwhPerKwp": 120,
+        "selfUseRatio": 0.9,
+        "exportRate": 0,
+        "costPerKwp": 45000,
+        "sharingPercent": 50
+      },
+      "selectedCapacity": 200,
+      "policyVersion": 1,
+      "sourceState": "SYNTHETIC",
+      "updatedAt": "2026-10-31T16:58:20.072Z",
+      "shops": [
+        {
+          "id": "shop-1",
+          "name": "Urban Threads 1",
+          "floor": 1,
+          "category": "Fashion",
+          "consumptionKwh": 1800,
+          "status": "active",
+          "meterId": "SUB-001",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-2",
+          "name": "Daily Market 1",
+          "floor": 1,
+          "category": "Grocery",
+          "consumptionKwh": 1900,
+          "status": "active",
+          "meterId": "SUB-002",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-3",
+          "name": "Tech Corner 1",
+          "floor": 1,
+          "category": "Electronics",
+          "consumptionKwh": 2000,
+          "status": "pending",
+          "meterId": "SUB-003",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-4",
+          "name": "Coffee & Co. 1",
+          "floor": 1,
+          "category": "Dining",
+          "consumptionKwh": 2100,
+          "status": "eligible",
+          "meterId": "SUB-004",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-5",
+          "name": "Studio Living 1",
+          "floor": 1,
+          "category": "Home",
+          "consumptionKwh": 2200,
+          "status": "unconfigured",
+          "meterId": "SUB-005",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-6",
+          "name": "Wellness Hub 1",
+          "floor": 1,
+          "category": "Health",
+          "consumptionKwh": 2300,
+          "status": "issue",
+          "meterId": "SUB-006",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-7",
+          "name": "Book Garden 1",
+          "floor": 1,
+          "category": "Books",
+          "consumptionKwh": 2400,
+          "status": "active",
+          "meterId": "SUB-007",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-8",
+          "name": "Little Steps 1",
+          "floor": 1,
+          "category": "Kids",
+          "consumptionKwh": 2500,
+          "status": "active",
+          "meterId": "SUB-008",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-9",
+          "name": "Urban Threads 2",
+          "floor": 2,
+          "category": "Fashion",
+          "consumptionKwh": 2600,
+          "status": "pending",
+          "meterId": "SUB-009",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-10",
+          "name": "Daily Market 2",
+          "floor": 2,
+          "category": "Grocery",
+          "consumptionKwh": 2700,
+          "status": "eligible",
+          "meterId": "SUB-010",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-11",
+          "name": "Tech Corner 2",
+          "floor": 2,
+          "category": "Electronics",
+          "consumptionKwh": 2800,
+          "status": "unconfigured",
+          "meterId": "SUB-011",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-12",
+          "name": "Coffee & Co. 2",
+          "floor": 2,
+          "category": "Dining",
+          "consumptionKwh": 2900,
+          "status": "issue",
+          "meterId": "SUB-012",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-13",
+          "name": "Studio Living 2",
+          "floor": 2,
+          "category": "Home",
+          "consumptionKwh": 3000,
+          "status": "active",
+          "meterId": "SUB-013",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-14",
+          "name": "Wellness Hub 2",
+          "floor": 2,
+          "category": "Health",
+          "consumptionKwh": 3100,
+          "status": "active",
+          "meterId": "SUB-014",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-15",
+          "name": "Book Garden 2",
+          "floor": 2,
+          "category": "Books",
+          "consumptionKwh": 3200,
+          "status": "pending",
+          "meterId": "SUB-015",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-16",
+          "name": "Little Steps 2",
+          "floor": 2,
+          "category": "Kids",
+          "consumptionKwh": 3300,
+          "status": "eligible",
+          "meterId": "SUB-016",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-17",
+          "name": "Urban Threads 3",
+          "floor": 3,
+          "category": "Fashion",
+          "consumptionKwh": 3400,
+          "status": "unconfigured",
+          "meterId": "SUB-017",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-18",
+          "name": "Daily Market 3",
+          "floor": 3,
+          "category": "Grocery",
+          "consumptionKwh": 3500,
+          "status": "issue",
+          "meterId": "SUB-018",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-19",
+          "name": "Tech Corner 3",
+          "floor": 3,
+          "category": "Electronics",
+          "consumptionKwh": 3600,
+          "status": "active",
+          "meterId": "SUB-019",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-20",
+          "name": "Coffee & Co. 3",
+          "floor": 3,
+          "category": "Dining",
+          "consumptionKwh": 3700,
+          "status": "active",
+          "meterId": "SUB-020",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-21",
+          "name": "Studio Living 3",
+          "floor": 3,
+          "category": "Home",
+          "consumptionKwh": 3800,
+          "status": "pending",
+          "meterId": "SUB-021",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-22",
+          "name": "Wellness Hub 3",
+          "floor": 3,
+          "category": "Health",
+          "consumptionKwh": 3900,
+          "status": "eligible",
+          "meterId": "SUB-022",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-23",
+          "name": "Book Garden 3",
+          "floor": 3,
+          "category": "Books",
+          "consumptionKwh": 4000,
+          "status": "unconfigured",
+          "meterId": "SUB-023",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-24",
+          "name": "Little Steps 3",
+          "floor": 3,
+          "category": "Kids",
+          "consumptionKwh": 4100,
+          "status": "issue",
+          "meterId": "SUB-024",
+          "agreement": "Not confirmed"
+        }
+      ],
+      "bills": [
+        {
+          "month": "2026-01",
+          "consumptionKwh": 100000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-02",
+          "consumptionKwh": 97000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-03",
+          "consumptionKwh": 102000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-04",
+          "consumptionKwh": 104000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-05",
+          "consumptionKwh": 108000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-06",
+          "consumptionKwh": 112000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-07",
+          "consumptionKwh": 110000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-08",
+          "consumptionKwh": 107000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-09",
+          "consumptionKwh": 103000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-10",
+          "consumptionKwh": 100000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-11",
+          "consumptionKwh": 98000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-12",
+          "consumptionKwh": 96000,
+          "sourceState": "SYNTHETIC"
+        }
+      ],
+      "quotes": []
+    },
+    {
+      "id": "cf81cf7a-92d6-47f1-bab5-e8c703eceaad",
+      "organisationId": "9ecd5f2d-3bc7-462b-8122-bdd22188ebaf",
+      "inputs": {
+        "name": "Solaris Demo Mall",
+        "city": "Delhi",
+        "discom": "Illustrative DISCOM",
+        "roofAreaM2": 3200,
+        "consumptionKwh": 100000,
+        "tariff": 9,
+        "fixedCharges": 100000,
+        "demandKw": 500,
+        "demandRate": 100,
+        "yieldKwhPerKwp": 120,
+        "selfUseRatio": 0.9,
+        "exportRate": 0,
+        "costPerKwp": 45000,
+        "sharingPercent": 50
+      },
+      "selectedCapacity": 200,
+      "policyVersion": 1,
+      "sourceState": "SYNTHETIC",
+      "updatedAt": "2026-10-31T17:05:26.430Z",
+      "shops": [
+        {
+          "id": "shop-1",
+          "name": "Urban Threads 1",
+          "floor": 1,
+          "category": "Fashion",
+          "consumptionKwh": 1800,
+          "status": "active",
+          "meterId": "SUB-001",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-2",
+          "name": "Daily Market 1",
+          "floor": 1,
+          "category": "Grocery",
+          "consumptionKwh": 1900,
+          "status": "active",
+          "meterId": "SUB-002",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-3",
+          "name": "Tech Corner 1",
+          "floor": 1,
+          "category": "Electronics",
+          "consumptionKwh": 2000,
+          "status": "pending",
+          "meterId": "SUB-003",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-4",
+          "name": "Coffee & Co. 1",
+          "floor": 1,
+          "category": "Dining",
+          "consumptionKwh": 2100,
+          "status": "eligible",
+          "meterId": "SUB-004",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-5",
+          "name": "Studio Living 1",
+          "floor": 1,
+          "category": "Home",
+          "consumptionKwh": 2200,
+          "status": "unconfigured",
+          "meterId": "SUB-005",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-6",
+          "name": "Wellness Hub 1",
+          "floor": 1,
+          "category": "Health",
+          "consumptionKwh": 2300,
+          "status": "issue",
+          "meterId": "SUB-006",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-7",
+          "name": "Book Garden 1",
+          "floor": 1,
+          "category": "Books",
+          "consumptionKwh": 2400,
+          "status": "active",
+          "meterId": "SUB-007",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-8",
+          "name": "Little Steps 1",
+          "floor": 1,
+          "category": "Kids",
+          "consumptionKwh": 2500,
+          "status": "active",
+          "meterId": "SUB-008",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-9",
+          "name": "Urban Threads 2",
+          "floor": 2,
+          "category": "Fashion",
+          "consumptionKwh": 2600,
+          "status": "pending",
+          "meterId": "SUB-009",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-10",
+          "name": "Daily Market 2",
+          "floor": 2,
+          "category": "Grocery",
+          "consumptionKwh": 2700,
+          "status": "eligible",
+          "meterId": "SUB-010",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-11",
+          "name": "Tech Corner 2",
+          "floor": 2,
+          "category": "Electronics",
+          "consumptionKwh": 2800,
+          "status": "unconfigured",
+          "meterId": "SUB-011",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-12",
+          "name": "Coffee & Co. 2",
+          "floor": 2,
+          "category": "Dining",
+          "consumptionKwh": 2900,
+          "status": "issue",
+          "meterId": "SUB-012",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-13",
+          "name": "Studio Living 2",
+          "floor": 2,
+          "category": "Home",
+          "consumptionKwh": 3000,
+          "status": "active",
+          "meterId": "SUB-013",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-14",
+          "name": "Wellness Hub 2",
+          "floor": 2,
+          "category": "Health",
+          "consumptionKwh": 3100,
+          "status": "active",
+          "meterId": "SUB-014",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-15",
+          "name": "Book Garden 2",
+          "floor": 2,
+          "category": "Books",
+          "consumptionKwh": 3200,
+          "status": "pending",
+          "meterId": "SUB-015",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-16",
+          "name": "Little Steps 2",
+          "floor": 2,
+          "category": "Kids",
+          "consumptionKwh": 3300,
+          "status": "eligible",
+          "meterId": "SUB-016",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-17",
+          "name": "Urban Threads 3",
+          "floor": 3,
+          "category": "Fashion",
+          "consumptionKwh": 3400,
+          "status": "unconfigured",
+          "meterId": "SUB-017",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-18",
+          "name": "Daily Market 3",
+          "floor": 3,
+          "category": "Grocery",
+          "consumptionKwh": 3500,
+          "status": "issue",
+          "meterId": "SUB-018",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-19",
+          "name": "Tech Corner 3",
+          "floor": 3,
+          "category": "Electronics",
+          "consumptionKwh": 3600,
+          "status": "active",
+          "meterId": "SUB-019",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-20",
+          "name": "Coffee & Co. 3",
+          "floor": 3,
+          "category": "Dining",
+          "consumptionKwh": 3700,
+          "status": "active",
+          "meterId": "SUB-020",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-21",
+          "name": "Studio Living 3",
+          "floor": 3,
+          "category": "Home",
+          "consumptionKwh": 3800,
+          "status": "pending",
+          "meterId": "SUB-021",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-22",
+          "name": "Wellness Hub 3",
+          "floor": 3,
+          "category": "Health",
+          "consumptionKwh": 3900,
+          "status": "eligible",
+          "meterId": "SUB-022",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-23",
+          "name": "Book Garden 3",
+          "floor": 3,
+          "category": "Books",
+          "consumptionKwh": 4000,
+          "status": "unconfigured",
+          "meterId": "SUB-023",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-24",
+          "name": "Little Steps 3",
+          "floor": 3,
+          "category": "Kids",
+          "consumptionKwh": 4100,
+          "status": "issue",
+          "meterId": "SUB-024",
+          "agreement": "Not confirmed"
+        }
+      ],
+      "bills": [
+        {
+          "month": "2026-01",
+          "consumptionKwh": 100000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-02",
+          "consumptionKwh": 97000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-03",
+          "consumptionKwh": 102000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-04",
+          "consumptionKwh": 104000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-05",
+          "consumptionKwh": 108000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-06",
+          "consumptionKwh": 112000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-07",
+          "consumptionKwh": 110000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-08",
+          "consumptionKwh": 107000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-09",
+          "consumptionKwh": 103000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-10",
+          "consumptionKwh": 100000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-11",
+          "consumptionKwh": 98000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-12",
+          "consumptionKwh": 96000,
+          "sourceState": "SYNTHETIC"
+        }
+      ],
+      "quotes": []
+    },
+    {
+      "id": "bfa2ade9-1176-4b6c-a358-5fbb3c646e8d",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "inputs": {
+        "roofAreaM2": 3200,
+        "consumptionKwh": 100000,
+        "tariff": 9,
+        "fixedCharges": 100000,
+        "demandKw": 500,
+        "demandRate": 100,
+        "yieldKwhPerKwp": 120,
+        "selfUseRatio": 0.9,
+        "exportRate": 0,
+        "costPerKwp": 45000,
+        "sharingPercent": 50,
+        "name": "Solaris Demo ",
+        "city": "Delhi",
+        "discom": "Illustrative DISCOM"
+      },
+      "selectedCapacity": 200,
+      "policyVersion": 2,
+      "sourceState": "SYNTHETIC",
+      "updatedAt": "2026-10-31T17:07:55.268Z",
+      "shops": [
+        {
+          "id": "shop-1",
+          "name": "Urban Threads 1",
+          "floor": 1,
+          "category": "Fashion",
+          "consumptionKwh": 1800,
+          "status": "eligible",
+          "meterId": "SUB-001",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-2",
+          "name": "Daily Market 1",
+          "floor": 1,
+          "category": "Grocery",
+          "consumptionKwh": 1900,
+          "status": "active",
+          "meterId": "SUB-002",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-3",
+          "name": "Tech Corner 1",
+          "floor": 1,
+          "category": "Electronics",
+          "consumptionKwh": 2000,
+          "status": "pending",
+          "meterId": "SUB-003",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-4",
+          "name": "Coffee & Co. 1",
+          "floor": 1,
+          "category": "Dining",
+          "consumptionKwh": 2100,
+          "status": "eligible",
+          "meterId": "SUB-004",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-5",
+          "name": "Studio Living 1",
+          "floor": 1,
+          "category": "Home",
+          "consumptionKwh": 2200,
+          "status": "unconfigured",
+          "meterId": "SUB-005",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-6",
+          "name": "Wellness Hub 1",
+          "floor": 1,
+          "category": "Health",
+          "consumptionKwh": 2300,
+          "status": "issue",
+          "meterId": "SUB-006",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-7",
+          "name": "Book Garden 1",
+          "floor": 1,
+          "category": "Books",
+          "consumptionKwh": 2400,
+          "status": "active",
+          "meterId": "SUB-007",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-8",
+          "name": "Little Steps 1",
+          "floor": 1,
+          "category": "Kids",
+          "consumptionKwh": 2500,
+          "status": "active",
+          "meterId": "SUB-008",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-9",
+          "name": "Urban Threads 2",
+          "floor": 2,
+          "category": "Fashion",
+          "consumptionKwh": 2600,
+          "status": "pending",
+          "meterId": "SUB-009",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-10",
+          "name": "Daily Market 2",
+          "floor": 2,
+          "category": "Grocery",
+          "consumptionKwh": 2700,
+          "status": "eligible",
+          "meterId": "SUB-010",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-11",
+          "name": "Tech Corner 2",
+          "floor": 2,
+          "category": "Electronics",
+          "consumptionKwh": 2800,
+          "status": "unconfigured",
+          "meterId": "SUB-011",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-12",
+          "name": "Coffee & Co. 2",
+          "floor": 2,
+          "category": "Dining",
+          "consumptionKwh": 2900,
+          "status": "issue",
+          "meterId": "SUB-012",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-13",
+          "name": "Studio Living 2",
+          "floor": 2,
+          "category": "Home",
+          "consumptionKwh": 3000,
+          "status": "active",
+          "meterId": "SUB-013",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-14",
+          "name": "Wellness Hub 2",
+          "floor": 2,
+          "category": "Health",
+          "consumptionKwh": 3100,
+          "status": "active",
+          "meterId": "SUB-014",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-15",
+          "name": "Book Garden 2",
+          "floor": 2,
+          "category": "Books",
+          "consumptionKwh": 3200,
+          "status": "pending",
+          "meterId": "SUB-015",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-16",
+          "name": "Little Steps 2",
+          "floor": 2,
+          "category": "Kids",
+          "consumptionKwh": 3300,
+          "status": "eligible",
+          "meterId": "SUB-016",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-17",
+          "name": "Urban Threads 3",
+          "floor": 3,
+          "category": "Fashion",
+          "consumptionKwh": 3400,
+          "status": "unconfigured",
+          "meterId": "SUB-017",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-18",
+          "name": "Daily Market 3",
+          "floor": 3,
+          "category": "Grocery",
+          "consumptionKwh": 3500,
+          "status": "issue",
+          "meterId": "SUB-018",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-19",
+          "name": "Tech Corner 3",
+          "floor": 3,
+          "category": "Electronics",
+          "consumptionKwh": 3600,
+          "status": "active",
+          "meterId": "SUB-019",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-20",
+          "name": "Coffee & Co. 3",
+          "floor": 3,
+          "category": "Dining",
+          "consumptionKwh": 3700,
+          "status": "active",
+          "meterId": "SUB-020",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-21",
+          "name": "Studio Living 3",
+          "floor": 3,
+          "category": "Home",
+          "consumptionKwh": 3800,
+          "status": "pending",
+          "meterId": "SUB-021",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-22",
+          "name": "Wellness Hub 3",
+          "floor": 3,
+          "category": "Health",
+          "consumptionKwh": 3900,
+          "status": "eligible",
+          "meterId": "SUB-022",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-23",
+          "name": "Book Garden 3",
+          "floor": 3,
+          "category": "Books",
+          "consumptionKwh": 4000,
+          "status": "unconfigured",
+          "meterId": "SUB-023",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-24",
+          "name": "Little Steps 3",
+          "floor": 3,
+          "category": "Kids",
+          "consumptionKwh": 4100,
+          "status": "issue",
+          "meterId": "SUB-024",
+          "agreement": "Not confirmed"
+        }
+      ],
+      "bills": [
+        {
+          "month": "2026-01",
+          "consumptionKwh": 100000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-02",
+          "consumptionKwh": 97000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-03",
+          "consumptionKwh": 102000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-04",
+          "consumptionKwh": 104000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-05",
+          "consumptionKwh": 108000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-06",
+          "consumptionKwh": 112000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-07",
+          "consumptionKwh": 110000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-08",
+          "consumptionKwh": 107000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-09",
+          "consumptionKwh": 103000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-10",
+          "consumptionKwh": 100000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-11",
+          "consumptionKwh": 98000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-12",
+          "consumptionKwh": 96000,
+          "sourceState": "SYNTHETIC"
+        }
+      ],
+      "quotes": [
+        {
+          "id": "1848fe4c-f16d-4967-a920-8835922180f2",
+          "installerId": "sun-grid-delhi",
+          "installerName": "SunGrid Delhi",
+          "capacityKwp": 200,
+          "status": "demo_quote",
+          "createdAt": "2026-10-31T17:08:35.303Z",
+          "amountInr": 9200000,
+          "warranty": "Illustrative: 10-year workmanship / 25-year panel performance",
+          "timelineWeeks": 4
+        },
+        {
+          "id": "dcae98d9-d819-4402-ac03-ce4200af60dd",
+          "installerId": "green-crest",
+          "installerName": "Green Crest EPC",
+          "capacityKwp": 200,
+          "status": "requested",
+          "createdAt": "2026-10-31T17:08:39.999Z"
+        }
+      ]
+    },
+    {
+      "id": "ffe8eb72-9a9d-4830-8cb7-67cd4f8b7a9d",
+      "organisationId": "8f88a9ce-463a-4b54-8769-9fed8952e673",
+      "inputs": {
+        "roofAreaM2": 3200,
+        "consumptionKwh": 100000,
+        "tariff": 9,
+        "fixedCharges": 100000,
+        "demandKw": 500,
+        "demandRate": 100,
+        "yieldKwhPerKwp": 120,
+        "selfUseRatio": 0.9,
+        "exportRate": 0,
+        "costPerKwp": 45000,
+        "sharingPercent": 50,
+        "name": "Solaris Demo Mall",
+        "city": "Delhi",
+        "discom": "Illustrative DISCOM"
+      },
+      "selectedCapacity": 200,
+      "policyVersion": 1,
+      "sourceState": "SYNTHETIC",
+      "updatedAt": "2026-10-31T17:11:47.901Z",
+      "shops": [
+        {
+          "id": "shop-1",
+          "name": "Urban Threads 1",
+          "floor": 1,
+          "category": "Fashion",
+          "consumptionKwh": 1800,
+          "status": "active",
+          "meterId": "SUB-001",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-2",
+          "name": "Daily Market 1",
+          "floor": 1,
+          "category": "Grocery",
+          "consumptionKwh": 1900,
+          "status": "active",
+          "meterId": "SUB-002",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-3",
+          "name": "Tech Corner 1",
+          "floor": 1,
+          "category": "Electronics",
+          "consumptionKwh": 2000,
+          "status": "pending",
+          "meterId": "SUB-003",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-4",
+          "name": "Coffee & Co. 1",
+          "floor": 1,
+          "category": "Dining",
+          "consumptionKwh": 2100,
+          "status": "eligible",
+          "meterId": "SUB-004",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-5",
+          "name": "Studio Living 1",
+          "floor": 1,
+          "category": "Home",
+          "consumptionKwh": 2200,
+          "status": "unconfigured",
+          "meterId": "SUB-005",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-6",
+          "name": "Wellness Hub 1",
+          "floor": 1,
+          "category": "Health",
+          "consumptionKwh": 2300,
+          "status": "issue",
+          "meterId": "SUB-006",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-7",
+          "name": "Book Garden 1",
+          "floor": 1,
+          "category": "Books",
+          "consumptionKwh": 2400,
+          "status": "active",
+          "meterId": "SUB-007",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-8",
+          "name": "Little Steps 1",
+          "floor": 1,
+          "category": "Kids",
+          "consumptionKwh": 2500,
+          "status": "active",
+          "meterId": "SUB-008",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-9",
+          "name": "Urban Threads 2",
+          "floor": 2,
+          "category": "Fashion",
+          "consumptionKwh": 2600,
+          "status": "pending",
+          "meterId": "SUB-009",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-10",
+          "name": "Daily Market 2",
+          "floor": 2,
+          "category": "Grocery",
+          "consumptionKwh": 2700,
+          "status": "eligible",
+          "meterId": "SUB-010",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-11",
+          "name": "Tech Corner 2",
+          "floor": 2,
+          "category": "Electronics",
+          "consumptionKwh": 2800,
+          "status": "unconfigured",
+          "meterId": "SUB-011",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-12",
+          "name": "Coffee & Co. 2",
+          "floor": 2,
+          "category": "Dining",
+          "consumptionKwh": 2900,
+          "status": "issue",
+          "meterId": "SUB-012",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-13",
+          "name": "Studio Living 2",
+          "floor": 2,
+          "category": "Home",
+          "consumptionKwh": 3000,
+          "status": "active",
+          "meterId": "SUB-013",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-14",
+          "name": "Wellness Hub 2",
+          "floor": 2,
+          "category": "Health",
+          "consumptionKwh": 3100,
+          "status": "active",
+          "meterId": "SUB-014",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-15",
+          "name": "Book Garden 2",
+          "floor": 2,
+          "category": "Books",
+          "consumptionKwh": 3200,
+          "status": "pending",
+          "meterId": "SUB-015",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-16",
+          "name": "Little Steps 2",
+          "floor": 2,
+          "category": "Kids",
+          "consumptionKwh": 3300,
+          "status": "eligible",
+          "meterId": "SUB-016",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-17",
+          "name": "Urban Threads 3",
+          "floor": 3,
+          "category": "Fashion",
+          "consumptionKwh": 3400,
+          "status": "unconfigured",
+          "meterId": "SUB-017",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-18",
+          "name": "Daily Market 3",
+          "floor": 3,
+          "category": "Grocery",
+          "consumptionKwh": 3500,
+          "status": "issue",
+          "meterId": "SUB-018",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-19",
+          "name": "Tech Corner 3",
+          "floor": 3,
+          "category": "Electronics",
+          "consumptionKwh": 3600,
+          "status": "active",
+          "meterId": "SUB-019",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-20",
+          "name": "Coffee & Co. 3",
+          "floor": 3,
+          "category": "Dining",
+          "consumptionKwh": 3700,
+          "status": "active",
+          "meterId": "SUB-020",
+          "agreement": "Synthetic agreement example"
+        },
+        {
+          "id": "shop-21",
+          "name": "Studio Living 3",
+          "floor": 3,
+          "category": "Home",
+          "consumptionKwh": 3800,
+          "status": "pending",
+          "meterId": "SUB-021",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-22",
+          "name": "Wellness Hub 3",
+          "floor": 3,
+          "category": "Health",
+          "consumptionKwh": 3900,
+          "status": "eligible",
+          "meterId": "SUB-022",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-23",
+          "name": "Book Garden 3",
+          "floor": 3,
+          "category": "Books",
+          "consumptionKwh": 4000,
+          "status": "unconfigured",
+          "meterId": "SUB-023",
+          "agreement": "Not confirmed"
+        },
+        {
+          "id": "shop-24",
+          "name": "Little Steps 3",
+          "floor": 3,
+          "category": "Kids",
+          "consumptionKwh": 4100,
+          "status": "issue",
+          "meterId": "SUB-024",
+          "agreement": "Not confirmed"
+        }
+      ],
+      "bills": [
+        {
+          "month": "2026-01",
+          "consumptionKwh": 100000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-02",
+          "consumptionKwh": 97000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-03",
+          "consumptionKwh": 102000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-04",
+          "consumptionKwh": 104000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-05",
+          "consumptionKwh": 108000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-06",
+          "consumptionKwh": 112000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-07",
+          "consumptionKwh": 110000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-08",
+          "consumptionKwh": 107000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-09",
+          "consumptionKwh": 103000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-10",
+          "consumptionKwh": 100000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-11",
+          "consumptionKwh": 98000,
+          "sourceState": "SYNTHETIC"
+        },
+        {
+          "month": "2026-12",
+          "consumptionKwh": 96000,
+          "sourceState": "SYNTHETIC"
+        }
+      ],
+      "quotes": []
+    }
+  ],
+  "audit": [
+    {
+      "actorId": "798c3411-f6d8-4dbe-b16f-1526f92898e3",
+      "organisationId": "76398f1a-93c2-4331-bbf3-97ea9bc762d0",
+      "action": "isolated_demo_created",
+      "at": "2026-10-31T16:38:56.852Z"
+    },
+    {
+      "actorId": "798c3411-f6d8-4dbe-b16f-1526f92898e3",
+      "organisationId": "76398f1a-93c2-4331-bbf3-97ea9bc762d0",
+      "action": "property_assumptions_updated",
+      "at": "2026-10-31T16:39:29.847Z"
+    },
+    {
+      "actorId": "798c3411-f6d8-4dbe-b16f-1526f92898e3",
+      "organisationId": "76398f1a-93c2-4331-bbf3-97ea9bc762d0",
+      "action": "demo_rfq_created",
+      "at": "2026-10-31T16:46:07.830Z"
+    },
+    {
+      "actorId": "798c3411-f6d8-4dbe-b16f-1526f92898e3",
+      "organisationId": "76398f1a-93c2-4331-bbf3-97ea9bc762d0",
+      "action": "synthetic_quote_simulated",
+      "at": "2026-10-31T16:46:18.166Z"
+    },
+    {
+      "actorId": "ed297b21-8570-40e4-9295-82f33e296fad",
+      "organisationId": "cefe80a4-caf9-423a-9e8e-1f76c0d45447",
+      "action": "isolated_demo_created",
+      "at": "2026-10-31T16:50:35.148Z"
+    },
+    {
+      "actorId": "e4d997c7-10ad-4525-b971-204750682f6f",
+      "organisationId": "f887c4a3-21e3-47b6-ac5d-e91c800924ea",
+      "action": "isolated_demo_created",
+      "at": "2026-10-31T16:58:20.072Z"
+    },
+    {
+      "actorId": "bfa1e0d0-fba4-47b9-9cfc-407258276c03",
+      "organisationId": "9ecd5f2d-3bc7-462b-8122-bdd22188ebaf",
+      "action": "isolated_demo_created",
+      "at": "2026-10-31T17:05:26.430Z"
+    },
+    {
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "account_registered",
+      "at": "2026-10-31T17:07:12.103Z"
+    },
+    {
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "synthetic_property_created",
+      "at": "2026-10-31T17:07:13.897Z"
+    },
+    {
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "property_assumptions_updated",
+      "at": "2026-10-31T17:07:20.989Z"
+    },
+    {
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "property_assumptions_updated",
+      "at": "2026-10-31T17:07:55.268Z"
+    },
+    {
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "projection_shop_status_updated",
+      "at": "2026-10-31T17:08:02.620Z"
+    },
+    {
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "demo_rfq_created",
+      "at": "2026-10-31T17:08:35.303Z"
+    },
+    {
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "demo_rfq_created",
+      "at": "2026-10-31T17:08:39.999Z"
+    },
+    {
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "synthetic_quote_simulated",
+      "at": "2026-10-31T17:09:29.449Z"
+    },
+    {
+      "actorId": "683ec6ec-f964-43a5-a3f1-ced6cb5b46ec",
+      "organisationId": "8f88a9ce-463a-4b54-8769-9fed8952e673",
+      "action": "isolated_demo_created",
+      "at": "2026-10-31T17:11:05.166Z"
+    },
+    {
+      "actorId": "683ec6ec-f964-43a5-a3f1-ced6cb5b46ec",
+      "organisationId": "8f88a9ce-463a-4b54-8769-9fed8952e673",
+      "action": "property_assumptions_updated",
+      "at": "2026-10-31T17:11:47.901Z"
+    }
+  ],
+  "snapshots": [
+    {
+      "id": "38e45a9e-a4d7-4c8f-a1c6-45467a5cf53c",
+      "actorId": "e4d997c7-10ad-4525-b971-204750682f6f",
+      "organisationId": "f887c4a3-21e3-47b6-ac5d-e91c800924ea",
+      "action": "isolated_demo_created",
+      "at": "2026-10-31T16:58:20.072Z",
+      "property": {
+        "id": "9420b3d7-00c3-451c-b473-5798c90a8c98",
+        "organisationId": "f887c4a3-21e3-47b6-ac5d-e91c800924ea",
+        "inputs": {
+          "name": "Solaris Demo Mall",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM",
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 1,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T16:58:20.072Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "active",
+            "meterId": "SUB-001",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": []
+      }
+    },
+    {
+      "id": "dc0dc6d6-a6c7-41ac-9290-0bcaa43cfa53",
+      "actorId": "bfa1e0d0-fba4-47b9-9cfc-407258276c03",
+      "organisationId": "9ecd5f2d-3bc7-462b-8122-bdd22188ebaf",
+      "action": "isolated_demo_created",
+      "at": "2026-10-31T17:05:26.430Z",
+      "property": {
+        "id": "cf81cf7a-92d6-47f1-bab5-e8c703eceaad",
+        "organisationId": "9ecd5f2d-3bc7-462b-8122-bdd22188ebaf",
+        "inputs": {
+          "name": "Solaris Demo Mall",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM",
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 1,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T17:05:26.430Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "active",
+            "meterId": "SUB-001",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": []
+      }
+    },
+    {
+      "id": "2545a524-3a88-45c0-b960-9307e4f97542",
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "synthetic_property_created",
+      "at": "2026-10-31T17:07:13.897Z",
+      "property": {
+        "id": "bfa2ade9-1176-4b6c-a358-5fbb3c646e8d",
+        "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+        "inputs": {
+          "name": "Solaris Demo Mall",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM",
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 1,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T17:07:13.897Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "active",
+            "meterId": "SUB-001",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": []
+      }
+    },
+    {
+      "id": "0f3b47e8-5341-47d3-9021-c11e4e18d4d5",
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "property_assumptions_updated",
+      "at": "2026-10-31T17:07:20.989Z",
+      "property": {
+        "id": "bfa2ade9-1176-4b6c-a358-5fbb3c646e8d",
+        "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+        "inputs": {
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50,
+          "name": "Solaris Demo Mall",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM"
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 1,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T17:07:20.989Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "active",
+            "meterId": "SUB-001",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": []
+      }
+    },
+    {
+      "id": "0e624e94-a9d3-4dd2-8747-31c88f134258",
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "property_assumptions_updated",
+      "at": "2026-10-31T17:07:55.268Z",
+      "property": {
+        "id": "bfa2ade9-1176-4b6c-a358-5fbb3c646e8d",
+        "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+        "inputs": {
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50,
+          "name": "Solaris Demo ",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM"
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 1,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T17:07:55.268Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "active",
+            "meterId": "SUB-001",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": []
+      }
+    },
+    {
+      "id": "86d783b2-6647-4b4f-bc99-55471bc0851d",
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "projection_shop_status_updated",
+      "at": "2026-10-31T17:08:02.620Z",
+      "property": {
+        "id": "bfa2ade9-1176-4b6c-a358-5fbb3c646e8d",
+        "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+        "inputs": {
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50,
+          "name": "Solaris Demo ",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM"
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 2,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T17:07:55.268Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "eligible",
+            "meterId": "SUB-001",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": []
+      }
+    },
+    {
+      "id": "3d649fa9-b5af-43a3-ad24-1ecf250dd1a9",
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "demo_rfq_created",
+      "at": "2026-10-31T17:08:35.303Z",
+      "property": {
+        "id": "bfa2ade9-1176-4b6c-a358-5fbb3c646e8d",
+        "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+        "inputs": {
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50,
+          "name": "Solaris Demo ",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM"
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 2,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T17:07:55.268Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "eligible",
+            "meterId": "SUB-001",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": [
+          {
+            "id": "1848fe4c-f16d-4967-a920-8835922180f2",
+            "installerId": "sun-grid-delhi",
+            "installerName": "SunGrid Delhi",
+            "capacityKwp": 200,
+            "status": "requested",
+            "createdAt": "2026-10-31T17:08:35.303Z"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eb9ed0be-656f-4814-bca3-bcb3b09269b0",
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "demo_rfq_created",
+      "at": "2026-10-31T17:08:39.999Z",
+      "property": {
+        "id": "bfa2ade9-1176-4b6c-a358-5fbb3c646e8d",
+        "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+        "inputs": {
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50,
+          "name": "Solaris Demo ",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM"
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 2,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T17:07:55.268Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "eligible",
+            "meterId": "SUB-001",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": [
+          {
+            "id": "1848fe4c-f16d-4967-a920-8835922180f2",
+            "installerId": "sun-grid-delhi",
+            "installerName": "SunGrid Delhi",
+            "capacityKwp": 200,
+            "status": "requested",
+            "createdAt": "2026-10-31T17:08:35.303Z"
+          },
+          {
+            "id": "dcae98d9-d819-4402-ac03-ce4200af60dd",
+            "installerId": "green-crest",
+            "installerName": "Green Crest EPC",
+            "capacityKwp": 200,
+            "status": "requested",
+            "createdAt": "2026-10-31T17:08:39.999Z"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c161dd38-ce07-4507-a74d-f16c41218f31",
+      "actorId": "37fc63dd-9ee5-427b-9909-bef965967276",
+      "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+      "action": "synthetic_quote_simulated",
+      "at": "2026-10-31T17:09:29.449Z",
+      "property": {
+        "id": "bfa2ade9-1176-4b6c-a358-5fbb3c646e8d",
+        "organisationId": "590b662d-c46b-435a-a40a-7beb4227b96e",
+        "inputs": {
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50,
+          "name": "Solaris Demo ",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM"
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 2,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T17:07:55.268Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "eligible",
+            "meterId": "SUB-001",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": [
+          {
+            "id": "1848fe4c-f16d-4967-a920-8835922180f2",
+            "installerId": "sun-grid-delhi",
+            "installerName": "SunGrid Delhi",
+            "capacityKwp": 200,
+            "status": "demo_quote",
+            "createdAt": "2026-10-31T17:08:35.303Z",
+            "amountInr": 9200000,
+            "warranty": "Illustrative: 10-year workmanship / 25-year panel performance",
+            "timelineWeeks": 4
+          },
+          {
+            "id": "dcae98d9-d819-4402-ac03-ce4200af60dd",
+            "installerId": "green-crest",
+            "installerName": "Green Crest EPC",
+            "capacityKwp": 200,
+            "status": "requested",
+            "createdAt": "2026-10-31T17:08:39.999Z"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bbe30279-0779-4a0e-8212-689e5583672e",
+      "actorId": "683ec6ec-f964-43a5-a3f1-ced6cb5b46ec",
+      "organisationId": "8f88a9ce-463a-4b54-8769-9fed8952e673",
+      "action": "isolated_demo_created",
+      "at": "2026-10-31T17:11:05.166Z",
+      "property": {
+        "id": "ffe8eb72-9a9d-4830-8cb7-67cd4f8b7a9d",
+        "organisationId": "8f88a9ce-463a-4b54-8769-9fed8952e673",
+        "inputs": {
+          "name": "Solaris Demo Mall",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM",
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 1,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T17:11:05.166Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "active",
+            "meterId": "SUB-001",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": []
+      }
+    },
+    {
+      "id": "886e4361-fabf-4f64-b117-fa7ec0ca0371",
+      "actorId": "683ec6ec-f964-43a5-a3f1-ced6cb5b46ec",
+      "organisationId": "8f88a9ce-463a-4b54-8769-9fed8952e673",
+      "action": "property_assumptions_updated",
+      "at": "2026-10-31T17:11:47.901Z",
+      "property": {
+        "id": "ffe8eb72-9a9d-4830-8cb7-67cd4f8b7a9d",
+        "organisationId": "8f88a9ce-463a-4b54-8769-9fed8952e673",
+        "inputs": {
+          "roofAreaM2": 3200,
+          "consumptionKwh": 100000,
+          "tariff": 9,
+          "fixedCharges": 100000,
+          "demandKw": 500,
+          "demandRate": 100,
+          "yieldKwhPerKwp": 120,
+          "selfUseRatio": 0.9,
+          "exportRate": 0,
+          "costPerKwp": 45000,
+          "sharingPercent": 50,
+          "name": "Solaris Demo Mall",
+          "city": "Delhi",
+          "discom": "Illustrative DISCOM"
+        },
+        "selectedCapacity": 200,
+        "policyVersion": 1,
+        "sourceState": "SYNTHETIC",
+        "updatedAt": "2026-10-31T17:11:47.901Z",
+        "shops": [
+          {
+            "id": "shop-1",
+            "name": "Urban Threads 1",
+            "floor": 1,
+            "category": "Fashion",
+            "consumptionKwh": 1800,
+            "status": "active",
+            "meterId": "SUB-001",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-2",
+            "name": "Daily Market 1",
+            "floor": 1,
+            "category": "Grocery",
+            "consumptionKwh": 1900,
+            "status": "active",
+            "meterId": "SUB-002",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-3",
+            "name": "Tech Corner 1",
+            "floor": 1,
+            "category": "Electronics",
+            "consumptionKwh": 2000,
+            "status": "pending",
+            "meterId": "SUB-003",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-4",
+            "name": "Coffee & Co. 1",
+            "floor": 1,
+            "category": "Dining",
+            "consumptionKwh": 2100,
+            "status": "eligible",
+            "meterId": "SUB-004",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-5",
+            "name": "Studio Living 1",
+            "floor": 1,
+            "category": "Home",
+            "consumptionKwh": 2200,
+            "status": "unconfigured",
+            "meterId": "SUB-005",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-6",
+            "name": "Wellness Hub 1",
+            "floor": 1,
+            "category": "Health",
+            "consumptionKwh": 2300,
+            "status": "issue",
+            "meterId": "SUB-006",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-7",
+            "name": "Book Garden 1",
+            "floor": 1,
+            "category": "Books",
+            "consumptionKwh": 2400,
+            "status": "active",
+            "meterId": "SUB-007",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-8",
+            "name": "Little Steps 1",
+            "floor": 1,
+            "category": "Kids",
+            "consumptionKwh": 2500,
+            "status": "active",
+            "meterId": "SUB-008",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-9",
+            "name": "Urban Threads 2",
+            "floor": 2,
+            "category": "Fashion",
+            "consumptionKwh": 2600,
+            "status": "pending",
+            "meterId": "SUB-009",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-10",
+            "name": "Daily Market 2",
+            "floor": 2,
+            "category": "Grocery",
+            "consumptionKwh": 2700,
+            "status": "eligible",
+            "meterId": "SUB-010",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-11",
+            "name": "Tech Corner 2",
+            "floor": 2,
+            "category": "Electronics",
+            "consumptionKwh": 2800,
+            "status": "unconfigured",
+            "meterId": "SUB-011",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-12",
+            "name": "Coffee & Co. 2",
+            "floor": 2,
+            "category": "Dining",
+            "consumptionKwh": 2900,
+            "status": "issue",
+            "meterId": "SUB-012",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-13",
+            "name": "Studio Living 2",
+            "floor": 2,
+            "category": "Home",
+            "consumptionKwh": 3000,
+            "status": "active",
+            "meterId": "SUB-013",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-14",
+            "name": "Wellness Hub 2",
+            "floor": 2,
+            "category": "Health",
+            "consumptionKwh": 3100,
+            "status": "active",
+            "meterId": "SUB-014",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-15",
+            "name": "Book Garden 2",
+            "floor": 2,
+            "category": "Books",
+            "consumptionKwh": 3200,
+            "status": "pending",
+            "meterId": "SUB-015",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-16",
+            "name": "Little Steps 2",
+            "floor": 2,
+            "category": "Kids",
+            "consumptionKwh": 3300,
+            "status": "eligible",
+            "meterId": "SUB-016",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-17",
+            "name": "Urban Threads 3",
+            "floor": 3,
+            "category": "Fashion",
+            "consumptionKwh": 3400,
+            "status": "unconfigured",
+            "meterId": "SUB-017",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-18",
+            "name": "Daily Market 3",
+            "floor": 3,
+            "category": "Grocery",
+            "consumptionKwh": 3500,
+            "status": "issue",
+            "meterId": "SUB-018",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-19",
+            "name": "Tech Corner 3",
+            "floor": 3,
+            "category": "Electronics",
+            "consumptionKwh": 3600,
+            "status": "active",
+            "meterId": "SUB-019",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-20",
+            "name": "Coffee & Co. 3",
+            "floor": 3,
+            "category": "Dining",
+            "consumptionKwh": 3700,
+            "status": "active",
+            "meterId": "SUB-020",
+            "agreement": "Synthetic agreement example"
+          },
+          {
+            "id": "shop-21",
+            "name": "Studio Living 3",
+            "floor": 3,
+            "category": "Home",
+            "consumptionKwh": 3800,
+            "status": "pending",
+            "meterId": "SUB-021",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-22",
+            "name": "Wellness Hub 3",
+            "floor": 3,
+            "category": "Health",
+            "consumptionKwh": 3900,
+            "status": "eligible",
+            "meterId": "SUB-022",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-23",
+            "name": "Book Garden 3",
+            "floor": 3,
+            "category": "Books",
+            "consumptionKwh": 4000,
+            "status": "unconfigured",
+            "meterId": "SUB-023",
+            "agreement": "Not confirmed"
+          },
+          {
+            "id": "shop-24",
+            "name": "Little Steps 3",
+            "floor": 3,
+            "category": "Kids",
+            "consumptionKwh": 4100,
+            "status": "issue",
+            "meterId": "SUB-024",
+            "agreement": "Not confirmed"
+          }
+        ],
+        "bills": [
+          {
+            "month": "2026-01",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-02",
+            "consumptionKwh": 97000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-03",
+            "consumptionKwh": 102000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-04",
+            "consumptionKwh": 104000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-05",
+            "consumptionKwh": 108000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-06",
+            "consumptionKwh": 112000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-07",
+            "consumptionKwh": 110000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-08",
+            "consumptionKwh": 107000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-09",
+            "consumptionKwh": 103000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-10",
+            "consumptionKwh": 100000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-11",
+            "consumptionKwh": 98000,
+            "sourceState": "SYNTHETIC"
+          },
+          {
+            "month": "2026-12",
+            "consumptionKwh": 96000,
+            "sourceState": "SYNTHETIC"
+          }
+        ],
+        "quotes": []
+      }
+    }
+  ]
+}
