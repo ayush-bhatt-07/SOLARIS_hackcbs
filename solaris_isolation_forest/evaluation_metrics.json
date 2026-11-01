@@ -1,0 +1,21 @@
+{
+  "source": "fully synthetic demonstration",
+  "train_days": 220,
+  "evaluation_days": 144,
+  "injected_test_anomalies": 10,
+  "flagged_test_days": 13,
+  "precision": 0.7692307692307693,
+  "recall": 1.0,
+  "f1": 0.8695652173913043,
+  "confusion_matrix_rows_true_0_1_columns_pred_0_1": [
+    [
+      131,
+      3
+    ],
+    [
+      0,
+      10
+    ]
+  ],
+  "caveat": "Injected anomalies are synthetic and easy to distinguish; results do not establish real-world model quality."
+}
