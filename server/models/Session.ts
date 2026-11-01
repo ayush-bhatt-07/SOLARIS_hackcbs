@@ -10,7 +10,7 @@ export interface ISession extends Document {
 const SessionSchema = new Schema<ISession>({
   digest: { type: String, required: true, unique: true, index: true },
   accountId: { type: String, required: true, index: true },
-  expires: { type: Number, required: true, index: true },
+  expires: { type: Number, required: true },
 }, {
   timestamps: true,
   collection: 'sessions',
