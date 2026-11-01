@@ -1,4 +1,13 @@
+import 'dotenv/config';
+import dns from 'node:dns';
 import assert from 'node:assert/strict';
+
+// Handle Windows environments where local ISP/router DNS returns ECONNREFUSED on SRV records
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1', '8.8.4.4']);
+} catch {
+  // Ignore if custom DNS cannot be set
+}
 import { connectDb, disconnectDb, getDbStatus, getDbName } from '../server/db/connection';
 import { AccountModel } from '../server/models/Account';
 import { EconomicsScenarioModel } from '../server/models/EconomicsScenario';

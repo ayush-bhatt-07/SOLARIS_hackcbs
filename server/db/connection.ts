@@ -1,4 +1,12 @@
 import mongoose from 'mongoose';
+import dns from 'node:dns';
+
+// Ensure Windows environments with restrictive local ISP/router DNS can resolve MongoDB Atlas SRV records
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1', '8.8.4.4']);
+} catch {
+  // Ignore if custom DNS servers cannot be set in runtime
+}
 
 export interface DbStatus {
   connected: boolean;
