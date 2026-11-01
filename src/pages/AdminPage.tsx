@@ -7,7 +7,7 @@ export const AdminPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'audit' | 'rules'>('audit');
 
   return (
-    <div className="flex flex-col w-full pb-16 max-w-4xl mx-auto px-4 space-y-4 animate-in fade-in">
+    <div className="flex flex-col w-full pb-16 max-w-4xl mx-auto px-4 space-y-4 fade-in-soft">
       {/* Header */}
       <div className="pt-2 flex items-center justify-between">
         <div>
@@ -56,7 +56,7 @@ export const AdminPage: React.FC = () => {
 
       {/* Audit Logs */}
       {activeTab === 'audit' && (
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-[#e2f0f9] space-y-3 animate-in fade-in">
+        <div className="bg-white rounded-xl p-4 shadow-sm border border-[#e2f0f9] space-y-3 fade-in-soft">
           <div className="flex items-center justify-between">
             <span className="font-headline text-sm font-bold text-[#002620]">Immutable Audit Trail</span>
             <span className="text-xs text-[#717976] font-mono">{auditLogs.length} events logged</span>
@@ -92,7 +92,7 @@ export const AdminPage: React.FC = () => {
 
       {/* Rules Ledger */}
       {activeTab === 'rules' && (
-        <div className="space-y-3 animate-in fade-in">
+        <div className="space-y-3 fade-in-soft">
           <div className="flex items-center justify-between">
             <span className="font-headline text-sm font-bold text-[#002620]">Delhi DERC Statutory Rules</span>
             <span className="text-xs text-[#717976]">Read-only</span>

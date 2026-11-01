@@ -72,7 +72,7 @@ export const OptimiserPage: React.FC = () => {
   const individual = calculateIndividualBaseline();
 
   return (
-    <div className="flex flex-col w-full pb-16 max-w-3xl mx-auto px-4 gap-4 animate-in fade-in">
+    <div className="flex flex-col w-full pb-16 max-w-3xl mx-auto px-4 gap-4 fade-in-soft">
       
       {/* Status Badge Notification */}
       <div className="pt-2">
@@ -81,11 +81,11 @@ export const OptimiserPage: React.FC = () => {
           <div className="flex flex-col min-w-0">
             <div className="flex items-center gap-1.5 flex-wrap">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#9af4d8]">
-                Optimal Solution Found
+                Feasible plan found
               </span>
               <span className="text-white/40 text-[10px]">•</span>
               <span className="text-[11px] text-[#7ca89d] truncate">
-                Delhi Pilot (DERC Net-Metering)
+                Modelled VNM arrangement
               </span>
             </div>
           </div>
@@ -156,7 +156,7 @@ export const OptimiserPage: React.FC = () => {
 
       {/* Primary Solver Card */}
       {activeScenario === 'optimal' && (
-        <div className="w-full rounded-xl bg-[#103d35] text-white p-4 sm:p-5 shadow-md flex flex-col gap-4 relative overflow-hidden animate-in fade-in">
+        <div className="w-full rounded-xl bg-[#103d35] text-white p-4 sm:p-5 shadow-md flex flex-col gap-4 relative overflow-hidden fade-in-soft">
           <div className="absolute -top-10 -right-10 w-36 h-36 bg-[#006b57]/30 rounded-full blur-2xl pointer-events-none"></div>
 
           <div className="flex items-start justify-between">
@@ -217,7 +217,7 @@ export const OptimiserPage: React.FC = () => {
 
       {/* Baseline Comparisons */}
       {activeScenario === 'equal' && (
-        <div className="w-full rounded-xl bg-white p-4 shadow-sm border border-[#e2f0f9] flex flex-col gap-3 animate-in fade-in">
+        <div className="w-full rounded-xl bg-white p-4 shadow-sm border border-[#e2f0f9] flex flex-col gap-3 fade-in-soft">
           <div className="flex items-center justify-between border-b border-[#e2f0f9] pb-2">
             <span className="font-headline font-bold text-sm text-[#002620]">Equal Split Baseline Model</span>
             <span className="text-xs text-[#ba1a1a] font-bold bg-[#ffdad6] px-2 py-0.5 rounded-full">
@@ -248,7 +248,7 @@ export const OptimiserPage: React.FC = () => {
       )}
 
       {activeScenario === 'individual' && (
-        <div className="w-full rounded-xl bg-white p-4 shadow-sm border border-[#e2f0f9] flex flex-col gap-3 animate-in fade-in">
+        <div className="w-full rounded-xl bg-white p-4 shadow-sm border border-[#e2f0f9] flex flex-col gap-3 fade-in-soft">
           <div className="flex items-center justify-between border-b border-[#e2f0f9] pb-2">
             <span className="font-headline font-bold text-sm text-[#002620]">Individual Rooftop CAPEX Baseline</span>
             <span className="text-xs text-[#404846] font-bold bg-[#e2f0f9] px-2 py-0.5 rounded-full">
@@ -378,8 +378,8 @@ export const OptimiserPage: React.FC = () => {
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-[#006b57] text-[20px]">security</span>
             <div className="flex flex-col">
-              <span className="text-xs font-semibold text-[#101d24]">Participant Cap Guardrail</span>
-              <span className="text-[10px] text-[#404846]">Guaranteed bill safety limit</span>
+              <span className="text-xs font-semibold text-[#101d24]">Participant budget ceiling</span>
+              <span className="text-[10px] text-[#404846]">Self-reported upper bound · not a payment pledge</span>
             </div>
           </div>
           <span className="text-xs font-bold text-[#002620] bg-white px-2.5 py-1 rounded-md shadow-sm">

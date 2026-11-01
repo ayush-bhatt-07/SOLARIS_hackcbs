@@ -3,7 +3,7 @@ import { MAINTENANCE_TICKETS } from '../data/mockData';
 
 export const MonitoringPage: React.FC = () => {
   return (
-    <div className="flex flex-col w-full pb-16 max-w-4xl mx-auto px-4 space-y-4 animate-in fade-in">
+    <div className="flex flex-col w-full pb-16 max-w-4xl mx-auto px-4 space-y-4 fade-in-soft">
       <div className="pt-2">
         <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#9af4d8]/60 text-[#00725d] text-xs font-semibold mb-1">
           <span className="material-symbols-outlined text-[14px]">query_stats</span>

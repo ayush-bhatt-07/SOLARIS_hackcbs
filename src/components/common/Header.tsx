@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 
 interface HeaderProps {
@@ -6,90 +6,165 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ subtitle = 'Main Dashboard' }) => {
-  const { 
-    currentUser, 
-    navigateTo,
-    isAuthenticated,
-    logOut,
-    setIsSidebarOpen 
-  } = useApp();
-
+  const { currentUser, navigateTo, isAuthenticated, logOut, setIsSidebarOpen, currentWorkspaceAccess } = useApp();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showUserMenu) return;
+
+    const handlePointerDown = (event: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setShowUserMenu(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setShowUserMenu(false);
+    };
+
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [showUserMenu]);
 
   return (
-    <header className="fixed top-0 w-full z-40 bg-[#f4faff]/90 backdrop-blur-xl border-b border-[#e2f0f9] shadow-[0_1px_12px_rgba(16,61,53,0.06)]">
-      <div className="h-16 px-4 max-w-7xl mx-auto flex items-center justify-between">
-        
-        {/* Left Brand Lockup */}
-        <div className="flex items-center gap-3">
-          <button 
+    <header className="solaris-header fixed top-0 z-40 w-full border-b border-[#e2f0f9] bg-[#f4faff]/90 shadow-[0_1px_12px_rgba(16,61,53,0.06)] backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+        {/* Left: menu + brand */}
+        <div className="flex min-w-0 items-center gap-3">
+          <button
             onClick={() => setIsSidebarOpen(true)}
             aria-label="Open menu"
-            className="w-9 h-9 rounded-lg flex items-center justify-center text-[#101d24] hover:bg-[#e2f0f9] transition-colors"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-[#101d24] transition-colors hover:bg-[#e2f0f9]"
           >
             <span className="material-symbols-outlined text-[22px]">menu</span>
           </button>
 
-          <div 
+          <div
             onClick={() => navigateTo('/dashboard')}
-            className="flex items-center gap-2.5 cursor-pointer"
+            className="flex min-w-0 cursor-pointer items-center gap-2.5"
           >
-            <img 
-              alt="Solaris Emblem" 
-              className="h-8 w-auto object-contain" 
-              src="https://lh3.googleusercontent.com/aida/AEtjO1VRQ3ag_QUrg4F0RpgjDeg7dO5VcOfyaoOVMnuIl2OAGmbDHOYUxs2eERwlsekc4X4YPZEiFGfPCJ2p0zPYO7kbJQLSUvF3z2dlANCijd68Bpca06A2Vi1uqrvQPl7TnFRfFCSB0SsHgvs3NVpLhyvpNDZV4E-ZtB3wqovkmmQ2Zo6GtMJaSipNp0Sqqlz489QzoJnctAEJd_LUXI1cKHjEkUq_qibBtcKFTkSBu623vnQUNoBl2byPwHQ"
-            />
-            <div className="flex flex-col">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#006b57] text-white shadow-sm">
+              <span className="material-symbols-outlined text-[19px]">solar_power</span>
+            </span>
+            <div className="flex min-w-0 flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="font-headline text-base text-[#002620] tracking-tight font-bold leading-none">
+                <span className="font-headline text-base font-bold leading-none tracking-tight text-[#002620]">
                   SOLARIS
                 </span>
-                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-[#9af4d8]/70 text-[#006b57] text-[11px] font-semibold leading-none">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#006b57] animate-pulse"></span>
-                  Delhi ({currentUser.discom})
+                <span className="inline-flex items-center gap-1 rounded-full bg-[#9af4d8]/70 px-1.5 py-0.5 text-[10px] font-semibold leading-none text-[#006b57]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#006b57] state-pulse" />
+                  {currentUser.discom}
                 </span>
               </div>
-              <span className="text-[11px] text-[#404846] font-medium truncate max-w-[170px] sm:max-w-none">
+              <span className="max-w-[150px] truncate text-[11px] font-medium text-[#404846] sm:max-w-none">
                 {subtitle}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Right Actions: User Menu */}
+        {/* Right: state + user menu */}
         <div className="flex items-center gap-2">
-          <div className="relative">
+          <span className="hidden items-center gap-1.5 rounded-full border border-[#c0c8c5]/40 bg-white/70 px-2.5 py-1 text-[10px] font-semibold text-[#404846] sm:inline-flex">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#f6bd4f]" />
+            Proposed plan · not approved
+          </span>
+
+          <div className="relative" ref={userMenuRef}>
             <button
               onClick={() => setShowUserMenu(!showUserMenu)}
-              className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#e2f0f9] transition-colors"
+              className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:bg-[#e2f0f9]"
               aria-label="User menu"
+              aria-expanded={showUserMenu}
+              aria-haspopup="menu"
             >
-              <img 
-                alt={currentUser.name} 
-                className="w-8 h-8 rounded-full object-cover shadow-[0_0_0_2px_rgba(0,107,87,0.2)]" 
+              <img
+                alt={currentUser.name}
+                className="h-8 w-8 rounded-full object-cover shadow-[0_0_0_2px_rgba(0,107,87,0.2)]"
                 src={currentUser.avatarUrl}
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBOCw3_x5kggCZA-8gYXL_IqD9UGPInL8dDI_KLzxMKLSVw6wDKwFNvO83-jGssib42nLy1UBemp8csYhlhtpPj6c1Lv698HOaJ_r6HLI1c6eBs25G95aoANJ6YUj6G7h523c89jsYLlHU0mQqS07NMO8rlR-8LKdaA3pqrIir9Bv5DalugqUNKhcULE8HwTD_vDHSjKuhKODrhdEIqy9y6ylGpU7cX4s_rqKxr2zq5Ae4okzcjh_3QgA';
+                  (e.target as HTMLImageElement).src =
+                    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80';
                 }}
               />
             </button>
 
-            {/* User Menu Dropdown */}
             {showUserMenu && (
-              <div className="absolute right-0 top-12 w-56 bg-white rounded-xl shadow-xl border border-[#c0c8c5]/40 py-2 z-50 animate-in fade-in zoom-in-95">
-                <div className="px-3 py-2 border-b border-[#e2f0f9]">
-                  <span className="text-xs font-bold text-[#002620] block truncate">{currentUser.name}</span>
-                  <span className="text-[11px] text-[#404846] block truncate">{currentUser.roleTitle}</span>
-                  <span className="text-[10px] text-[#006b57] font-semibold block mt-0.5">CA #{currentUser.consumerNumber}</span>
+              <div
+                role="menu"
+                className="menu-in absolute right-0 top-12 w-60 origin-top-right rounded-xl border border-[#c0c8c5]/40 bg-white py-2 shadow-xl"
+              >
+                <div className="border-b border-[#e2f0f9] px-3 py-2">
+                  <span className="block truncate text-xs font-bold text-[#002620]">{currentUser.name}</span>
+                  <span className="block truncate text-[11px] text-[#404846]">{currentUser.roleTitle}</span>
+                  <span className="mt-0.5 block text-[10px] font-semibold text-[#006b57]">
+                    CA #{currentUser.consumerNumber}
+                  </span>
                 </div>
+
+                <div className="px-2 pt-2">
+                  {currentWorkspaceAccess.household && <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      navigateTo('/community');
+                    }}
+                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-[#404846] transition-colors hover:bg-[#e2f0f9] hover:text-[#002620]"
+                  >
+                    <span className="material-symbols-outlined text-[18px] text-[#006b57]">groups</span>
+                    <span>Community workspace</span>
+                  </button>}
+                  {currentWorkspaceAccess.commercial && <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      navigateTo('/commercial');
+                    }}
+                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-[#404846] transition-colors hover:bg-[#e2f0f9] hover:text-[#002620]"
+                  >
+                    <span className="material-symbols-outlined text-[18px] text-[#006b57]">store</span>
+                    <span>Commercial workspace</span>
+                  </button>}
+                  {currentWorkspaceAccess.installer && <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      navigateTo('/installer');
+                    }}
+                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-[#404846] transition-colors hover:bg-[#e2f0f9] hover:text-[#002620]"
+                  >
+                    <span className="material-symbols-outlined text-[18px] text-[#006b57]">engineering</span>
+                    <span>Installer portal</span>
+                  </button>}
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      navigateTo('/reports');
+                    }}
+                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-[#404846] transition-colors hover:bg-[#e2f0f9] hover:text-[#002620]"
+                  >
+                    <span className="material-symbols-outlined text-[18px] text-[#006b57]">description</span>
+                    <span>Internal statements</span>
+                  </button>
+                </div>
+
                 {isAuthenticated && (
-                  <div className="px-2 pt-2 pb-1">
+                  <div className="mt-1 border-t border-[#e2f0f9] px-2 pt-2">
                     <button
                       onClick={() => {
                         setShowUserMenu(false);
                         logOut();
                       }}
-                      className="w-full px-3 py-2 rounded-lg flex items-center gap-2 text-xs font-bold text-[#93000a] hover:bg-[#ffdad6]/40 transition-colors"
+                      className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-bold text-[#93000a] transition-colors hover:bg-[#ffdad6]/40"
                     >
                       <span className="material-symbols-outlined text-[18px]">logout</span>
                       <span>Log out</span>
@@ -100,7 +175,6 @@ export const Header: React.FC<HeaderProps> = ({ subtitle = 'Main Dashboard' }) =
             )}
           </div>
         </div>
-
       </div>
     </header>
   );

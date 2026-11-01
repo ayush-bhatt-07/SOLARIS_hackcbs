@@ -64,7 +64,7 @@ export const ReportsPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full pb-16 max-w-4xl mx-auto px-4 space-y-4 animate-in fade-in">
+    <div className="flex flex-col w-full pb-16 max-w-4xl mx-auto px-4 space-y-4 fade-in-soft">
       
       {/* Header */}
       <div className="pt-2">
@@ -76,7 +76,7 @@ export const ReportsPage: React.FC = () => {
           Reports &amp; Regulatory Statements
         </h1>
         <p className="text-xs sm:text-sm text-[#404846] mt-0.5">
-          Generate audit-ready documentation for DISCOM submissions, RWA general body meetings, and individual financial accounting.
+          Generate internal planning statements, evidence packs, and plan-vs-actual summaries. Not official DISCOM filings or utility bills.
         </p>
       </div>
 

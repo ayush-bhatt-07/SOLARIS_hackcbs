@@ -4,17 +4,11 @@ import { compareCommercialSystemSizes, percentagePoolPaise } from './commercialF
 export const businessScenarios = (property: BusinessProperty) => {
   const p = property.inputs;
   return compareCommercialSystemSizes({
-    monthlyConsumptionKwh: p.consumptionKwh,
-    tariffInrPerKwh: p.tariff,
-    fixedChargesInr: p.fixedCharges,
-    demandKw: p.demandKw,
-    demandChargeInrPerKw: p.demandRate,
-    monthlyGenerationKwhPerKwp: p.yieldKwhPerKwp,
-    selfConsumptionRatio: p.selfUseRatio,
-    exportSettlementInrPerKwh: p.exportRate,
-    installationCostPerKwpInr: p.costPerKwp,
-    analysisYears: 20,
-    discountRate: 0.1,
+    monthlyConsumptionKwh: p.consumptionKwh, tariffInrPerKwh: p.tariff,
+    fixedChargesInr: p.fixedCharges, demandKw: p.demandKw, demandChargeInrPerKw: p.demandRate,
+    monthlyGenerationKwhPerKwp: p.yieldKwhPerKwp, selfConsumptionRatio: p.selfUseRatio,
+    exportSettlementInrPerKwh: p.exportRate, installationCostPerKwpInr: p.costPerKwp,
+    analysisYears: 20, discountRate: 0.1,
   }).map(row => ({ ...row, roofFits: row.capacityKwp * 10 <= p.roofAreaM2 }));
 };
 
@@ -38,46 +32,22 @@ export const businessLedger = (property: BusinessProperty) => {
   const ordered = [...shares].sort((a, b) => b.remainder - a.remainder || a.id.localeCompare(b.id));
   for (const share of ordered) { if (remaining-- > 0) share.paise += 1; }
   const statements = property.shops.map(shop => ({
-    shopId: shop.id,
-    consumptionKwh: consumptionFor(shop),
-    period,
+    shopId: shop.id, consumptionKwh: consumptionFor(shop), period,
     benefitInr: (shares.find(s => s.id === shop.id)?.paise ?? 0) / 100,
-    benefitType: 'PROJECTION' as const,
-    policyVersion: property.policyVersion,
+    benefitType: 'PROJECTION' as const, policyVersion: property.policyVersion,
     sourceState: 'ESTIMATED' as const,
     readingSource: readingFor(shop)?.sourceState ?? 'SYNTHETIC',
-    calculation: {
-      poolPaise,
-      eligibleConsumptionKwh: usage,
-      shopConsumptionKwh: consumptionFor(shop),
-      eligible: eligible.some(s => s.id === shop.id),
-      method: 'CONSUMPTION_WEIGHTED',
-      rounding: 'LARGEST_REMAINDER_PAISE'
-    },
+    calculation: { poolPaise, eligibleConsumptionKwh: usage, shopConsumptionKwh: consumptionFor(shop),
+      eligible: eligible.some(s => s.id === shop.id), method: 'CONSUMPTION_WEIGHTED', rounding: 'LARGEST_REMAINDER_PAISE' },
   }));
-  return {
-    poolInr: poolPaise / 100,
-    allocatedInr: shares.reduce((sum, s) => sum + s.paise, 0) / 100,
-    statements,
-    period,
-    eligibleConsumptionKwh: usage,
-    policyVersion: property.policyVersion,
-    calculationVersion: 'energytwin-1',
-    assumptions: {
-      sharingPercent: policy?.sharingPercent ?? property.inputs.sharingPercent,
-      eligibleSavingsInr: scenario.result.monthlySavingsInr,
-      sourceState: 'SYNTHETIC',
-      benefitType: 'PROJECTION',
-      officialVnmCredit: false,
-      selfUseRatio: property.inputs.selfUseRatio
-    }
-  };
+  return { poolInr: poolPaise / 100, allocatedInr: shares.reduce((sum, s) => sum + s.paise, 0) / 100, statements,
+    period, eligibleConsumptionKwh: usage, policyVersion: property.policyVersion, calculationVersion: 'energytwin-1',
+    assumptions: { sharingPercent: policy?.sharingPercent ?? property.inputs.sharingPercent,
+      eligibleSavingsInr: scenario.result.monthlySavingsInr, sourceState: 'SYNTHETIC', benefitType: 'PROJECTION',
+      officialVnmCredit: false, selfUseRatio: property.inputs.selfUseRatio } };
 };
 
 export const SHOP_LABELS: Record<MallShop['status'], string> = {
-  active: 'Active arrangement',
-  pending: 'Agreement pending',
-  eligible: 'Proposed / eligible',
-  unconfigured: 'Not participating',
-  issue: 'Data issue',
+  active: 'Active arrangement', pending: 'Agreement pending', eligible: 'Proposed / eligible',
+  unconfigured: 'Not participating', issue: 'Data issue',
 };

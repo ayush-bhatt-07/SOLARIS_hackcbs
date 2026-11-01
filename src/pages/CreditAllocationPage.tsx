@@ -60,7 +60,7 @@ export const CreditAllocationPage: React.FC = () => {
   }, [optimisationResult, community.members]);
 
   return (
-    <div className="flex flex-col w-full pb-16 max-w-3xl mx-auto px-4 space-y-4 animate-in fade-in">
+    <div className="flex flex-col w-full pb-16 max-w-3xl mx-auto px-4 space-y-4 fade-in-soft">
       
       {/* Header Context Badge & Title Section */}
       <div className="flex flex-col pt-2 space-y-1.5">
@@ -70,14 +70,17 @@ export const CreditAllocationPage: React.FC = () => {
           </span>
           <span className="inline-flex items-center gap-1 text-xs text-[#006b57] font-semibold">
             <span className="material-symbols-outlined text-[14px]">verified</span>
-            Audit Passed
+            Share total reconciles
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-[#ffdea7] px-2 py-0.5 text-[10px] font-bold text-[#271900]">
+            Proposed · not approved
           </span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-headline text-[#002620] tracking-tight font-bold">
           Every share accounted for.<br />Every benefit explained.
         </h1>
         <p className="text-xs sm:text-sm text-[#404846] leading-relaxed">
-          Transparent allocation ledger for multi-family &amp; RWA solar installations in compliance with Delhi DISCOM Virtual Net Metering (VNM).
+          Modelled allocation ledger for a synthetic RWA cohort. Not an official DISCOM allocation.
         </p>
       </div>
 
@@ -139,8 +142,8 @@ export const CreditAllocationPage: React.FC = () => {
         <div className="flex items-center gap-2 bg-white/10 rounded-lg px-3 py-2 text-xs">
           <span className="material-symbols-outlined text-[#f6bd4f] text-[18px]">schedule</span>
           <div className="flex-1 truncate">
-            <span className="text-[#a3d0c4]">Official Settlement Status:</span>
-            <span className="font-semibold text-white ml-1">DISCOM Approval Pending</span>
+            <span className="text-[#a3d0c4]">Settlement evidence:</span>
+            <span className="font-semibold text-white ml-1">Awaiting DISCOM record</span>
           </div>
         </div>
       </div>
@@ -381,14 +384,14 @@ export const CreditAllocationPage: React.FC = () => {
               <span className="material-symbols-outlined text-[16px]">check</span>
             </div>
             <span className="text-[11px] font-semibold text-[#002620] mt-1 text-center">Draft Model</span>
-            <span className="text-[10px] text-[#006b57] font-medium">Passed</span>
+            <span className="text-[10px] text-[#006b57] font-medium">Modelled</span>
           </div>
 
           <div className="flex flex-col items-center z-10">
             <div className="w-7 h-7 rounded-full bg-[#f6bd4f] text-[#271900] flex items-center justify-center font-bold text-xs ring-4 ring-[#ffdea7]/60 shadow-sm">
               2
             </div>
-            <span className="text-[11px] font-bold text-[#002620] mt-1 text-center">Member Apprv.</span>
+            <span className="text-[11px] font-bold text-[#002620] mt-1 text-center">Member accepted</span>
             <span className="text-[10px] text-[#ca962b] font-bold">Current</span>
           </div>
 
@@ -404,7 +407,7 @@ export const CreditAllocationPage: React.FC = () => {
             <div className="w-7 h-7 rounded-full bg-[#e2f0f9] text-[#404846] flex items-center justify-center font-medium text-xs">
               4
             </div>
-            <span className="text-[11px] text-[#404846] mt-1 text-center">Approved</span>
+            <span className="text-[11px] text-[#404846] mt-1 text-center">Approval evidence</span>
             <span className="text-[10px] text-[#717976]">Pending</span>
           </div>
 
@@ -447,7 +450,7 @@ export const CreditAllocationPage: React.FC = () => {
 
       {/* Reconciliation Drawer View */}
       {showReconciliation && (
-        <div className="p-4 bg-white rounded-xl shadow-sm border border-[#e2f0f9] space-y-3 animate-in fade-in">
+        <div className="p-4 bg-white rounded-xl shadow-sm border border-[#e2f0f9] space-y-3 fade-in-soft">
           <div className="flex items-center justify-between border-b border-[#e2f0f9] pb-2">
             <span className="font-headline font-bold text-sm text-[#002620]">BRPL DISCOM Billing Reconciliation</span>
             <span className="text-[10px] bg-[#9af4d8] text-[#002019] px-2 py-0.5 rounded font-bold font-mono">

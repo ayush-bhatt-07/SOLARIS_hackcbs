@@ -35,7 +35,8 @@ export const OnboardingPage: React.FC = () => {
       housingType,
       terraceAccess,
       primaryGoal: solarGoal,
-      onboardingCompleted: true
+      onboardingCompleted: true,
+      needsOnboarding: false
     });
     addAuditLog('Onboarding Completed', `Profile configured for CA #${caNumber} with ₹${monthlyBill}/mo bill.`, 'system');
 
@@ -46,7 +47,7 @@ export const OnboardingPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full pb-16 max-w-2xl mx-auto px-4 animate-in fade-in">
+    <div className="flex flex-col w-full pb-16 max-w-2xl mx-auto px-4 fade-in-soft">
       
       {/* Top Command & Status Bar */}
       <div className="pt-2 pb-3 flex flex-col gap-2">
@@ -421,7 +422,7 @@ export const OnboardingPage: React.FC = () => {
                       Zero Structural Modification
                     </span>
                     <span className="px-2 py-0.5 rounded-full bg-[#e2f0f9] text-[#404846] text-[10px] font-semibold">
-                      DERC Approved
+                      Readiness check
                     </span>
                   </div>
                 </div>

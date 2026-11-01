@@ -1,5 +1,4 @@
-import type { OrganisationMembership, Workspace } from '../types/commercial';
-
+import type { OrganisationMembership } from '../types/commercial';
 export interface AuthAccount {
   id: string;
   name: string;
@@ -13,7 +12,7 @@ export interface AuthSession {
   name: string;
   email: string;
   token?: string;
-  workspace?: Workspace;
+  workspace?: import('../types/commercial').Workspace;
   organisationId?: string;
   demo?: boolean;
   membership?: OrganisationMembership;
@@ -86,7 +85,7 @@ export const saveAuthSession = (account: Pick<AuthAccount, 'id' | 'name' | 'emai
     workspace: account.workspace,
     organisationId: account.organisationId,
     demo: account.demo,
-    membership: account.membership,
+    membership: account.membership
   };
   localStorage.setItem(SESSION_KEY, JSON.stringify(session));
   return session;

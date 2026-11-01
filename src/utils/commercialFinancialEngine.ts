@@ -1,5 +1,3 @@
-import Decimal from 'decimal.js';
-
 export interface CommercialInterval {
   consumptionKwh: number;
   generationKwh: number;
@@ -49,11 +47,8 @@ export interface CommercialFinancialResult {
 const positive = (value: number): number => Math.max(0, Number.isFinite(value) ? value : 0);
 const money = (value: number): number => Math.round(value * 100) / 100;
 
-/**
- * Convert decimal input to rational fraction [numerator, denominator] as bigints,
- * then multiply and round half-up to integer paise.
- * This completely avoids binary floating-point rounding errors in currency calculations.
- */
+// Convert decimal input text to a rational before multiplication, then round each
+// charge half-up to integer paise. This avoids binary floating-point money sums.
 const decimalFraction = (value: number): [bigint, bigint] => {
   const [mantissa, exponentText = '0'] = positive(value).toString().toLowerCase().split('e');
   const [whole, fraction = ''] = mantissa.split('.');
@@ -61,24 +56,15 @@ const decimalFraction = (value: number): [bigint, bigint] => {
   const numerator = BigInt(whole + fraction);
   return exponent >= 0 ? [numerator * 10n ** BigInt(exponent), 1n] : [numerator, 10n ** BigInt(-exponent)];
 };
-
 export const chargePaise = (units: number, rate = 1): number => {
   const [u, ud] = decimalFraction(units);
   const [r, rd] = decimalFraction(rate);
   const divisor = ud * rd;
   return Number((u * r * 100n * 2n + divisor) / (divisor * 2n));
 };
-
 export const percentagePoolPaise = (amountInr: number, percentage: number): number => {
   const [numerator, denominator] = decimalFraction(percentage);
   return Number(BigInt(chargePaise(amountInr)) * numerator / (denominator * 100n));
-};
-
-/**
- * High precision monetary helper with decimal.js for complex financial flows
- */
-export const precisePaise = (amountInr: number): Decimal => {
-  return new Decimal(amountInr).times(100).round();
 };
 
 const monthlyBillBefore = (input: CommercialFinancialInput, consumptionKwh = input.monthlyConsumptionKwh): number =>
@@ -128,6 +114,7 @@ export const calculateCommercialFinancials = (input: CommercialFinancialInput): 
     const variableBeforePaise = input.intervals.reduce((sum, interval) => sum + chargePaise(interval.consumptionKwh, interval.tariffInrPerKwh ?? input.tariffInrPerKwh), 0);
     const variableAfterPaise = input.intervals.reduce((sum, interval) => sum + chargePaise(Math.max(0, positive(interval.consumptionKwh) - positive(interval.generationKwh)), interval.tariffInrPerKwh ?? input.tariffInrPerKwh), 0);
     after = (variableAfterPaise + unchangedPaise - chargePaise(exportedKwh, input.exportSettlementInrPerKwh)) / 100;
+    // Keep fixed and demand charges in both cases; only interval energy is time-sensitive.
     before = (variableBeforePaise + unchangedPaise) / 100;
   }
 

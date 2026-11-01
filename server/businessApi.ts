@@ -20,6 +20,9 @@ import { businessLedger, businessScenarios } from '../src/utils/businessModel';
 import { getInstallerRecommendations, SOLAR_MATCH_PROVIDERS } from '../src/utils/solarMatch';
 import type { BusinessInputs, BusinessProperty } from '../src/types/commercial';
 import { registerEconomicsApi } from './economicsApi';
+import { registerDetectiveApi } from './detectiveApi';
+import { registerWeatherDetectiveApi } from './weatherDetectiveApi';
+import { registerSolarDoctorApi } from './solarDoctorApi';
 
 export const businessApi = Router();
 
@@ -150,6 +153,10 @@ businessApi.get('/auth/session', authenticated, (req: AuthRequest, res) => {
   res.json({ account: publicAccount(req.account!) });
 });
 
+businessApi.get('/session', authenticated, (req: AuthRequest, res) => {
+  res.json({ account: publicAccount(req.account!) });
+});
+
 businessApi.get('/me/workspaces', authenticated, (req: AuthRequest, res) => {
   const account = req.account!;
   const userMemberships = db.memberships.filter(m => m.accountId === account.id && m.status === 'active');
@@ -226,6 +233,9 @@ const ownerOnly = (req: AuthRequest, res: Response, next: NextFunction) => {
 // Mount Economics Studio routes under /business/properties/:id/economics
 businessApi.use('/business/properties/:id/economics', authenticated, propertyAuth, ownerOrManager);
 registerEconomicsApi(businessApi);
+registerDetectiveApi(businessApi);
+registerWeatherDetectiveApi(businessApi);
+registerSolarDoctorApi(businessApi, authenticated as unknown as import('express').RequestHandler);
 
 businessApi.get('/business/properties', authenticated, (req: AuthRequest, res) => {
   const account = req.account!;

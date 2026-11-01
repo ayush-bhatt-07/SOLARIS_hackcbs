@@ -153,13 +153,14 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({ eyebrow, title, descrip
 );
 
 export const LandingPage: React.FC = () => {
-  const { navigateTo, isAuthenticated } = useApp();
+  const { navigateTo, isAuthenticated, currentWorkspaceAccess } = useApp();
+  const dashboardPath = currentWorkspaceAccess.commercial && !currentWorkspaceAccess.household ? '/commercial' : '/dashboard';
   const [activeAudience, setActiveAudience] = useState(0);
   const [openFaq, setOpenFaq] = useState<string | null>(faqs[0].id);
 
   const audience = audienceContent[activeAudience];
 
-  const primaryAction = isAuthenticated ? '/dashboard' : '/signup';
+  const primaryAction = isAuthenticated ? dashboardPath : '/signup';
   const primaryLabel = isAuthenticated ? 'Open my dashboard' : 'Get started free';
   const secondaryAction = isAuthenticated ? '/assessment' : '/login';
   const secondaryLabel = isAuthenticated ? 'Run an assessment' : 'Log in';
@@ -219,7 +220,7 @@ export const LandingPage: React.FC = () => {
             {isAuthenticated ? (
               <button
                 type="button"
-                onClick={() => navigateTo('/dashboard')}
+                onClick={() => navigateTo(dashboardPath)}
                 className="inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-[#006b57] px-4 text-xs font-bold text-white shadow-sm transition-colors hover:bg-[#002620]"
               >
                 Dashboard
@@ -232,14 +233,14 @@ export const LandingPage: React.FC = () => {
                   onClick={() => navigateTo('/login')}
                   className="inline-flex min-h-11 items-center rounded-lg px-3 text-xs font-bold text-[#006b57] transition-colors hover:bg-[#e2f0f9]"
                 >
-                  Log in
+                  Household login
                 </button>
                 <button
                   type="button"
-                  onClick={() => navigateTo('/signup')}
+                  onClick={() => navigateTo('/login/msme')}
                   className="inline-flex min-h-11 items-center rounded-lg bg-[#006b57] px-4 text-xs font-bold text-white shadow-sm transition-colors hover:bg-[#002620]"
                 >
-                  Sign up
+                  MSME login
                 </button>
               </>
             )}
@@ -248,6 +249,14 @@ export const LandingPage: React.FC = () => {
       </header>
 
       <main id="main-content">
+        <section className="mx-auto grid max-w-6xl gap-4 px-4 pt-8 sm:grid-cols-2 sm:px-6 lg:px-8" aria-label="Choose your solar workspace">
+          {[{ title: 'Households & Societies', text: 'Plan your rooftop, build a community, and understand your savings.', icon: 'home', path: '/login/household', label: 'Household login' },
+            { title: 'MSME, Malls & Businesses', text: 'One property. Every shop. A clearer solar investment.', icon: 'domain', path: '/login/msme', label: 'MSME / Mall login' }].map(item => (
+            <button key={item.path} onClick={() => navigateTo(isAuthenticated ? dashboardPath : item.path)} className={`group flex items-center gap-4 rounded-2xl border p-5 text-left transition-all hover:-translate-y-1 hover:shadow-lg ${item.icon === 'domain' ? 'border-[#006b57] bg-[#003f34] text-white' : 'border-[#dce5df] bg-white text-[#003f34]'}`}>
+              <span className="material-symbols-outlined text-4xl opacity-80">{item.icon}</span><span className="flex-1"><span className="block font-headline text-lg font-bold">{item.title}</span><span className="mt-1 block text-xs opacity-75">{item.text}</span><span className="mt-3 block text-xs font-bold">{item.label} →</span></span>
+            </button>
+          ))}
+        </section>
         <section className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 pb-12 pt-10 sm:px-6 sm:pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pb-20 lg:pt-20">
           <div className="landing-rise max-w-xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#a7f3d0] bg-white/70 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#006b57] shadow-sm backdrop-blur-sm">

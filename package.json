@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port=3000 --host=0.0.0.0",
+    "dev": "node scripts/dev.mjs",
+    "dev:client": "vite --port=3000 --host=0.0.0.0",
+    "start": "node scripts/start.mjs",
     "server": "tsx server/index.ts",
     "test:economics": "tsx scripts/test-economics.ts",
     "test:db": "tsx scripts/test-db-connection.ts",
@@ -15,7 +17,9 @@
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
+    "@react-three/fiber": "^9.8.2",
     "@tailwindcss/vite": "^4.3.3",
+    "@types/three": "^0.187.0",
     "@vitejs/plugin-react": "^6.1.1",
     "canvas-confetti": "^1.9.4",
     "decimal.js": "^10.6.0",
@@ -26,6 +30,7 @@
     "motion": "^12.23.24",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
+    "three": "^0.187.0",
     "vite": "^8.3.0"
   },
   "devDependencies": {

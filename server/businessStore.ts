@@ -24,10 +24,10 @@ export interface Account {
 }
 
 export interface Store {
-  solarDoctor?: unknown;
-  weatherDatasets?: unknown[];
-  weatherCache?: unknown[];
-  detectiveDatasets?: unknown[];
+  solarDoctor?: import('../src/types/solarDoctor').DoctorStore;
+  weatherDatasets?: import('../src/types/weatherDetective').WeatherDataset[];
+  weatherCache?: import('../src/types/weatherDetective').WeatherCache[];
+  detectiveDatasets?: import('../src/types/detective').DetectiveDataset[];
   economicsScenarios?: EconomicsScenario[];
   version: 3;
   accounts: Account[];

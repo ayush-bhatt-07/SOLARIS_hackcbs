@@ -25,7 +25,7 @@ export const AssessmentPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full pb-16 max-w-3xl mx-auto px-4 animate-in fade-in">
+    <div className="flex flex-col w-full pb-16 max-w-3xl mx-auto px-4 fade-in-soft">
       
       {/* Top Progress & Header */}
       <div className="pt-2 pb-3">
@@ -34,7 +34,7 @@ export const AssessmentPage: React.FC = () => {
             <span className="material-symbols-outlined text-[14px]">tune</span> Step 2 of 4 • Simulation Active
           </span>
           <span className="flex items-center gap-1 text-[#404846] text-xs font-semibold">
-            <span className="w-2 h-2 rounded-full bg-[#006b57]"></span> Live Model
+            <span className="w-2 h-2 rounded-full bg-[#006b57]"></span> Modelled
           </span>
         </div>
         <h1 className="font-headline text-2xl sm:text-3xl text-[#002620] tracking-tight font-bold">

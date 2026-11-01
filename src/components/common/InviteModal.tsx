@@ -42,7 +42,7 @@ export const InviteModal: React.FC<InviteModalProps> = ({ isOpen, onClose }) => 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm fade-in-soft">
       <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden border border-[#c0c8c5]/40 flex flex-col">
         
         <div className="p-4 bg-[#103d35] text-white flex items-center justify-between">

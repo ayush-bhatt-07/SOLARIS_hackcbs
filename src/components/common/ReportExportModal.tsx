@@ -58,7 +58,7 @@ export const ReportExportModal: React.FC<ReportExportModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm fade-in-soft">
       <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden border border-[#c0c8c5]/40 flex flex-col max-h-[90vh]">
         
         {/* Header */}
@@ -67,7 +67,7 @@ export const ReportExportModal: React.FC<ReportExportModalProps> = ({
             <span className="material-symbols-outlined text-[22px] text-[#f6bd4f]">description</span>
             <div>
               <h3 className="font-headline font-bold text-base">Export Solaris Planning Statement</h3>
-              <p className="text-[11px] text-[#7ca89d]">Official DERC compliant planning document</p>
+              <p className="text-[11px] text-[#7ca89d]">Internal planning document · DERC-aware assumptions</p>
             </div>
           </div>
           <button

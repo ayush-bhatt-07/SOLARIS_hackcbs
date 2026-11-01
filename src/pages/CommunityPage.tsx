@@ -12,10 +12,11 @@ export const CommunityPage: React.FC = () => {
   // Calculate capitalization stats from live members
   const fundedPercentage = Math.min(100, Math.round((community.totalCommittedInr / community.netTargetInr) * 1000) / 10);
   const signedCount = community.members.filter(m => m.consentSigned).length;
-  const signedPercentage = Math.round((signedCount / community.totalEligibleFlats) * 100);
+  const eligibleFlats = Math.max(community.totalEligibleFlats, community.members.length);
+  const signedPercentage = Math.min(100, Math.round((signedCount / Math.max(1, eligibleFlats)) * 100));
 
   return (
-    <div className="flex flex-col w-full pb-16 max-w-3xl mx-auto px-4 space-y-4 animate-in fade-in">
+    <div className="flex flex-col w-full pb-16 max-w-3xl mx-auto px-4 space-y-4 fade-in-soft">
       
       {/* Ambient Banner */}
       <div className="pt-2">
@@ -93,7 +94,7 @@ export const CommunityPage: React.FC = () => {
 
           <div className="flex justify-between items-center text-[11px] text-[#404846] pt-0.5">
             <span className="flex items-center gap-1 font-semibold text-[#002620]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#006b57]"></span> {signedCount} of {community.totalEligibleFlats} Flats Committed ({signedPercentage}%)
+              <span className="w-1.5 h-1.5 rounded-full bg-[#006b57]"></span> {signedCount} of {eligibleFlats} Flats Committed ({signedPercentage}%)
             </span>
             <span className="italic text-[#ca962b]">Subsidy applied: ₹{community.subsidyEligibleInr.toLocaleString('en-IN')}</span>
           </div>
@@ -148,7 +149,7 @@ export const CommunityPage: React.FC = () => {
               : 'text-[#404846] hover:text-[#002620]'
           }`}
         >
-          Statutory & Legal
+          Agreements
         </button>
         <button
           type="button"
@@ -167,7 +168,7 @@ export const CommunityPage: React.FC = () => {
 
       {/* TAB 1: Roster & Allocation */}
       {activeTab === 'roster' && (
-        <div className="space-y-3 animate-in fade-in">
+        <div className="space-y-3 fade-in-soft">
           <div className="flex items-center justify-between pt-1">
             <div className="flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[18px] text-[#006b57]">groups</span>
@@ -257,13 +258,13 @@ export const CommunityPage: React.FC = () => {
 
       {/* TAB 2: Statutory & Legal */}
       {activeTab === 'governance' && (
-        <div className="space-y-3 animate-in fade-in">
+        <div className="space-y-3 fade-in-soft">
           <div className="flex items-center justify-between pt-1">
             <div className="flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[18px] text-[#006b57]">fact_check</span>
-              <h2 className="font-headline text-sm font-bold text-[#101d24]">Statutory Compliance</h2>
+              <h2 className="font-headline text-sm font-bold text-[#101d24]">Agreement &amp; approval records</h2>
             </div>
-            <span className="text-xs text-[#006b57] font-semibold">2 of 3 Completed</span>
+            <span className="text-xs text-[#006b57] font-semibold">2 of 3 recorded</span>
           </div>
 
           <div className="bg-white rounded-xl p-4 shadow-sm border border-[#e2f0f9] space-y-3.5">
@@ -340,13 +341,13 @@ export const CommunityPage: React.FC = () => {
 
       {/* TAB 3: Timeline */}
       {activeTab === 'timeline' && (
-        <div className="space-y-3 animate-in fade-in">
+        <div className="space-y-3 fade-in-soft">
           <div className="flex items-center justify-between pt-1">
             <div className="flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[18px] text-[#006b57]">timeline</span>
               <h2 className="font-headline text-sm font-bold text-[#101d24]">Audit Trail &amp; Alerts</h2>
             </div>
-            <span className="text-xs text-[#404846]">Live Updates</span>
+            <span className="text-xs text-[#404846]">Activity log</span>
           </div>
 
           <div className="bg-white rounded-xl p-4 shadow-sm border border-[#e2f0f9] space-y-3">
@@ -439,7 +440,7 @@ export const CommunityPage: React.FC = () => {
       <div className="p-3.5 rounded-xl bg-[#e8f6ff] flex items-start gap-2.5 border border-[#d6e5ee]">
         <span className="material-symbols-outlined text-[20px] text-[#006b57] shrink-0 mt-0.5">info</span>
         <div className="space-y-1">
-          <span className="text-xs font-bold text-[#101d24]">Statutory VNM Settlement Advisory</span>
+          <span className="text-xs font-bold text-[#101d24]">Where Solaris stops</span>
           <p className="text-xs text-[#404846] leading-relaxed">
             Community membership confirms internal investment and allocation agreement. Final electricity credit settlement is executed exclusively by BSES Rajdhani via monthly billing adjustment under Delhi VNM Regulations.
           </p>
@@ -453,7 +454,7 @@ export const CommunityPage: React.FC = () => {
           onClick={() => navigateTo('/credit-allocation')}
           className="w-full h-12 rounded-lg bg-[#006b57] text-white font-headline text-sm font-bold flex items-center justify-center gap-2 shadow-md hover:bg-[#002620] transition-all active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-[#9af4d8]/60 focus:ring-offset-2"
         >
-          <span>Proceed to Final Resolution Lock</span>
+          <span>Review credit reconciliation</span>
           <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
         </button>
         <button

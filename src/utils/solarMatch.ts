@@ -111,9 +111,7 @@ export const scoreProvider = (
   const reliabilityComponent = provider.verifiedReliability * weights.verifiedReliability;
 
   const values = Object.values(weights);
-  if (values.some(value => !Number.isFinite(value) || value < 0) || values.reduce((sum, value) => sum + value, 0) <= 0) {
-    throw new Error('SolarMatch weights must be finite, nonnegative, and have a positive total.');
-  }
+  if (values.some(value => !Number.isFinite(value) || value < 0) || values.reduce((sum, value) => sum + value, 0) <= 0) throw new Error('SolarMatch weights must be finite, nonnegative, and have a positive total.');
   const score = (technicalComponent + costComponent + experienceComponent + warrantyComponent + reliabilityComponent) / values.reduce((sum, value) => sum + value, 0);
 
   const reasons = [

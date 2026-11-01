@@ -8,7 +8,7 @@ export const RegulationsPage: React.FC = () => {
   const [isChecklistOpen, setIsChecklistOpen] = useState(true);
 
   return (
-    <div className="flex flex-col w-full pb-16 max-w-3xl mx-auto px-4 animate-in fade-in">
+    <div className="flex flex-col w-full pb-16 max-w-3xl mx-auto px-4 fade-in-soft">
       
       {/* Subsidies Category Toggle Bar */}
       <section className="pt-2 pb-3">
@@ -312,7 +312,7 @@ export const RegulationsPage: React.FC = () => {
           </button>
 
           {isChecklistOpen && (
-            <div id="compliance-checklist" className="px-4 pb-4 pt-1 flex flex-col gap-2.5 animate-in fade-in">
+            <div id="compliance-checklist" className="px-4 pb-4 pt-1 flex flex-col gap-2.5 fade-in-soft">
               <div className="flex items-start gap-3 p-2.5 rounded-lg bg-[#e8f6ff] border border-[#d6e5ee]">
                 <span className="material-symbols-outlined text-[#006b57] text-[20px] shrink-0 mt-0.5">check_circle</span>
                 <div className="flex flex-col">

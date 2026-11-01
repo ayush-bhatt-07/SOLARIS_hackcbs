@@ -3,7 +3,15 @@ export type UserRole =
   | 'msme'
   | 'rwa_coordinator'
   | 'installer_partner'
-  | 'admin_auditor';
+  | 'admin_auditor'
+  | 'platform_admin'
+  | 'society_admin'
+  | 'household_member'
+  | 'commercial_property_owner'
+  | 'facility_manager'
+  | 'shop_tenant'
+  | 'installer_admin'
+  | 'installer_engineer';
 
 export interface UserProfile {
   id: string;

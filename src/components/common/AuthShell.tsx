@@ -10,7 +10,8 @@ interface AuthShellProps {
 }
 
 export const AuthShell: React.FC<AuthShellProps> = ({ eyebrow, title, subtitle, children, footer }) => {
-  const { navigateTo } = useApp();
+  const { navigateTo, currentPath } = useApp();
+  const business = currentPath.endsWith('/msme');
 
   return (
     <div className="min-h-screen bg-[#F8FAF7] flex flex-col">
@@ -33,22 +34,26 @@ export const AuthShell: React.FC<AuthShellProps> = ({ eyebrow, title, subtitle, 
         <section className="hidden lg:flex flex-col gap-5 p-7 rounded-2xl bg-[#103d35] text-white shadow-md">
           <span className="inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-white/10 text-[#9af4d8] text-xs font-semibold">
             <span className="material-symbols-outlined text-[14px]">wb_sunny</span>
-            <span>ONE SUN. MANY COMMUNITIES.</span>
+            <span>{business ? 'SOLAR INTELLIGENCE FOR BUSINESS' : 'ONE SUN. MANY COMMUNITIES.'}</span>
           </span>
           <div className="space-y-2">
             <h2 className="font-headline text-3xl font-bold leading-tight">
-              Shared solar, made clear and affordable.
+              {business ? 'Turn your rooftop into a business advantage.' : 'Shared solar, made clear and affordable.'}
             </h2>
             <p className="text-sm text-[#a3d0c4] leading-relaxed">
-              Plan rooftop capacity, check DERC eligibility, optimise community budgets, and track every credit from one ledger.
+              {business ? 'Compare system sizes, understand your electricity costs, and give every shop a clear view of projected benefits.' : 'Plan rooftop capacity, check DERC eligibility, optimise community budgets, and understand proposed benefit allocations.'}
             </p>
           </div>
           <div className="space-y-3 pt-2">
-            {[
+            {(business ? [
+              { icon: 'domain', label: 'Interactive mall and tenant workspace' },
+              { icon: 'monitoring', label: 'Transparent before-and-after bill calculations' },
+              { icon: 'handshake', label: 'Installer matching and quote comparison' }
+            ] : [
               { icon: 'verified_user', label: 'Regulation-aware eligibility checks' },
               { icon: 'bolt', label: 'Budget-constrained community optimisation' },
-              { icon: 'pie_chart', label: 'Transparent 100% allocation reconciliation' }
-            ].map((item) => (
+              { icon: 'pie_chart', label: 'Transparent proposed benefit allocations' }
+            ]).map((item) => (
               <div key={item.icon} className="flex items-center gap-3 text-sm text-[#d6e5ee]">
                 <span className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-[#9af4d8]">
                   <span className="material-symbols-outlined text-[18px]">{item.icon}</span>
